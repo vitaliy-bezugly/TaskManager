@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Persistence.Entities.Abstract;
 
-namespace Persistence.Entities;
+namespace Entities;
 
 [Table("User")]
 public class UserEntity : BaseEntity

@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain;
+using Domain.Services.Abstract;
+using Mappers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Persistence;
 using Persistence.Entities;
+using TaskManager.ViewModels;
 
 namespace TaskManager.Controllers
 {
@@ -9,17 +13,17 @@ namespace TaskManager.Controllers
     [ApiController]
     public class Test : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ITaskService _taskService;
 
-        public Test(ApplicationDbContext context)
+        public Test(ITaskService taskService)
         {
-            _context = context;
+            _taskService = taskService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<TaskEntity>> GetTasks()
+        public ActionResult<IEnumerable<TaskViewModel>> GetTasks()
         {
-            return Ok(_context.Tasks);
+            return Ok(_taskService.GetTasks().Select(x => x.ToViewModel()));
         }
     }
 }

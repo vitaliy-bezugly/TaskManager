@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Persistence.Entities.Abstract;
 
-namespace Persistence.Entities;
+namespace Entities;
 
 [Table("Role")]
 public class RoleEntity : BaseEntity

@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using Persistence;
+using Domain.Services;
+using Domain.Services.Abstract;
 using TaskManager.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureDatabase(builder.Configuration);
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 
