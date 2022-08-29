@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Persistence;
+using TaskManager.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,8 +10,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureDatabase(builder.Configuration);
 
 var app = builder.Build();
+
+DatabasePreparation.PreparePopulation(app, app.Logger);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
