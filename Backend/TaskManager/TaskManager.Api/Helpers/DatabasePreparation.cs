@@ -50,8 +50,8 @@ public class DatabasePreparation
             context.SaveChanges();
 
             List<UserEntity> users = context.Users.ToList();
-            int firstUserIndex = users.First().Id;
-            int lastUserIndex = users.Last().Id;
+            string firstUserIndex = users.First().Id;
+            string lastUserIndex = users.Last().Id;
 
             context.Roles.AddRange(
                 Enumerable.Range(0, 5).Select(index => new RoleEntity()
@@ -65,7 +65,7 @@ public class DatabasePreparation
                     Title = titles[Random.Shared.Next(0, titles.Length)],
                     ExpirationTime = expirationTime[Random.Shared.Next(0, expirationTime.Length)],
                     Description = descriptions[Random.Shared.Next(0, descriptions.Length)],
-                    UserId = Random.Shared.Next(firstUserIndex, lastUserIndex + 1)
+                    UserId = users[Random.Shared.Next(0, users.Count)].Id    
                 }));
 
             context.SaveChanges();

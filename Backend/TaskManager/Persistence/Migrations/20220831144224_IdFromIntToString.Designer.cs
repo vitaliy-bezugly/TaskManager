@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220829112935_first-migration")]
-    partial class firstmigration
+    [Migration("20220831144224_IdFromIntToString")]
+    partial class IdFromIntToString
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,13 +25,10 @@ namespace Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Persistence.Entities.RoleEntity", b =>
+            modelBuilder.Entity("Entities.RoleEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
@@ -44,13 +41,10 @@ namespace Persistence.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.TaskEntity", b =>
+            modelBuilder.Entity("Entities.TaskEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
@@ -65,8 +59,9 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -75,13 +70,10 @@ namespace Persistence.Migrations
                     b.ToTable("Task");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.UserEntity", b =>
+            modelBuilder.Entity("Entities.UserEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
@@ -105,11 +97,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("RoleEntityUserEntity", b =>
                 {
-                    b.Property<int>("RolesId")
-                        .HasColumnType("int");
+                    b.Property<string>("RolesId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("RolesId", "UsersId");
 
@@ -118,9 +110,9 @@ namespace Persistence.Migrations
                     b.ToTable("RoleEntityUserEntity");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.TaskEntity", b =>
+            modelBuilder.Entity("Entities.TaskEntity", b =>
                 {
-                    b.HasOne("Persistence.Entities.UserEntity", "User")
+                    b.HasOne("Entities.UserEntity", "User")
                         .WithMany("Tasks")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -131,20 +123,20 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("RoleEntityUserEntity", b =>
                 {
-                    b.HasOne("Persistence.Entities.RoleEntity", null)
+                    b.HasOne("Entities.RoleEntity", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Persistence.Entities.UserEntity", null)
+                    b.HasOne("Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Persistence.Entities.UserEntity", b =>
+            modelBuilder.Entity("Entities.UserEntity", b =>
                 {
                     b.Navigation("Tasks");
                 });

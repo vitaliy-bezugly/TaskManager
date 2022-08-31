@@ -13,6 +13,7 @@ public class TaskEntity : BaseEntity
     [Required]
     public DateTime ExpirationTime { get; set; }
 
-    public int UserId { get; set; }
+    [Required]
+    public string UserId { get; set; }
     public UserEntity? User { get; set; }
 }
