@@ -2,5 +2,9 @@ namespace Domain.Services.Abstract;
 
 public interface ITaskService
 {
-    public IEnumerable<TaskDomain> GetTasks();
+    public Task<IEnumerable<TaskDomain>> GetTasksAsync(string userId);
+    public Task<TaskDomain> GetTaskAsync(string userId, string taskId);
+    public Task CreateTaskAsync(string userId, TaskDomain task);
+    public Task DeleteTaskAsync(string userId, string taskId);
+    public Task UpdateTaskAsync(string userId, string taskId, TaskDomain task);
 }

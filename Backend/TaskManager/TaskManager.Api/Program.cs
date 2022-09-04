@@ -1,5 +1,8 @@
 using Domain.Services;
 using Domain.Services.Abstract;
+using Persistence.Repositories;
+using Persistence.Repositories.Abstract;
+using Services;
 using TaskManager.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +14,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureDatabase(builder.Configuration);
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 var app = builder.Build();
 
