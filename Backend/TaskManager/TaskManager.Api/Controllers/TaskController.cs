@@ -28,9 +28,9 @@ public class TaskController : ControllerBase
             IEnumerable<TaskDomain>? tasksDomain = await _taskService.GetTasksAsync(_userId);
             return Ok(tasksDomain.Select(x => x.ToViewModel()));
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError("Can not get tasks");
+            _logger.LogError("Can not get tasks", e);
             return BadRequest();
         }
     }
@@ -42,9 +42,9 @@ public class TaskController : ControllerBase
             var task = await _taskService.GetTaskAsync(_userId, id);
             return Ok(task.ToViewModel());
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError($"Can not get tasks with index: {id}");
+            _logger.LogError($"Can not get tasks with index: {id}", e);
             return NotFound();
         }
     }
@@ -56,9 +56,9 @@ public class TaskController : ControllerBase
             await _taskService.CreateTaskAsync(_userId, task.ToDomain());
             return Ok();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError($"Can not create task");
+            _logger.LogError($"Can not create task", e);
             return BadRequest();
         }
     }
@@ -70,9 +70,9 @@ public class TaskController : ControllerBase
             await _taskService.DeleteTaskAsync(_userId, id);
             return Ok();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError($"Can not delete task with index: {id}");
+            _logger.LogError($"Can not delete task with index: {id}", e);
             return BadRequest();
         }
     }
@@ -84,9 +84,9 @@ public class TaskController : ControllerBase
             await _taskService.UpdateTaskAsync(_userId, id, task.ToDomain());
             return Ok();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError($"Can not update task with index: {id}");
+            _logger.LogError($"Can not update task with index: {id}", e);
             return BadRequest();
         }
     }

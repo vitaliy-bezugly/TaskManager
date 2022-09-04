@@ -1,5 +1,11 @@
+using Domain.Services;
+using Domain.Services.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Persistence.Repositories;
+using Persistence.Repositories.Abstract;
+using Serilog;
+using Services;
 
 namespace TaskManager.Helpers;
 
@@ -30,5 +36,21 @@ public static class ConfigurationHelper
         {
             options.UseSqlServer(connectionString);
         });
+    }
+    public static void ConfigureServices(this IServiceCollection services)
+    {
+        services.AddScoped<ITaskRepository, TaskRepository>();
+        services.AddScoped<ITaskService, TaskService>();
+        services.AddScoped<IAccountService, AccountService>();
+    }
+    public static void ConfigureLogger(this WebApplicationBuilder builder)
+    {
+        var logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(builder.Configuration)
+            .Enrich.FromLogContext()
+            .CreateLogger();
+
+        builder.Logging.ClearProviders();
+        builder.Logging.AddSerilog(logger);
     }
 }

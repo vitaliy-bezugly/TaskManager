@@ -1,22 +1,17 @@
-using Domain.Services;
-using Domain.Services.Abstract;
-using Persistence.Repositories;
-using Persistence.Repositories.Abstract;
-using Services;
 using TaskManager.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.ConfigureLogger();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.ConfigureDatabase(builder.Configuration);
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<ITaskService, TaskService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.ConfigureServices();
 
 var app = builder.Build();
 
