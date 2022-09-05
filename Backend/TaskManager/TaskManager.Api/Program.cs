@@ -1,3 +1,4 @@
+using Authentication.Common;
 using TaskManager.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureDatabase(builder.Configuration);
 builder.Services.ConfigureServices();
+builder.Services.ConfigureRepositories();
+
+var options = builder.Configuration.GetSection("Authentication");
+builder.Services.Configure<AuthenticationOptions>(options);
 
 var app = builder.Build();
 

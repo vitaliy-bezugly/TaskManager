@@ -39,9 +39,13 @@ public static class ConfigurationHelper
     }
     public static void ConfigureServices(this IServiceCollection services)
     {
-        services.AddScoped<ITaskRepository, TaskRepository>();
         services.AddScoped<ITaskService, TaskService>();
         services.AddScoped<IAccountService, AccountService>();
+    }
+    public static void ConfigureRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<ITaskRepository, TaskRepository>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
     }
     public static void ConfigureLogger(this WebApplicationBuilder builder)
     {
@@ -50,7 +54,6 @@ public static class ConfigurationHelper
             .Enrich.FromLogContext()
             .CreateLogger();
 
-        builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(logger);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.Services.Abstract;
-using Microsoft.AspNetCore.Http;
+using Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Services.Data;
 using TaskManager.ViewModels;
 
 namespace TaskManager.Controllers;
@@ -21,13 +22,45 @@ public class AccountController : ControllerBase
     [Route("Login")]
     public async Task<IActionResult> Login([FromBody] LoginViewModel loginData)
     {
-        return Unauthorized();
+        try
+        {
+            LoginParameters loginResult = await _accountService.LoginAsync(loginData.Email, 
+                loginData.Password);
+
+            if(loginResult.IsSuccess == false)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(new
+            {
+                access_token = loginResult.Jwt
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Can not login user");
+            return BadRequest();
+        }
     }
 
     [HttpPost]
     [Route("Register")]
     public async Task<IActionResult> Register([FromBody] RegisterViewModel registerData)
     {
-        return Unauthorized();
+        try
+        {
+            string jwt = await _accountService.RegisterAsync(registerData.ToDomain());
+
+            return Ok(new
+            {
+                access_token = jwt
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Can not register user");
+            return BadRequest();
+        }
     }
 }

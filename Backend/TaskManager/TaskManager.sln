@@ -11,11 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mappers", "Mappers\Mappers.csproj", "{75AF791C-CA8A-42AF-9EB5-122CAABB6C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{156F1A57-D914-471E-8442-74EAE7489CE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModels", "ViewModels\ViewModels.csproj", "{156F1A57-D914-471E-8442-74EAE7489CE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{AF58688E-24B0-459A-8DC1-0CC7CC517879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{AF58688E-24B0-459A-8DC1-0CC7CC517879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{42EB4143-77DE-4DAE-962C-434EA26A6B3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{42EB4143-77DE-4DAE-962C-434EA26A6B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Common", "Authentication.Common\Authentication.Common.csproj", "{6B733146-3522-4FF8-97C8-9B9FE9B708E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hashing", "Hashing\Hashing.csproj", "{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{42EB4143-77DE-4DAE-962C-434EA26A6B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42EB4143-77DE-4DAE-962C-434EA26A6B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42EB4143-77DE-4DAE-962C-434EA26A6B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B733146-3522-4FF8-97C8-9B9FE9B708E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B733146-3522-4FF8-97C8-9B9FE9B708E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B733146-3522-4FF8-97C8-9B9FE9B708E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B733146-3522-4FF8-97C8-9B9FE9B708E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
