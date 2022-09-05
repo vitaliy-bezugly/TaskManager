@@ -1,23 +1,26 @@
 ﻿using Domain;
 using Domain.Services.Abstract;
 using Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TaskManager.ViewModels;
 
 namespace TaskManager.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
+[ApiController, Route("api/[controller]")]
+[Authorize]
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _taskService;
     private readonly ILogger<TaskController> _logger;
     private readonly string _userId;
-    public TaskController(ITaskService taskService, ILogger<TaskController> logger)
+    public TaskController(ITaskService taskService, ILogger<TaskController> logger,
+         IHttpContextAccessor httpContextAccessor)
     {
-        _userId = "0f5430f3-20e1-473a-8637-75565dd16256";
         _taskService = taskService;
         _logger = logger;
+        _userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
     }
 
     [HttpGet]
