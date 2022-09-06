@@ -1,4 +1,6 @@
-namespace Domain.Services.Abstract;
+using Domain;
+
+namespace Services.Abstract;
 
 public interface ITaskService
 {

@@ -1,45 +1,29 @@
 using Authentication.Common;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using TaskManager.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.ConfigureLogger();
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ConfigureDatabase(builder.Configuration);
+builder.ConfigureLogger();
+
+builder.Services.ConfigureDatabaseConnection(builder.Configuration);
+
+builder.Services.ConfigureRedisConnection(builder.Configuration);
+builder.Services.AddDistributedMemoryCache();
+
 builder.Services.ConfigureServices();
 builder.Services.ConfigureRepositories();
 
 var options = builder.Configuration.GetSection("Authentication");
 builder.Services.Configure<AuthenticationOptions>(options);
 
+// Configure authentication (based on jwt tokens)
 AuthenticationOptions? authOptions = options.Get<AuthenticationOptions>();
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.RequireHttpsMetadata = false;
-
-        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = authOptions.Issuer,
-
-            ValidateAudience = true,
-            ValidAudience = authOptions.Audience,
-
-            ValidateLifetime = true,
-
-            IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
-            ValidateIssuerSigningKey = true
-        };
-    });
+builder.Services.ConfigureAuthentication(authOptions);
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCors(options =>
 {
@@ -50,8 +34,6 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader();
     });
 });
-
-builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

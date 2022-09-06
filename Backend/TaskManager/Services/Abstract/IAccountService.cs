@@ -1,6 +1,7 @@
+using Domain;
 using Services.Data;
 
-namespace Domain.Services.Abstract;
+namespace Services.Abstract;
 
 public interface IAccountService
 {

@@ -1,6 +1,6 @@
 ﻿using Authentication.Common;
 using Domain;
-using Domain.Services.Abstract;
+using Services.Abstract;
 using Entities;
 using Hashing;
 using Mappers;

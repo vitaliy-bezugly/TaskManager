@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Persistence.Entities.Abstract;
 
 namespace Entities;
@@ -15,5 +16,7 @@ public class TaskEntity : BaseEntity
 
     [Required]
     public string UserId { get; set; }
+
+    [JsonIgnore]
     public UserEntity? User { get; set; }
 }

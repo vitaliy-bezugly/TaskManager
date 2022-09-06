@@ -1,5 +1,5 @@
 ﻿using Domain;
-using Domain.Services.Abstract;
+using Services.Abstract;
 using Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +8,7 @@ using TaskManager.ViewModels;
 
 namespace TaskManager.Controllers;
 
-[ApiController, Route("api/[controller]")]
-[Authorize]
+[ApiController, Route("api/[controller]"), Authorize]
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _taskService;
@@ -33,8 +32,8 @@ public class TaskController : ControllerBase
         }
         catch (Exception e)
         {
-            _logger.LogError("Can not get tasks", e);
-            return BadRequest();
+            _logger.LogError(e, "Can not get tasks");
+            return BadRequest(e.Message);
         }
     }
     [HttpGet("{id}")]
@@ -47,8 +46,8 @@ public class TaskController : ControllerBase
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not get tasks with index: {id}", e);
-            return NotFound();
+            _logger.LogError(e, $"Can not get task with index: {id}");
+            return BadRequest(e.Message);
         }
     }
     [HttpPost]
@@ -61,12 +60,12 @@ public class TaskController : ControllerBase
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not create task", e);
-            return BadRequest();
+            _logger.LogError(e, $"Can not create task");
+            return BadRequest(e.Message);
         }
     }
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteTaskAsync(string id)
+    public async Task<IActionResult> DeleteTaskAsync(string id)
     {
         try
         {
@@ -75,12 +74,12 @@ public class TaskController : ControllerBase
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not delete task with index: {id}", e);
-            return BadRequest();
+            _logger.LogError(e, $"Can not delete task with index: {id}");
+            return BadRequest(e.Message);
         }
     }
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateTaskAsync(string id, TaskViewModel task)
+    public async Task<IActionResult> UpdateTaskAsync(string id, TaskViewModel task)
     {
         try
         {
@@ -89,8 +88,8 @@ public class TaskController : ControllerBase
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not update task with index: {id}", e);
-            return BadRequest();
+            _logger.LogError(e, $"Can not update task with index: {id}");
+            return BadRequest(e.Message);
         }
     }
 }
