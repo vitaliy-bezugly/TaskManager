@@ -18,6 +18,16 @@ public class AccountController : ControllerBase
         _logger = logger;
     }
 
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok(_accountService.GetAccounts().Select(x => new LoginViewModel
+        {
+            Email = x.Email,
+            Password = x.Password
+        }));
+    }
+
     [HttpPost]
     [Route("Login")]
     public async Task<IActionResult> Login([FromBody] LoginViewModel loginData)

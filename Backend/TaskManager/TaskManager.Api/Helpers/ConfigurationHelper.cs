@@ -24,7 +24,6 @@ public static class ConfigurationHelper
         }
         else
         {
-            // Test values (in the published project these will be environment variables)
             string server = configuration["DbServer"] ?? "ms-sql-server";
             string port = configuration["DbPort"] ?? "1433";
             string user = configuration["DbUser"] ?? "SA";

@@ -35,6 +35,11 @@ public class AccountRepository : IAccountRepository
         await _context.SaveChangesAsync();
     }
 
+    public IEnumerable<UserEntity> GetAllUsers()
+    {
+        return _context.Users;
+    }
+
     public async Task<UserEntity?> GetUserByEmailAndPasswordAsync(string email, string password)
     {
         if (email == null || string.IsNullOrEmpty(password) == true)

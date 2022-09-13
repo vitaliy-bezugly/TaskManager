@@ -8,4 +8,5 @@ public interface IAccountRepository
     public Task CreateUserAsync(UserEntity user);
     public Task DeleteUserAsync(string userId);
     public Task UpdateUserAsync(string userId, UserEntity user);
+    public IEnumerable<UserEntity> GetAllUsers();
 }

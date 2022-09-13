@@ -23,7 +23,7 @@ public class TaskService : ITaskService
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not create task", e);
+            _logger.LogError(e, $"Can not create task");
             throw e;
         }
     }
@@ -36,7 +36,7 @@ public class TaskService : ITaskService
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not delete task with index: {taskId}", e);
+            _logger.LogError(e, $"Can not delete task with index: {taskId}");
             throw e;
         }
     }
@@ -49,7 +49,7 @@ public class TaskService : ITaskService
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not update task with index: {taskId}", e);
+            _logger.LogError(e, $"Can not update task with index: {taskId}");
             throw e;
         }
     }
@@ -69,7 +69,7 @@ public class TaskService : ITaskService
         }
         catch (Exception e)
         {
-            _logger.LogError($"Can not find task with index: {taskId}", e);
+            _logger.LogError(e, $"Can not find task with index: {taskId}");
             throw e;
         }
     }

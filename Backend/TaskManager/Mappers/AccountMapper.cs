@@ -18,7 +18,7 @@ public static class AccountMapper
     }
     public static UserEntity ToEntity(this AccountDomain user)
     {
-        return new UserEntity { Email = user.Email, Password = user.Password, 
+        return new UserEntity { Id = user.Id, Email = user.Email, Password = user.Password, 
             Username = user.Username, Roles = user.Roles?.Select(x => x.ToEntity()).ToList() };
     }
 }

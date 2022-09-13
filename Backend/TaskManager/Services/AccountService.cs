@@ -27,6 +27,11 @@ public class AccountService : IAccountService
         _options = options;
     }
 
+    public IEnumerable<AccountDomain> GetAccounts()
+    {
+        return _accountRepository.GetAllUsers().Select(x => x.ToDomain());
+    }
+
     public async Task<LoginParameters> LoginAsync(string email, string password)
     {
         try

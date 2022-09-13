@@ -9,14 +9,16 @@ namespace Persistence.Repositories.Cached;
 public class TaskRepositoryCached : ITaskRepository
 {
     private readonly ITaskRepository _taskRepository;
+    private readonly IAccountRepository _accountRepository;
     private readonly IDistributedCache _cache;
     private readonly ILogger<TaskRepositoryCached> _logger;
     public TaskRepositoryCached(ITaskRepository taskRepository, IDistributedCache cache, 
-        ILogger<TaskRepositoryCached> logger)
+        ILogger<TaskRepositoryCached> logger, IAccountRepository accountRepository)
     {
         _taskRepository = taskRepository;
         _cache = cache;
         _logger = logger;
+        _accountRepository = accountRepository;
     }
 
     public async Task CreateTaskAsync(string userId, TaskEntity task)
@@ -77,6 +79,7 @@ public class TaskRepositoryCached : ITaskRepository
         if (resultFromCache == null)
         {
             _logger.LogInformation($"There are no user({userId}) tasks in cache. Getting it from db");
+
             var tasks = await _taskRepository.GetTasksAsync(userId);
             await _cache.SetRecordAsync<IEnumerable<TaskEntity>>(GetKeyForCache(userId), tasks);
 

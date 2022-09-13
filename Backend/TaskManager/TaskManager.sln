@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{42EB4143-77DE-4DAE-962C-434EA26A6B3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Common", "Authentication.Common\Authentication.Common.csproj", "{6B733146-3522-4FF8-97C8-9B9FE9B708E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Common", "Authentication.Common\Authentication.Common.csproj", "{6B733146-3522-4FF8-97C8-9B9FE9B708E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hashing", "Hashing\Hashing.csproj", "{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hashing", "Hashing\Hashing.csproj", "{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.IntegrationTests", "TaskManager.IntegrationTests\TaskManager.IntegrationTests.csproj", "{252CBA5D-50E4-4C05-A9DC-67341346E0B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
