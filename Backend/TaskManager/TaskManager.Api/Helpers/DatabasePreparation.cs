@@ -20,7 +20,14 @@ public class DatabasePreparation
     {
         logger.LogInformation("Applying migration ...");
 
-        context.Database.Migrate();
+        try
+        {
+            context.Database.Migrate();
+        }
+        catch (InvalidOperationException e)
+        {
+            logger.LogWarning(e, "There is instance of database for testing");
+        }
 
         if (context.Users.Any() == false && context.Tasks.Any() == false)
         {

@@ -24,9 +24,15 @@ public class IntegrationTest
             {
                 builder.ConfigureServices(services =>
                 {
-                    services.RemoveAll(typeof(ApplicationDbContext));
-                    services.AddDbContext<ApplicationDbContext>(options => 
-                        { options.UseInMemoryDatabase("TestDatabase"); });
+                    var descriptor = services.SingleOrDefault(
+                        d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
+
+                    services.Remove(descriptor);
+
+                    services.AddDbContext<ApplicationDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                    });
                 });
             });
         _httpClient = webApplicationFactory.CreateClient();
@@ -38,11 +44,12 @@ public class IntegrationTest
         _httpClient.DefaultRequestHeaders.Authorization = 
             new AuthenticationHeaderValue("Bearer", jwt);
     }
-    private async Task<string> GetJwtAsync()
+
+    private async Task<HttpResponseMessage> RegisterUserAsync()
     {
         var registerForm = new RegisterViewModel
         {
-            Email = "userEmail@gmail.com",
+            Email = "testEmail@gmail.com",
             Password = "strongPass123",
             Username = "testUser",
             Roles = new List<string> { "user" }
@@ -51,8 +58,13 @@ public class IntegrationTest
         string json = JsonSerializer.Serialize<RegisterViewModel>(registerForm);
         var payload = new StringContent(json, Encoding.UTF8, "application/json");
 
-        HttpResponseMessage response = await _httpClient.PostAsync(_apiUrl + "Account/Register", 
+        return await _httpClient.PostAsync(_apiUrl + "Account/Register",
             payload);
+    }
+
+    private async Task<string> GetJwtAsync()
+    {
+        HttpResponseMessage response = await RegisterUserAsync();
 
         var authResponseJson = await response.Content.ReadAsStringAsync();
         var authResponse = JsonSerializer.Deserialize<AuthenticationSuccessResponse>(authResponseJson);

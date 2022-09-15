@@ -9,6 +9,7 @@ using Persistence.Repositories.Abstract;
 using Serilog;
 using Services;
 using Persistence.Repositories.Cached;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TaskManager.Helpers;
 
@@ -94,7 +95,7 @@ public static class ConfigurationHelper
             {
                 options.RequireHttpsMetadata = false;
 
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidIssuer = authOptions.Issuer,

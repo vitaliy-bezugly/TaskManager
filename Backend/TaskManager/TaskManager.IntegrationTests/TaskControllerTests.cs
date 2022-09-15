@@ -24,6 +24,13 @@ public class TaskControllerTests : IntegrationTest
         HttpResponseMessage response = await _httpClient.GetAsync(_apiUrl + "Task");
 
         HttpStatusCode actualStatusCode = response.StatusCode;
+
+        if(actualStatusCode != HttpStatusCode.OK)
+        {
+            string errorMessage = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Assert.Fail(errorMessage);
+        }
+
         var actualTasks = await JsonSerializer
             .DeserializeAsync<List<TaskViewModel>>(await response.Content.ReadAsStreamAsync());
 
