@@ -14,14 +14,14 @@ public static class TaskMapper
 
     public static TaskDomain ToDomain(this TaskViewModel task)
     {
-        return new TaskDomain { Title = task.Title, Description = task.Description, 
-             ExpirationTime = task.ExpirationTime };
+        return new TaskDomain { Title = task.title, Description = task.description, 
+             ExpirationTime = task.expirationTime };
     }
 
     public static TaskViewModel ToViewModel(this TaskDomain task)
     {
-        return new TaskViewModel { Id = task.Id, Title = task.Title, Description = task.Description, 
-             ExpirationTime = task.ExpirationTime, CreatedTime = task.CreatedTime };
+        return new TaskViewModel { id = task.Id, title = task.Title, description = task.Description, 
+             expirationTime = task.ExpirationTime, createdTime = task.CreatedTime };
     }
 
     public static TaskDomain ToDomain(this TaskEntity task)
