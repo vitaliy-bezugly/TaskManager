@@ -18,6 +18,7 @@ public static class ConfigurationHelper
     public static void ConfigureDatabaseConnection(this IServiceCollection services, IConfiguration configuration)
     {
         string connectionString = "";
+       
         // If it isn't run in a docker
         if (configuration["IsDocker"] == null)
         {
@@ -29,7 +30,7 @@ public static class ConfigurationHelper
             string port = configuration["DbPort"] ?? "1433";
             string user = configuration["DbUser"] ?? "SA";
             string password = configuration["DbPassword"] ?? "BilliJin2000";
-            string database = configuration["DatabaseCatalog"] ?? "Bookstore";
+            string database = configuration["DbCatalog"] ?? "Bookstore";
     
             connectionString = $"Data Source={server},{port};Persist Security Info=True;" +
                                $"Initial Catalog={database};User ID={user};Password={password}";

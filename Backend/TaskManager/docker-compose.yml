@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  ms-sql-server:
+   image: mcr.microsoft.com/mssql/server:2022-latest
+   environment: 
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=BilliJin2000
+    - MSSQL_PID=Express
+   ports: 
+    - "1433:1433"
+
+  redis:
+   image: redis
+   ports:
+    - "6379:6379"
+
+  taskmanager.api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+     - "8000:80"
+    environment:
+     - ASPNETCORE_ENVIRONMENT=Development
+     - ASPNETCORE_URLS=http://+:5000
+     - IsDocker=true
+     - DbServer=ms-sql-server
+     - DbPort=1433
+     - DbUser=SA
+     - DbPassword=BilliJin2000
+     - DbCatalog=Bookstore
+     - RedisUrl=redis
+     - RedisInstanceName=RedisCache

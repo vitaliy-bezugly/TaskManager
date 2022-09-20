@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Common", "Au
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hashing", "Hashing\Hashing.csproj", "{64382DE8-C5ED-4873-BEAE-1CB6ED602F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.IntegrationTests", "TaskManager.IntegrationTests\TaskManager.IntegrationTests.csproj", "{252CBA5D-50E4-4C05-A9DC-67341346E0B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.IntegrationTests", "TaskManager.IntegrationTests\TaskManager.IntegrationTests.csproj", "{252CBA5D-50E4-4C05-A9DC-67341346E0B4}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{252CBA5D-50E4-4C05-A9DC-67341346E0B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
