@@ -30,7 +30,7 @@
 .nav-top {
     background-color: #323232;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .nav-bottom {
@@ -82,3 +82,20 @@
     background-color: #323232;
     color: white;
  }
+
+ .dropdown-account-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+ }
+
+ .img-margin {
+    margin: 10px;
+ }
+
+ .navbar .navbar-collapse {
+    text-align: center;
+  }
+
+  .text-center { text-align: center;}
