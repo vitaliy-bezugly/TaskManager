@@ -1,0 +1,16 @@
+div, p, ul li {
+    font-size: 18px;
+}
+
+.taskbar {
+    border-radius: 15px;
+    background-color: #fafafa;
+}
+
+.taskbar ul {
+    list-style: none;
+}
+
+.taskbar-without-padding {
+    padding-inline-start: 0px;
+}

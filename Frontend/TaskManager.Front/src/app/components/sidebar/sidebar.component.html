@@ -1,0 +1,74 @@
+<div class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="https://play-lh.googleusercontent.com/UxMkGKBIF8-ErLVber5U56Dk4_EegDklOOwnUUIXYGmLZxd0pi7nlfjwBA3dFTJ_ODI" alt="logo">
+            </span>
+
+            <div class="text logo-text">
+                <span class="name">Task manager</span>
+            </div>
+        </div>
+        <i class='bx bx-chevron-right toggle' (click)="hideOrShowSidebar();"></i> 
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="Home">
+                        <i class="bx bx-home-alt icon"></i>
+                        <span class="text nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="Home">
+                        <i class="bx bx-pie-chart-alt icon"></i>
+                        <span class="text nav-text">Statistics</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="Home">
+                        <i class='bx bx-task icon'></i>
+                        <span class="text nav-text">Tasks</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="Home">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Support</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="Home">
+                        <i class='bx bxs-contact icon'></i>
+                        <span class="text nav-text">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="Home">
+                        <i class='bx bx-info-circle icon'></i>
+                        <span class="text nav-text">About</span>
+                    </a>
+                </li>
+            </ul>
+
+            <hr>
+
+            <div class="bottom-content">
+                <li class="" *ngIf="isAuthenticated === false">
+                    <a href="#">
+                        <i class="bx bx-log-in icon"></i>
+                        <span class="text nav-text">Login</span>
+                    </a>
+                </li>
+                <li class="" *ngIf="isAuthenticated === true">
+                    <a href="#">
+                        <i class="bx bx-log-out icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+.navbar-bottom-item {
+    color: #fff;
+    margin-right: 60px;
+    font-size: 20px;
+}
+
+.navbar-bottom-link {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-bottom {
+    background-color: #2cc185;
+    color: white;
+    padding: 0.5rem;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+  }
+
+.nav-bottom .navbar-collapse {
+    text-align: center;
+}
+
+.correct-padding-for-navhead {
+    padding: 0%;
+    width: -100px;
+}
+
+.dropdown-account-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+ }
+
+ .margins {
+    margin: 5px;
+}
+
+.borders {
+    border: 8px #fff solid;
+}
+
+.nav-top {
+    background-color: #323232;
+    color: white;
+    font-size: 16px;
+}
+
+
+.font-head {
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+}
+
+.font-nav {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar-right {
+    text-align: right;
+}
+
+.nav ul {
+    list-style: none;
+    text-align: center;
+ }
+ 
+ .nav ul li {
+    display: inline-block;
+ }
+
+ .navbar-link {
+    color: gray;
+    text-decoration: none;
+ }
+ .navbar-link:hover {
+    color: rgb(205, 205, 205);
+ }
+
+ .navbar-item {
+    margin-left: 30px;
+ }
+
+.span-navbar {
+    margin-left: 10px;
+}

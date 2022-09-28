@@ -1,11 +1,19 @@
-/*
-[class *= "con"] {
-    padding: 1rem;
-    background-color: #9e33e5;
-    border: 2px #fff solid;
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --body-color: #f4f4f4;
+    --sidebar-color: #fff;
+    --primary-color: #2cc185;
+    --primary-color-light: #f6f5ff;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
 }
-*/
 
 [class *= "col"] {
     padding: 1rem;
@@ -19,83 +27,34 @@
     text-align: start;
 }
 
-.margins {
-    margin: 5px;
-}
-
-.borders {
-    border: 8px #fff solid;
-}
-
-.nav-top {
-    background-color: #323232;
-    color: white;
-    font-size: 16px;
-}
-
-.nav-bottom {
-    background-color: #2cc185;
-    color: white;
-    padding: 1.8rem;
-}
-
-.font-head {
-    font-family: 'Pacifico', cursive;
-    font-size: 24px;
-}
-
-.font-nav {
-    font-family: 'Roboto', sans-serif;
-}
-
-.navbar-right {
-    text-align: right;
-}
-
-.nav ul {
-    list-style: none;
-    text-align: center;
- }
- 
- .nav ul li {
-    display: inline-block;
- }
-
- .navbar-link {
-    color: gray;
-    text-decoration: none;
- }
- .navbar-link:hover {
-    color: rgb(205, 205, 205);
- }
-
- .navbar-item {
-    margin-left: 30px;
- }
-
- .button-menu {
+.button-menu {
     border: none;
     color: #fff;
- }
+}
 
- .footer {
-    background-color: #323232;
-    color: white;
- }
-
- .dropdown-account-btn {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 18px;
- }
-
- .img-margin {
+.img-margin {
     margin: 10px;
- }
+}
 
- .navbar .navbar-collapse {
-    text-align: center;
-  }
+.text-center { text-align: center;}
 
-  .text-center { text-align: center;}
+html, body {
+    height: 100%;
+}
+
+.footer {
+    background-color: #323232;
+    color: white;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    background: var(--body-color);
+}
+
+.main {
+    flex: 1;
+}

@@ -1,18 +1,16 @@
 <div class="nav-top">
     <div class="container-xxl">
       <nav class="navbar navbar-expand-sm justify-content-center">
-        <span class="font-head nav-padding mb-2">Task manager</span>
-      
-        <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler navbar-item" aria-controls="navbarNav" aria-expanded="false"
-        aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <span class="navbar-collapse collapse correct-padding-for-navhead font-head nav-padding mb-2">Task manager</span>
         
         <!--Navigation pages-->
         <div class="navbar-collapse collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item navbar-item">
-              <a href="#" class="navbar-link">Home</a>
+              <a href="#" class="navbar-link">
+                <i class='bx bx-home-alt icon' ></i>
+                Home
+              </a>
             </li>
             <li class="nav-item navbar-item">
               <a href="#" class="navbar-link">About</a>
@@ -47,12 +45,41 @@
     </div>
   
     <!--Bottom navigation bar-->
-    <div class="container-fluid">
-      <div class="text-center">
-        <div class="row">
-          <div class="col-sm nav-bottom">1</div>
-          <div class="col-sm nav-bottom">2</div>
+    <nav class="nav-bottom">
+      <div class="container-xxl navbar navbar-expand-sm justify-content-center nav-bottom">      
+        <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarBottomNav" class="navbar-toggler navbar-item" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!--Navigation pages-->
+        <div class="navbar-collapse collapse" id="navbarBottomNav">
+          <ul class="navbar-nav">
+            <li class="nav-item navbar-bottom-item">
+              <a href="Tasks" class="navbar-bottom-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+                  <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+                  <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+                </svg>
+                <span class="span-navbar">Tasks</span>
+              </a>
+            </li>
+            <li class="nav-item navbar-bottom-item">
+              <a href="#" class="navbar-bottom-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
+                  <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
+                </svg>
+                <span class="span-navbar">Statistics</span>
+              </a>
+            </li>
+            <li class="nav-item navbar-bottom-item">
+              <a href="Articles" class="navbar-bottom-link">
+                <span class="span-navbar">Random articles</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-  </div>
+    </nav>
+</div>
