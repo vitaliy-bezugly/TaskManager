@@ -1,14 +1,14 @@
 <div class="sidebar close">
     <header>
-        <div class="image-text">
+        <a class="image-text" href="">
             <span class="image">
-                <img src="https://play-lh.googleusercontent.com/UxMkGKBIF8-ErLVber5U56Dk4_EegDklOOwnUUIXYGmLZxd0pi7nlfjwBA3dFTJ_ODI" alt="logo">
+                <img src="assets/logo.png" alt="logo">
             </span>
 
             <div class="text logo-text">
                 <span class="name">Task manager</span>
             </div>
-        </div>
+        </a>
         <i class='bx bx-chevron-right toggle' (click)="hideOrShowSidebar();"></i> 
     </header>
 
@@ -22,53 +22,62 @@
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="Home">
+                    <a href="Statistics">
                         <i class="bx bx-pie-chart-alt icon"></i>
                         <span class="text nav-text">Statistics</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="Home">
+                    <a href="Tasks">
                         <i class='bx bx-task icon'></i>
                         <span class="text nav-text">Tasks</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="Home">
-                        <i class='bx bx-help-circle icon'></i>
-                        <span class="text nav-text">Support</span>
+                <hr>
+                <li>
+                    <a href="Settings">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="text">Settings</span>
+                  </a>
+                </li>
+                <li>
+                    <a href="Support">
+                        <i class='bx bx-help-circle icon' ></i>
+                        <span class="text">Support</span>
+                  </a>
+                </li>
+                <li>
+                    <a href="Feedback">
+                        <i class='bx bx-mail-send icon' ></i>
+                        <span class="text">Send feedback</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="Home">
-                        <i class='bx bxs-contact icon'></i>
-                        <span class="text nav-text">Contacts</span>
-                    </a>
-                </li>
-                <li class="nav-link">
-                    <a href="Home">
+                    <a href="About">
                         <i class='bx bx-info-circle icon'></i>
                         <span class="text nav-text">About</span>
                     </a>
                 </li>
+                <li class="nav-link">
+                    <a href="Contacts">
+                        <i class='bx bxs-contact icon'></i>
+                        <span class="text nav-text">Contacts</span>
+                    </a>
+                </li>
+                <hr class="hidden-item" *ngIf="isAuthorized === false">
+                <li>
+                    <a href="Login" class="navbar-link navbar-item hidden-item" *ngIf="isAuthorized === false">
+                        <i class='bx bx-log-in icon'></i>
+                        <span class="text">Login</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Register" class="navbar-link navbar-item hidden-item" *ngIf="isAuthorized === false">
+                        <i class='bx bx-user-check icon'></i>
+                        <span class="text">Register</span>
+                    </a>
+                </li>
             </ul>
-
-            <hr>
-
-            <div class="bottom-content">
-                <li class="" *ngIf="isAuthenticated === false">
-                    <a href="#">
-                        <i class="bx bx-log-in icon"></i>
-                        <span class="text nav-text">Login</span>
-                    </a>
-                </li>
-                <li class="" *ngIf="isAuthenticated === true">
-                    <a href="#">
-                        <i class="bx bx-log-out icon"></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-            </div>
         </div>
     </div>
 </div>

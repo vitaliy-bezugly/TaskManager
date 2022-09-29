@@ -1,3 +1,11 @@
+.navbar-head-text-link {
+    text-decoration: none;
+    color: white;
+}
+.navbar-head-text-link:hover {
+    color:rgb(205, 205, 205)
+}
+
 .navbar-bottom-item {
     color: #fff;
     margin-right: 60px;
@@ -44,11 +52,20 @@
 }
 
 .nav-top {
-    background-color: #323232;
+    background-color: var(--primary-color-dark);
     color: white;
     font-size: 16px;
 }
 
+.icon {
+    font-size: 20px;
+    padding: 3px;
+}
+.text {
+    position: relative;
+    bottom: 1px;
+    font-size: 18px;
+}
 
 .font-head {
     font-family: 'Pacifico', cursive;
@@ -75,6 +92,7 @@
  .navbar-link {
     color: gray;
     text-decoration: none;
+    font-size: 18px;
  }
  .navbar-link:hover {
     color: rgb(205, 205, 205);
@@ -86,4 +104,46 @@
 
 .span-navbar {
     margin-left: 10px;
+}
+
+a .icon, a .text {
+    padding: 2px;
+    margin: 1px;
+}
+
+a .icon {
+    font-size: 22px;
+}
+
+a .text {
+    position: relative;
+    bottom: 3px;
+    font-size: 18px;
+}
+
+.text-small {
+    position: relative;
+    bottom: 3px;
+    font-size: 16px;
+}
+.icon-small {
+    font-size: 18px;
+}
+
+.icon-small, .text-small {
+    padding: 1px;
+    margin: 1px;
+}
+
+.dropdown-menu {
+    background-color: var(--primary-color-dark);
+}
+
+.dropdown-menu li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.correct-width {
+    min-width: 30px;
 }

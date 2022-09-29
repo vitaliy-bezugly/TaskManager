@@ -14,3 +14,10 @@ div, p, ul li {
 .taskbar-without-padding {
     padding-inline-start: 0px;
 }
+
+.totest-bar  {
+    background-color: red;
+}
+.totest-main {
+    background-color: palegreen;
+}
