@@ -39,6 +39,10 @@
     width: 78px;
 }
 
+.sidebar:not(.close) {
+    box-shadow:0 0 0 10000px rgba(0,0,0,.50);
+}
+
 .sidebar.close .text {
     opacity: 0;
 }

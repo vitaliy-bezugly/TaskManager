@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CloseDetectorService } from './close-detector.service';
+import { TaskService } from './task.service';
 
-describe('CloseDetectorService', () => {
-  let service: CloseDetectorService;
+describe('TaskService', () => {
+  let service: TaskService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CloseDetectorService);
+    service = TestBed.inject(TaskService);
   });
 
   it('should be created', () => {

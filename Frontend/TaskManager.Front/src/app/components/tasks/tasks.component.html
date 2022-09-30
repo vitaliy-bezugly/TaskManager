@@ -1,4 +1,67 @@
+<!--<div class="task-container">
+    <div class="taskbar totest-bar">1</div>
+    <div class="taskbar-items totest-main">2</div>
+</div>
+-->
 <div class="row">
-    <div class="col-md-3 totest-bar">1</div>
-    <div class="col-md-9 totest-main">2</div>
+    <ul class="col-md-2 paddings taskbar">
+        <li class="taskbar-item">
+            <a href="#">
+                <i class='bx bx-calendar-alt icon'></i>
+                <span class="text">Today</span>
+            </a>
+        </li>
+        <li class="taskbar-item">
+            <a href="#">
+                <i class='bx bxs-chevron-up icon' ></i>
+                <span class="text">Tomorrow</span>
+            </a>
+        </li>
+        <li class="taskbar-item">
+            <a href="#">
+                <i class='bx bxs-chevrons-up icon'></i>
+                <span class="text">Upcoming</span>
+            </a>
+        </li>
+        <hr>
+        <li class="taskbar-item">
+            <a href="#">
+                <i class='bx bx-calendar-exclamation icon'></i>
+                <span class="text">Important</span>
+            </a>
+        </li>
+        <li class="taskbar-item">
+            <a href="#">
+                <i class='bx bxs-hot icon'></i>
+                <span class="text">Coming soon</span>
+            </a>
+        </li>
+    </ul>
+
+
+    <div class="col-md-9 taskbody">
+        <header>
+            <h3 class="head-text">Today</h3>
+            <span class="date">Friday, September 30, 2022</span>
+        </header>
+        <hr>
+        <div class="add-task">
+            <i class='bx bx-book-add icon'></i>
+            <span class="text">Add a task</span>
+        </div>
+
+        <br>
+        <br>
+
+        <h4 class="status-text">In process</h4>
+        <ul>
+            <li *ngFor="let task of tasks">
+                <div>{{task.title}}</div>
+            </li>
+        </ul>
+
+        <h4 class="status-text">Expired</h4>
+
+        <h4 class="status-text">Done</h4>
+    </div>
 </div>

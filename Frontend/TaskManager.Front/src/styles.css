@@ -51,21 +51,12 @@ html, body {
     top: 0;
     top: 0;
     height: 100vh;
-    /*
-    left: 250px;
-    width: calc(100% - 250px);*/
+    
     left: 78px;
     width: calc(100% - 78px);
     background-color: var(--body-color);
     transition: var(--tran-05);
 }
-
-/*
-.sidebar.close ~ .wrapper{
-    left: 78px;
-    width: calc(100% - 78px);
-}
-*/
 
 .main {
     flex: 1;
