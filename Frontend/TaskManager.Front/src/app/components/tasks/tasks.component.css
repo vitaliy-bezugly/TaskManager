@@ -26,7 +26,7 @@
 }
 
 .taskbar {
-    border-right: 1px solid rgb(112, 112, 112);
+    border-right: 1px solid rgb(204, 204, 204);
 }
 
 .taskbar li {
@@ -65,8 +65,8 @@
 }
 
 .date {
-    color:rgb(79, 79, 79);
-    font-size: 14px;
+    color:var(--primary-color);
+    font-size: 12px;
 }
 
 .taskbody header .head-text {
@@ -107,4 +107,106 @@
 
 .taskbody hr {
     color: gray;
+}
+
+.taskbody ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.taskbody ul li {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.taskbody .task-li {
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 1px solid rgb(204, 204, 204);
+    margin-bottom: 5px;
+}
+
+.task-li .radiobutton {
+    margin-right: 10px;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    min-height: 50px;
+    display: flex; /* You need this... */
+    justify-content: space-between; /* and this */
+    width: 900px;
+}
+
+.task .description {
+    flex: 15;
+    margin-top: 0px;
+}
+
+.description {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.task .date {
+    margin-top: 2px;
+    margin-bottom: 3px;
+}
+
+.task .title {
+    flex: 15;
+    margin-bottom: -3px;
+}
+
+.task .date .icon {
+    margin-right: 3px;
+    font-size: 14px;
+}
+
+.task .date .date-text {
+    position: relative;
+    bottom: 1px;
+}
+
+.title {
+    font-size: 16px;
+}
+
+.tasks hr {
+    opacity: 35%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.task-li:hover + .task-li .icons {
+    display: flex;
+}
+
+.task-li:hover {
+    background-color: rgb(255, 166, 0, 0.4);
+}
+
+.icons {
+    display: flex;
+    flex-direction:row;
+    align-items :flex-start;
+}
+
+.task-li .icons .bx-message-alt-x {
+    position: relative;
+    top: 1px;
+    color: crimson;
+    margin-left: 2px;
+}
+.task-li .icons .bx-calendar-exclamation {
+    position: relative;
+    bottom: 1px;
+    color: red;
+    margin-left: 2px;
+}
+.task-li .icons .bx-edit {
+    color:darkorchid;
+    margin-left: 2px;
 }

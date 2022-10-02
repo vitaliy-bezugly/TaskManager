@@ -54,14 +54,28 @@
         <br>
 
         <h4 class="status-text">In process</h4>
-        <ul>
-            <li *ngFor="let task of tasks">
-                <div>{{task.title}}</div>
+        <ul class="tasks">
+            <hr>
+            <li class="task-li" *ngFor="let task of tasks">
+                <div class="radiobutton">1</div>
+                <div class="task">
+                    <div class="title">{{task.title}}</div>
+                    <div class="description">{{task.description}}</div>
+                    <div class="date">
+                        <i class='bx bx-calendar-alt icon'></i>
+                        <span class="date-text">{{task.createdTime}}</span>
+                    </div>
+                </div>
+
+                <div class="icons">
+                    <i class='bx bx-edit icon'></i>
+                    <i class='bx bx-message-alt-x icon'></i>
+                    <i class='bx bx-calendar-exclamation icon'></i>
+                </div>
+                <hr>
             </li>
         </ul>
 
         <h4 class="status-text">Expired</h4>
-
-        <h4 class="status-text">Done</h4>
     </div>
 </div>
