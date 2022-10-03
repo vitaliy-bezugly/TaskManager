@@ -3,7 +3,7 @@
     <div class="taskbar-items totest-main">2</div>
 </div>
 -->
-<div class="row">
+<div class="row bg-color">
     <ul class="col-md-2 paddings taskbar">
         <li class="taskbar-item">
             <a href="#">
@@ -57,17 +57,19 @@
         <ul class="tasks">
             <hr>
             <li class="task-li" *ngFor="let task of tasks">
-                <div class="radiobutton">1</div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
                 <div class="task">
                     <div class="title">{{task.title}}</div>
                     <div class="description">{{task.description}}</div>
                     <div class="date">
                         <i class='bx bx-calendar-alt icon'></i>
-                        <span class="date-text">{{task.createdTime}}</span>
+                        <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
                     </div>
                 </div>
 
-                <div class="icons">
+                <div class="icons" id="icons">
                     <i class='bx bx-edit icon'></i>
                     <i class='bx bx-message-alt-x icon'></i>
                     <i class='bx bx-calendar-exclamation icon'></i>
@@ -77,5 +79,28 @@
         </ul>
 
         <h4 class="status-text">Expired</h4>
+        <ul class="tasks">
+            <hr>
+            <li class="task-li" *ngFor="let task of tasks">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+                <div class="task">
+                    <div class="title">{{task.title}}</div>
+                    <div class="description">{{task.description}}</div>
+                    <div class="date">
+                        <i class='bx bx-calendar-alt icon'></i>
+                        <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
+                    </div>
+                </div>
+
+                <div class="icons" id="icons">
+                    <i class='bx bx-edit icon'></i>
+                    <i class='bx bx-message-alt-x icon'></i>
+                    <i class='bx bx-calendar-exclamation icon'></i>
+                </div>
+                <hr>
+            </li>
+        </ul>
     </div>
 </div>

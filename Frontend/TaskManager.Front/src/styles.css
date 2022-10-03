@@ -50,7 +50,7 @@ html, body {
     position: absolute;
     top: 0;
     top: 0;
-    height: 100vh;
+    height: 100%;
     
     left: 78px;
     width: calc(100% - 78px);
@@ -60,4 +60,9 @@ html, body {
 
 .main {
     flex: 1;
+}
+
+.bg-color {
+    background: var(--body-color);
+    width: 100%;
 }

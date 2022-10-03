@@ -15,4 +15,8 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public GetMonthByMonthDate(number : number) : string {
+    return 'October';
+  }
 }
