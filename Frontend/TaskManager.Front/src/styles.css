@@ -8,6 +8,7 @@
     --toggle-color: #ddd;
     --text-color: #707070;
     --primary-color-dark: #323232;
+    --border-color: rgb(227, 227, 227);
 
     /* ====== Transition ====== */
     --tran-03: all 0.2s ease;

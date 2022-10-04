@@ -19,4 +19,20 @@ export class TasksComponent implements OnInit {
   public GetMonthByMonthDate(number : number) : string {
     return 'October';
   }
+
+  public ReplaceAddDivWithForm() : void {
+    let div = document.getElementById('add-task-div') as HTMLDivElement
+    let divform = document.getElementById('form-toadd') as HTMLDivElement
+
+    div.classList.add('collapse')
+    divform.classList.remove('collapse')
+  }
+  
+  public UndoToDiv() : void {
+    let div = document.getElementById('add-task-div') as HTMLDivElement
+    let divForm = document.getElementById('form-toadd') as HTMLDivElement
+    
+    div.classList.remove('collapse')
+    divForm.classList.add('collapse')
+  }
 }

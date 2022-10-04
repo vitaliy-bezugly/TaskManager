@@ -13,6 +13,8 @@
     grid-column: 1/2;
     padding: 5px;
     margin: 10px;
+
+    border-right: 1px solid rgb(204, 204, 204);
 }
 
 .taskbar-items {
@@ -23,10 +25,6 @@
 
 .paddings {
     padding: 10px;
-}
-
-.taskbar {
-    border-right: 1px solid rgb(204, 204, 204);
 }
 
 .taskbar li {
@@ -78,12 +76,12 @@
     margin-left: 20px;
 }
 
-.taskbody .status-text {
-    font-size: 18px;
+.taskbody {
+    font-family: 'Poppins', sans-serif;
 }
 
-.taskbody .taskbody-item .task {
-
+.taskbody .status-text {
+    font-size: 18px;
 }
 
 .taskbody .add-task {
@@ -226,7 +224,11 @@
     }
 }
 
-@media (max-width: 426px) {
+.taskbody .tasks .task-li .icons .icon:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+@media (max-width: 767px) {
     .taskbar {
         border-right: none;
     }
@@ -262,4 +264,95 @@
     .taskbody .tasks .task-li{
         min-height: 70px;
     }
+}
+
+@media (max-width: 1200px) {
+    .taskbar {
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 991px) {
+    .taskbar {
+        min-width: 160px;
+    }
+    .taskbody {
+        width: 400px;
+    }
+}
+
+.taskbody form .border-block {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 190px;
+}
+
+.taskbody form .border-block .card {
+    display: inline-block;
+
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: transparent;
+    margin-right: 13px;
+}
+.taskbody form .border-block .card:hover {
+    background-color: #dfdfdf;
+}
+.taskbody form .border-block .card .text {
+    font-size: 14px;
+    margin-left: 5px;
+    margin-right: 4px;
+}
+.taskbody form .border-block .card .icon {
+    position: relative;
+    top: 3px;
+    font-size: 20px;
+    color: green;
+    float: left;
+    margin-right: 5px;
+}
+
+.taskbody form input, .taskbody form textarea {
+    background-color: transparent;
+    border: none;
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.taskbody form textarea {
+    min-height: 80px;
+}
+
+.taskbody form input:focus, .taskbody form textarea {
+    outline: none;
+}
+
+.taskbody form .input-title {
+    font-size: 18px;
+}
+.taskbody form .input-description {
+    font-size: 16px;
+}
+.taskbody form .input-date {
+    font-size: 14px;
+}
+
+.taskbody form button {
+    float: right;
+    margin: 4px;
+}
+
+.taskbody form .btn {
+    font-size: 14px;
+    min-width: 30px;
+}
+
+.taskbody form .border-block .icon {
+    float: right;
+    font-size: 24px;
+    color:crimson;
 }
