@@ -70,13 +70,11 @@
         </form>
 
         <br>
-        <br>
 
         <ul class="tasks">
-            <hr>
             <li *ngFor="let task of tasks">
                 <div class="task-li" id="task-data-{{task.id}}">
-                    <div class="form-check">
+                    <div class="form-check form-radio">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     </div>
                     <div class="task">
@@ -101,6 +99,7 @@
                         <textarea class="input-description" type="text" placeholder="Description" [textContent]="task.description"></textarea>
                         <input class="input-date" type="date" placeholder="Expiration date" [outerText]="task.expirationTime">
                     </div>
+
                     <button type="submit" class="btn btn-primary">Edit a task</button>
                     <button class="btn btn-secondary" (click)="UndoToDate(task.id)">Cancel</button>
                 </form>

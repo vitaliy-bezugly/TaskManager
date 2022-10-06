@@ -67,3 +67,10 @@ html, body {
     background: var(--body-color);
     width: 100%;
 }
+
+@media (max-width: 426px) {
+    .wrapper{
+        left: 50px;
+        width: calc(100% - 50px);
+    }
+}

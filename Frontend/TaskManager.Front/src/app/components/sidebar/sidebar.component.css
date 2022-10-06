@@ -38,6 +38,12 @@
 .sidebar.close {
     width: 78px;
 }
+.sidebar.close .image-text .text {
+    display: none;
+}
+.sidebar.close .menu-links li a .text {
+    display: none;
+}
 
 .sidebar:not(.close) {
     box-shadow:0 0 0 10000px rgba(0,0,0,.50);
@@ -48,7 +54,7 @@
 }
 .sidebar.close .icon {
     position: relative;
-    top: 15px;
+    top: 2px;
 }
 
 .sidebar.close .hidden-item {
@@ -151,4 +157,35 @@ header .image-text .header-text {
 .sidebar li:hover .icon,
 .sidebar li:hover .text {
     color: var(--sidebar-color);
+}
+
+.menu-bar .menu .menu-links li a {
+    min-width: 30px;
+}
+
+
+@media (max-width: 426px) {
+    .sidebar.close {
+        width: 50px;
+    }
+
+    .menu-bar .menu .menu-links li {
+        padding-left: 0px;
+    }
+
+    .sidebar .image {
+        position: relative;
+        right: 10px;
+    }
+
+    .sidebar .image-text img {
+        width: 42px;
+    }
+    .sidebar header .toggle {
+        width: 18px;
+        height: 18px;
+    }
+    .sidebar li .icon {
+        font-size: 22px;
+    }
 }
