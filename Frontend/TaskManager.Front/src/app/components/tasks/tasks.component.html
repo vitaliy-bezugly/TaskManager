@@ -1,4 +1,4 @@
-<div class="row bg-color">
+<div class="row bg-color wrap">
     <ul class="col-md-2 paddings taskbar">
         <li class="taskbar-item">
             <a href="#">
@@ -58,7 +58,11 @@
                     <i class='bx bx-pin icon'></i>
                     <span class="text">Incoming</span>
                 </div>
-                <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Highlight as important"></i>
+
+                <div class="card card-end">
+                    <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Highlight as important"></i>
+                    <span class="text">Mark as important</span>
+                </div>
             </div>
             
             <button type="submit" class="btn btn-primary">Add a task</button>
@@ -68,53 +72,38 @@
         <br>
         <br>
 
-        <h4 class="status-text">In process</h4>
         <ul class="tasks">
             <hr>
-            <li class="task-li" *ngFor="let task of tasks">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                </div>
-                <div class="task">
-                    <div class="title">{{task.title}}</div>
-                    <div class="description">{{task.description}}</div>
-                    <div class="date">
-                        <i class='bx bx-calendar-alt icon'></i>
-                        <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
+            <li *ngFor="let task of tasks">
+                <div class="task-li" id="task-data-{{task.id}}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                    <div class="task">
+                        <div class="title">{{task.title}}</div>
+                        <div class="description">{{task.description}}</div>
+                        <div class="date">
+                            <i class='bx bx-calendar-alt icon'></i>
+                            <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
+                        </div>
+                    </div>
+    
+                    <div class="icons" id="icons">
+                        <i class='bx bx-edit icon' data-bs-toggle="tooltip" data-placement="top" title="Edit task" (click)="ReplaceLiWithForm(task.id)"></i>
+                        <i class='bx bx-message-alt-x icon' data-bs-toggle="tooltip" data-placement="top" title="Remove task"></i>
+                        <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Highlight as important"></i>
                     </div>
                 </div>
 
-                <div class="icons" id="icons">
-                    <i class='bx bx-edit icon' data-bs-toggle="tooltip" data-placement="top" title="Edit task"></i>
-                    <i class='bx bx-message-alt-x icon' data-bs-toggle="tooltip" data-placement="top" title="Remove task"></i>
-                    <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Highlight as important"></i>
-                </div>
-                <hr>
-            </li>
-        </ul>
-
-        <h4 class="status-text">Expired</h4>
-        <ul class="tasks">
-            <hr>
-            <li class="task-li" *ngFor="let task of tasks">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                </div>
-                <div class="task">
-                    <div class="title">{{task.title}}</div>
-                    <div class="description">{{task.description}}</div>
-                    <div class="date">
-                        <i class='bx bx-calendar-alt icon'></i>
-                        <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
+                <form action="" id="form-toedit-{{task.id}}" class="collapse form-to-edit">
+                    <div class="border-block">
+                        <input class="input-title" type="text" placeholder="Title of task" [outerText]="task.title">
+                        <textarea class="input-description" type="text" placeholder="Description" [textContent]="task.description"></textarea>
+                        <input class="input-date" type="date" placeholder="Expiration date" [outerText]="task.expirationTime">
                     </div>
-                </div>
-
-                <div class="icons" id="icons">
-                    <i class='bx bx-edit icon'></i>
-                    <i class='bx bx-message-alt-x icon'></i>
-                    <i class='bx bx-calendar-exclamation icon'></i>
-                </div>
-                <hr>
+                    <button type="submit" class="btn btn-primary">Edit a task</button>
+                    <button class="btn btn-secondary" (click)="UndoToDate(task.id)">Cancel</button>
+                </form>
             </li>
         </ul>
     </div>

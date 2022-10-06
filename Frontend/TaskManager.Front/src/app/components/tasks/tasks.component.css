@@ -215,15 +215,6 @@
     border-radius: 25px;
 }
 
-@media (width: 768px) {
-    .taskbar {
-        width: 160px;
-    }
-    .taskbody {
-        width: 400px;
-    }
-}
-
 .taskbody .tasks .task-li .icons .icon:hover {
     background-color: rgb(221, 221, 221);
 }
@@ -231,6 +222,11 @@
 @media (max-width: 767px) {
     .taskbar {
         border-right: none;
+    }
+}
+@media (min-width: 768px) {
+    .wrap {
+        flex-wrap: nowrap;
     }
 }
 
@@ -275,9 +271,11 @@
 @media (max-width: 991px) {
     .taskbar {
         min-width: 160px;
+        padding: 5px;
+        margin: 5px;
     }
     .taskbody {
-        width: 400px;
+        width: 474px;
     }
 }
 
@@ -285,7 +283,6 @@
     border: 1px solid #dfdfdf;
     border-radius: 10px;
     padding: 10px;
-    min-height: 190px;
 }
 
 .taskbody form .border-block .card {
@@ -351,8 +348,161 @@
     min-width: 30px;
 }
 
-.taskbody form .border-block .icon {
+.taskbody form .border-block .card-end {
     float: right;
+}
+
+.taskbody form .border-block .card-end .icon {
     font-size: 24px;
     color:crimson;
+
+    position: relative;
+    top: 0px;
+    bottom: 4px;
+}
+
+.form-to-edit {
+    min-height: 204px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 991px) {
+    .taskbody form .border-block .card {
+        margin-right: 3px;
+    }
+    .taskbody form .border-block .card .text {
+        font-size: 14px;
+        margin-left: 3px;
+        margin-right: 2px;
+    }
+    .taskbody form .border-block .card .icon {
+        font-size: 18px;
+        margin-right: 3px;
+    }
+    .taskbody form .border-block .card-end .icon {
+        font-size: 20px;
+        bottom: 0px;
+        top:1px;
+    }
+}
+
+@media (max-width: 525px) {
+    .taskbody form .border-block .card {
+        margin-bottom: 5px;
+    }
+    .taskbody form .border-block {
+        border: 1px solid #dfdfdf;
+        border-radius: 10px;
+        padding: 10px;
+        min-height: 237px;
+    }
+    .taskbody form .border-block .card-end {
+        float: left;
+    }    
+    .taskbody form button {
+        float: left;
+    } 
+}
+
+@media (max-width: 360px) {
+    .taskbody form .border-block .card .icon {
+        top: 4px;
+        font-size: 16px;
+        margin-right: 2px;
+    }
+    .taskbody form .border-block {
+        min-height: 235px;
+    } 
+}
+
+@media (max-width: 353px) {
+    .taskbody form .border-block .card {
+        margin-right: 3px;
+    }
+    .taskbody form .border-block .card .text {
+        font-size: 13px;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    .taskbody form .border-block .card .icon {
+        font-size: 15px;
+        margin-right: 0px;
+    }
+    .taskbody form .border-block .card-end .icon {
+        font-size: 16px;
+        bottom: 0px;
+        top:3px;
+        margin-right: 1px;
+    }
+
+    .taskbody form .border-block {
+        min-height: 236px;
+    }
+
+    .taskbody form {
+        min-height: 237px;
+    }
+}
+@media (max-width: 350px) {
+    .taskbody form {
+        min-height: 278px;
+    }
+}
+@media (max-width: 341px) {
+    .taskbody form .border-block .card {
+        margin-right: 3px;
+    }
+    .taskbody form .border-block .card .text {
+        font-size: 13px;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    .taskbody form .border-block .card .icon {
+        font-size: 15px;
+        margin-right: 0px;
+    }
+    .taskbody form .border-block .card-end .icon {
+        font-size: 16px;
+        bottom: 0px;
+        top:3px;
+        margin-right: 1px;
+    }
+
+    .taskbody form .border-block {
+        min-height: 236px;
+    }
+
+    .taskbody form {
+        min-height: 275px;
+    }
+}
+
+@media (max-width: 321px) {
+
+    .taskbody form .border-block .card {
+        margin-right: 1px;
+    }
+    .taskbody form .border-block .card .text {
+        font-size: 12px;
+        margin-left: 1px;
+        margin-right: 0px;
+    }
+    .taskbody form .border-block .card .icon {
+        font-size: 14px;
+        margin-right: 0px;
+        top: 6px;
+    }
+    .taskbody form .border-block .card-end .icon {
+        font-size: 14px;
+        bottom: 0px;
+        top:3px;
+        margin-right: 1px;
+    }
+
+    .taskbody form .border-block {
+        min-height: 234px;
+    }
+    .taskbody form .btn {
+        font-size: 12px;
+    }
 }

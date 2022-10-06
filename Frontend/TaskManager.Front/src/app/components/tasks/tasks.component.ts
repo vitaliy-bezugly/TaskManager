@@ -35,4 +35,19 @@ export class TasksComponent implements OnInit {
     div.classList.remove('collapse')
     divForm.classList.add('collapse')
   }
+
+  public ReplaceLiWithForm(taskId : string) : void {
+    let data = document.getElementById('task-data-' + taskId) as HTMLDivElement
+    let divform = document.getElementById('form-toedit-' + taskId) as HTMLDivElement
+
+    data.style.display = 'none'
+    divform.classList.remove('collapse')
+  }
+  public UndoToDate(taskId : string) : void {
+    let data = document.getElementById('task-data-' + taskId) as HTMLDivElement
+    let divform = document.getElementById('form-toedit-' + taskId) as HTMLDivElement
+
+    data.style.display = 'flex'
+    divform.classList.add('collapse')
+  }
 }
