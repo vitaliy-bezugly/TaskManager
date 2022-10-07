@@ -8,7 +8,7 @@ import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  tasks : TaskViewModel[] = [];
+  public tasks : TaskViewModel[] = [];
   constructor(private taskService: TaskService) {
     this.tasks = taskService.GetTasks();
   }

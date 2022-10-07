@@ -45,7 +45,7 @@
             <span class="text">Add a task</span>
         </div>
         <form action="" id="form-toadd" class="collapse">
-            <div class="border-block">
+            <div class="border-block border-block-1">
                 <input class="input-title" type="text" placeholder="Title of task">
                 <textarea class="input-description" type="text" placeholder="Description"></textarea>
                 <input class="input-date" type="text" placeholder="Expiration date" onfocus="(this.type='date')">
@@ -95,9 +95,26 @@
 
                 <form action="" id="form-toedit-{{task.id}}" class="collapse form-to-edit">
                     <div class="border-block">
-                        <input class="input-title" type="text" placeholder="Title of task" [outerText]="task.title">
-                        <textarea class="input-description" type="text" placeholder="Description" [textContent]="task.description"></textarea>
-                        <input class="input-date" type="date" placeholder="Expiration date" [outerText]="task.expirationTime">
+                        <input class="input-title" id="inputTitle" name="inputTitle" #inputTitle="ngModel" type="text" placeholder="Title of task" [(ngModel)]="task.title">
+                        <textarea class="input-description" id="inputDescription" name="inputDescription" #inputDescription="ngModel" type="text" placeholder="Description" [(ngModel)]="task.description"></textarea>
+                        <!--
+                        <input class="input-date" id="inputDate" name="inputDate" #inputDate="ngModel" type="text" placeholder="Expiration date" 
+                            [(ngModel)]="task.expirationTime" onfocus="(this.type='date')">
+                        -->
+                        
+                        <div class="card card-date">
+                            <i class='bx bx-calendar-edit icon icon-red'></i>
+                            <input class="input-date" id="inputDate" name="inputDate" #inputDate="ngModel" type="date" placeholder="Expiration date" 
+                                [(ngModel)]="task.expirationTime" onfocus="(this.type='date')">
+                        </div>
+                        <div class="card">
+                            <i class='bx bx-calendar-event icon'></i>
+                             <span class="text">Today</span>
+                        </div>
+                        <div class="card">
+                            <i class='bx bx-pin icon'></i>
+                            <span class="text">Incoming</span>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Edit a task</button>

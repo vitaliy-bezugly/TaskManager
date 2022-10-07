@@ -1,4 +1,96 @@
 .footer {
-    background-color: #323232;
-    color: white;
+    margin-left: 40px;
+    margin-right: 40px;
+
+    padding: 5px;
+
+    border-top: 1px solid var(--border-color);
+    color: black;
+}
+
+.footer .container .center {
+    margin: auto;
+    padding: 0px;
+
+    text-align: center;
+}
+
+.footer .container .center .bx-check-circle {
+    font-size: 34px;
+    color: dodgerblue;
+}
+
+.footer .container .text {
+    font-family: 'Poppins', sans-serif;
+}
+.footer .container .text-head {
+    font-weight: 800;
+    font-size: 22px;
+}
+.footer .container .center .text {
+    position: relative;
+    bottom: 6px;
+
+    padding-left: 5px;
+}
+
+.footer .container .center .copyright-info {
+    margin-top: 5px;
+}
+.footer .container .center .copyright-info .text {
+    position: relative;
+    bottom: 3px;
+
+    padding-left: 0px;
+}
+.footer .container .center .copyright-info i {
+    margin-right: 5px;
+    margin-left: 5px;
+
+    font-size: 18px;
+}
+
+.socials a {
+    text-decoration: none;
+}
+.socials a i {
+    font-size: 26px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.socials a .bxl-telegram {
+    color: dodgerblue;
+}
+.socials a .bxl-github {
+    color: black;
+}
+.socials a .bxl-gmail {
+    color: crimson;
+}
+
+.socials a i:hover {
+    background: var(--border-color);
+}
+
+@media (max-width: 393px) {
+    .footer .container .center .bx-check-circle {
+        font-size: 32px;
+    }
+    .footer .container .center .text {
+        font-size: 20px;
+        bottom: 6px;
+    }
+}
+@media (max-width: 367px) {
+    .footer .container .center .bx-check-circle {
+        display: block;
+        margin-bottom: 3px;
+    }
+    .footer .container .center .text {
+        margin-bottom: 3px;
+    }
+    .footer .container .center .text-head {
+        padding: 0px;
+    }
 }

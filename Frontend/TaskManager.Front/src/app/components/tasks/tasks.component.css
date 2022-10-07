@@ -296,7 +296,7 @@
     border-radius: 5px;
     padding: 2px;
     background-color: transparent;
-    margin-right: 13px;
+    margin-right: 6px;
 }
 .taskbody form .border-block .card:hover {
     background-color: #dfdfdf;
@@ -365,6 +365,10 @@
     bottom: 4px;
 }
 
+.taskbody form .border-block .card .icon-red {
+    color:crimson;
+}
+
 .form-to-edit {
     min-height: 204px;
     margin-bottom: 5px;
@@ -391,6 +395,9 @@
 }
 
 @media (max-width: 525px) {
+    .taskbody form .border-block-1 {
+        min-height: 238px;
+    }
     .taskbody form .border-block .card {
         margin-bottom: 5px;
     }
@@ -398,7 +405,6 @@
         border: 1px solid #dfdfdf;
         border-radius: 10px;
         padding: 10px;
-        min-height: 237px;
     }
     .taskbody form .border-block .card-end {
         float: left;
@@ -406,12 +412,14 @@
     .taskbody form button {
         float: left;
     } 
+    .taskbody .tasks li form {
+        margin-bottom: 25px;
+    }
 }
 
 @media (max-width: 360px) {
     .taskbody form .border-block .card .icon {
         top: 4px;
-        font-size: 16px;
         margin-right: 2px;
     }
     .taskbody form .border-block {
@@ -424,16 +432,13 @@
         margin-right: 3px;
     }
     .taskbody form .border-block .card .text {
-        font-size: 13px;
         margin-left: 1px;
         margin-right: 1px;
     }
     .taskbody form .border-block .card .icon {
-        font-size: 15px;
         margin-right: 0px;
     }
     .taskbody form .border-block .card-end .icon {
-        font-size: 16px;
         bottom: 0px;
         top:3px;
         margin-right: 1px;
@@ -452,16 +457,13 @@
         margin-right: 3px;
     }
     .taskbody form .border-block .card .text {
-        font-size: 13px;
         margin-left: 1px;
         margin-right: 1px;
     }
     .taskbody form .border-block .card .icon {
-        font-size: 15px;
         margin-right: 0px;
     }
     .taskbody form .border-block .card-end .icon {
-        font-size: 16px;
         bottom: 0px;
         top:3px;
         margin-right: 1px;
@@ -475,26 +477,26 @@
 @media (max-width: 321px) {
 
     .taskbody form .border-block .card {
-        margin-right: 1px;
+        margin-right: 6px;
     }
     .taskbody form .border-block .card .text {
-        font-size: 16px;
         margin-left: 1px;
         margin-right: 0px;
     }
     .taskbody form .border-block .card .icon {
-        font-size: 16px;
         margin-right: 0px;
         top: 6px;
     }
     .taskbody form .border-block .card-end .icon {
-        font-size: 16px;
         bottom: 0px;
         top:3px;
         margin-right: 1px;
     }
 
     .taskbody form .border-block {
+        min-height: 200px;
+    }
+    .taskbody form .border-block-1 {
         min-height: 234px;
     }
     .taskbody form .btn {
@@ -505,11 +507,6 @@
 @media (max-width: 992px) {
     .taskbody .tasks li form {
         margin-bottom: 24px;
-    }
-}
-@media (max-width: 525px) {
-    .taskbody .tasks li form {
-        margin-bottom: 48px;
     }
 }
 
@@ -535,7 +532,6 @@
     }
 
     .text {
-        font-size: 16px;
     }
 
     .task-li .form-radio {
@@ -548,5 +544,44 @@
     }
     .taskbody .tasks .task-li{
         min-height: 72px;
+    }
+}
+form .border-block .card-date {
+    position: relative;
+    bottom: 1px;
+}
+form .border-block .card-date input {
+    display: block;
+    overflow: hidden;
+}
+form .border-block .card-date input {
+    width: 80%;
+    font-size: 14px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    margin-left: 2px;
+}
+.taskbody form .border-block .card-date .icon {
+    float: left;
+    top: 2px;
+    margin-right: 5px;
+}
+
+@media (max-width: 508px) {
+    .taskbody .tasks li form {
+        margin-bottom: 47px;
+    }
+}
+@media (max-width: 321px) {
+    .taskbody .tasks li form {
+        margin-bottom: 30px;
+    }
+}
+@media (min-width: 424px) and (max-width: 426px) {
+    .taskbody .tasks li form {
+        margin-bottom: 25px;
     }
 }
