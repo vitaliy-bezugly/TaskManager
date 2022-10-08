@@ -50,6 +50,10 @@
     font-size: 18px;
 }
 
+.footer .container .center .socials {
+    margin-top: 20px;
+}
+
 .socials a {
     text-decoration: none;
 }

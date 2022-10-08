@@ -136,6 +136,8 @@
     display: flex; /* You need this... */
     justify-content: space-between; /* and this */
     width: 900px;
+
+    flex-grow: 1;
 }
 
 .task .description {
@@ -187,24 +189,22 @@
     display: flex;
     flex-direction:row;
     align-items :flex-start;
-
+    color: rgb(79, 79, 79);
+    
     height: 20px;
 }
 
 .task-li .icons .bx-message-alt-x {
     position: relative;
     top: 1px;
-    color: crimson;
     margin-left: 2px;
 }
 .task-li .icons .bx-calendar-exclamation {
     position: relative;
     bottom: 1px;
-    color: red;
     margin-left: 2px;
 }
 .task-li .icons .bx-edit {
-    color:darkorchid;
     margin-left: 2px;
 }
 
