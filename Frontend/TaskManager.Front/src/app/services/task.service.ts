@@ -7,9 +7,9 @@ import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
 export class TaskService {
   tasks : TaskViewModel[] = [
     {"id": '5f3844ac676b45acab7139126e899d75', "title": "Some title 1", "description": "Some description 1", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": false},
-    {"id": 'c6b7cf774073424da15b70c16c9ec60d', "title": "Make dinner", "description": "Some description 2", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": false},
+    {"id": 'c6b7cf774073424da15b70c16c9ec60d', "title": "Make dinner", "description": "Some description 2", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": true},
     {"id": '5bf9066e0429428d9f9a292825f1130d', "title": "Go to the gym", "description": "", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": false},
-    {"id": '5c61435a1f7049d4a746ed09fd20e3a4', "title": "Go to the shop", "description": "Buy: potato, onion, garlic, tomato, 1kg of pork and spagetti", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": false},
+    {"id": '5c61435a1f7049d4a746ed09fd20e3a4', "title": "Go to the shop", "description": "Buy: potato, onion, garlic, tomato, 1kg of pork and spagetti", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": true},
     {"id": '7f246e96926d40348a2dd0b6d27afb91', "title": "Some title 5", "description": "Some description 5", "createdTime": new Date(), "expirationTime":  new Date(), "isImportant": false}
   ];
   constructor() { }

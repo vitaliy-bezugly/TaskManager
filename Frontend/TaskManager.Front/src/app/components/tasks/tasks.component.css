@@ -180,8 +180,34 @@
     margin-bottom: 2px;
 }
 
-.task-li:hover .icons {
+.task-li:hover .dropdown {
     visibility: visible;
+}
+.dropdown {
+    visibility: hidden;
+}
+@media  (max-width: 769px) {
+    .dropdown {
+        visibility: visible;
+    }
+}
+
+.left-bar {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+.left-bar .empty {
+    visibility: hidden;
+    height: 80%;
+}
+.left-bar .important-card .icon {
+    color: red;
+    font-size: 22px;
+    margin-left: 0px;
+    padding-left: 0px;
+    position: relative;
+    right: 1px;
 }
 
 .icons {
@@ -190,7 +216,8 @@
     flex-direction:row;
     align-items :flex-start;
     color: rgb(79, 79, 79);
-    
+    opacity: 70%;
+
     height: 20px;
 }
 
@@ -584,4 +611,53 @@ form .border-block .card-date input {
     .taskbody .tasks li form {
         margin-bottom: 25px;
     }
+}
+
+.tasks li .dropdown button {
+    border: none;
+    border-radius: 4px;
+    margin: auto;
+    background-color: transparent;
+}
+.tasks li .dropdown button:hover {
+    background-color: var(--hover-color);
+}
+.tasks li .dropdown button .icon {
+    position: relative;
+    top: 2px;
+
+    opacity: 70%;
+}
+
+.tasks li .dropdown ul li {
+    color: black;
+}
+.tasks li .dropdown ul li .icon {
+    margin-right: 5px;
+    opacity: 70%;
+    font-size: 22px;
+}
+.tasks li .dropdown ul {
+    background-color: var(--body-color);
+    min-width: 200px;
+    padding: 5px;
+}
+.tasks li .dropdown ul li:hover {
+    background-color: var(--hover-color);
+}
+.tasks li .dropdown ul li .text-small {
+    font-size: 14px;
+    position: relative;
+    bottom: 4px;
+}
+
+
+.tasks li .dropdown ul li .bx-edit {
+    color: rgb(206, 0, 206);
+}
+.tasks li .dropdown ul li .bx-message-alt-x {
+    color: crimson;
+}
+.tasks li .dropdown ul li .bx-calendar-exclamation {
+    color: red;
 }

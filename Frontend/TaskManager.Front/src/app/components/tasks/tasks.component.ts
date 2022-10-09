@@ -50,4 +50,39 @@ export class TasksComponent implements OnInit {
     data.style.display = 'flex'
     divform.classList.add('collapse')
   }
+  public ReverseImportandValue(taskId: string) : void {
+    this.tasks.find(x => x.id === taskId)!.isImportant = !this.tasks.find(x => x.id === taskId)!.isImportant
+  }
+
+  public ShowImportantTask() : void {
+    this.tasks = this.taskService.GetTasks().filter(x => x.isImportant === true)
+  }
+  public ShowTodayTask() : void {
+    this.ChangeHeaderText('Today')
+    this.ShowDate()
+    this.tasks = this.taskService.GetTasks()
+  }
+  public ShowTomorrowTask() : void {
+    this.ChangeHeaderText('Tomorrow')
+    this.HideDate()
+    this.tasks = []
+  }
+  public ShowUpcomingTask() : void {
+    this.ChangeHeaderText('Upcoming')
+    this.HideDate()
+    this.tasks = []
+  }
+
+  private ChangeHeaderText(text : string) : void {
+    let headerText = document.getElementById('header-date-text')
+    headerText!.innerText = text
+  }
+  private HideDate() : void {
+    let spanDate = document.getElementById('header-date') as HTMLSpanElement
+    spanDate.style.display = 'none'
+  }
+  private ShowDate() : void {
+    let spanDate = document.getElementById('header-date') as HTMLSpanElement
+    spanDate.style.display = 'inline'
+  }
 }

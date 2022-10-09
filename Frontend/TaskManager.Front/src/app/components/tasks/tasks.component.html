@@ -1,26 +1,26 @@
 <div class="row bg-color wrap">
     <ul class="col-md-2 paddings taskbar">
         <li class="taskbar-item">
-            <a href="#">
+            <a (click)="ShowTodayTask()">
                 <i class='bx bx-calendar-alt icon'></i>
                 <span class="text">Today</span>
             </a>
         </li>
         <li class="taskbar-item">
-            <a href="#">
+            <a (click)="ShowTomorrowTask()">
                 <i class='bx bxs-chevron-up icon' ></i>
                 <span class="text">Tomorrow</span>
             </a>
         </li>
         <li class="taskbar-item">
-            <a href="#">
+            <a (click)="ShowUpcomingTask()">
                 <i class='bx bxs-chevrons-up icon'></i>
                 <span class="text">Upcoming</span>
             </a>
         </li>
         <hr>
         <li class="taskbar-item">
-            <a href="#">
+            <a (click)="ShowImportantTask()">
                 <i class='bx bx-calendar-exclamation icon'></i>
                 <span class="text">Important</span>
             </a>
@@ -33,11 +33,10 @@
         </li>
     </ul>
 
-
     <div class="col-md-9 taskbody">
         <header>
-            <h3 class="head-text">Today</h3>
-            <span class="date">Friday, September 30, 2022</span>
+            <h3 class="head-text" id="header-date-text">Today</h3>
+            <span class="date" id="header-date">Friday, September 30, 2022</span>
         </header>
         <hr>
         <div class="add-task" (click)="ReplaceAddDivWithForm()" id="add-task-div">
@@ -49,7 +48,7 @@
                 <input class="input-title" type="text" placeholder="Title of task">
                 <textarea class="input-description" type="text" placeholder="Description"></textarea>
                 <input class="input-date" type="text" placeholder="Expiration date" onfocus="(this.type='date')">
-
+    
                 <div class="card">
                     <i class='bx bx-calendar-event icon'></i>
                     <span class="text">Today</span>
@@ -58,7 +57,7 @@
                     <i class='bx bx-pin icon'></i>
                     <span class="text">Incoming</span>
                 </div>
-
+    
                 <div class="card card-end">
                     <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Highlight as important"></i>
                     <span class="text">Mark as important</span>
@@ -68,16 +67,22 @@
             <button type="submit" class="btn btn-primary">Add a task</button>
             <button class="btn btn-secondary" (click)="UndoToDiv()">Cancel</button>
         </form>
-
+    
         <br>
-
+    
         <ul class="tasks">
             <li *ngFor="let task of tasks">
                 <div class="task-li" id="task-data-{{task.id}}">
-                    <div class="form-check form-radio">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <div class="left-bar">
+                        <div class="form-check form-radio">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        </div>
+                        <div class="empty">1</div>
+                        <div class="important-card" *ngIf="task.isImportant === true" (click)="ReverseImportandValue(task.id)">
+                            <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Important task"></i>
+                        </div>
                     </div>
-
+    
                     <div class="task">
                         <div class="title">{{task.title}}</div>
                         <div class="description">{{task.description}}</div>
@@ -86,14 +91,35 @@
                             <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
                         </div>
                     </div>
-    
-                    <div class="icons" id="icons">
-                        <i class='bx bx-edit icon' data-bs-toggle="tooltip" data-placement="top" title="Edit task" (click)="ReplaceLiWithForm(task.id)"></i>
-                        <i class='bx bx-message-alt-x icon' data-bs-toggle="tooltip" data-placement="top" title="Remove task"></i>
-                        <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Highlight as important"></i>
+
+                    <!--Dropdown menu-->
+                    <div class="dropdown">
+                        <button class="dropdown-account-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class='bx bx-dots-vertical-rounded icon'></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a (click)="ReplaceLiWithForm(task.id)">
+                                    <i class='bx bx-edit icon'></i>
+                                    <span class="text-small">Edit task</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class='bx bx-message-alt-x icon'></i>
+                                    <span class="text-small">Remove task</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="ReverseImportandValue(task.id)">
+                                    <i class='bx bx-calendar-exclamation icon'></i>
+                                    <span class="text-small">Highlight as important</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
+    
                 <form action="" id="form-toedit-{{task.id}}" class="collapse form-to-edit">
                     <div class="border-block">
                         <input class="input-title" id="inputTitle" name="inputTitle" #inputTitle="ngModel" type="text" placeholder="Title of task" [(ngModel)]="task.title">
@@ -117,7 +143,7 @@
                             <span class="text">Incoming</span>
                         </div>
                     </div>
-
+    
                     <button type="submit" class="btn btn-primary">Edit a task</button>
                     <button class="btn btn-secondary" (click)="UndoToDate(task.id)">Cancel</button>
                 </form>
