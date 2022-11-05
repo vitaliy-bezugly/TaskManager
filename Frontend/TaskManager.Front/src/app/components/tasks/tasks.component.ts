@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
@@ -9,7 +10,7 @@ import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
 })
 export class TasksComponent implements OnInit {
   public tasks : TaskViewModel[] = [];
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, public datePipe: DatePipe) {
     this.tasks = taskService.GetTasks();
   }
 
@@ -71,6 +72,9 @@ export class TasksComponent implements OnInit {
     this.ChangeHeaderText('Upcoming')
     this.HideDate()
     this.tasks = []
+  }
+  public PrintDate(date: Date) : void {
+    console.log(date)
   }
 
   private ChangeHeaderText(text : string) : void {

@@ -78,6 +78,7 @@
 
 .taskbody {
     font-family: 'Poppins', sans-serif;
+    margin-right: 0px;
 }
 
 .taskbody .status-text {
@@ -121,7 +122,7 @@
     display: flex;
     flex-direction: row;
 
-    border-bottom: 1px solid rgb(204, 204, 204);
+    /*    border-bottom: 1px solid rgb(204, 204, 204); */
     margin-bottom: 5px;
 }
 
@@ -183,9 +184,7 @@
 .task-li:hover .dropdown {
     visibility: visible;
 }
-.dropdown {
-    visibility: hidden;
-}
+
 @media  (max-width: 769px) {
     .dropdown {
         visibility: visible;
@@ -201,13 +200,62 @@
     visibility: hidden;
     height: 80%;
 }
-.left-bar .important-card .icon {
+
+.important-card {
+    margin-left: 5px;
+    margin-right: 5px;
+
+    margin: auto;
+}
+
+.important-card .important-icon {
     color: red;
-    font-size: 22px;
-    margin-left: 0px;
-    padding-left: 0px;
-    position: relative;
-    right: 1px;
+    font-size: 28px;
+}
+.tasks li .dropdown {
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.tasks li .dropdown .bx-dots-vertical-rounded {
+    font-size: 28px;
+}
+
+@media (max-width: 426px) {
+    .tasks li .dropdown {
+        margin-left: 3px;
+        margin-right: 5px;
+    }
+    .important-card {
+        margin-left: 5px;
+        margin-right: 1px;
+    }
+    .important-card .important-icon {
+        font-size: 22px;
+    }
+}
+@media (max-width: 376px) {
+    .tasks li .dropdown {
+        margin-left: 3px;
+        margin-right: 2px;
+    }
+    .important-card {
+        margin-left: 3px;
+        margin-right: 0px;
+    }
+    .important-card .important-icon {
+        font-size: 22px;
+    }
+    .tasks li .dropdown .bx-dots-vertical-rounded {
+        font-size: 18px;
+    }
+    .important-card .important-icon {
+        font-size: 18px;
+    }
+}
+
+.tasks li:hover {
+    background-color: beige;
 }
 
 .icons {
@@ -300,9 +348,6 @@
         min-width: 160px;
         padding: 5px;
         margin: 5px;
-    }
-    .taskbody {
-        width: 474px;
     }
 }
 
@@ -558,9 +603,6 @@
         padding: 0px;
     }
 
-    .text {
-    }
-
     .task-li .form-radio {
         padding-right: 0px;
         margin-right: -3px;
@@ -660,4 +702,13 @@ form .border-block .card-date input {
 }
 .tasks li .dropdown ul li .bx-calendar-exclamation {
     color: red;
+}
+
+.input-group .input-group-prepend span .search-icon {
+    font-size: 26px;
+
+}
+
+.input-group .input-group-prepend .input-group-text {
+    background-color: transparent;
 }

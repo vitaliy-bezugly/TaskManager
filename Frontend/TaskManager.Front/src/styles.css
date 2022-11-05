@@ -75,3 +75,14 @@ html, body {
         width: calc(100% - 50px);
     }
 }
+
+@media (max-width: 992px) {
+    .wrapper .container {
+        max-width: 960px;
+    }
+    @media (min-width: 768px) {
+        .wrapper .container {
+            max-width: 960px;
+        }
+    }
+}

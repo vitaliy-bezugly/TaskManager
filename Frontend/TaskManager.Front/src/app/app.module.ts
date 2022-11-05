@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -26,7 +27,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

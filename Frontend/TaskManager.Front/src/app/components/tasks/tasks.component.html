@@ -1,39 +1,5 @@
-<div class="row bg-color wrap">
-    <ul class="col-md-2 paddings taskbar">
-        <li class="taskbar-item">
-            <a (click)="ShowTodayTask()">
-                <i class='bx bx-calendar-alt icon'></i>
-                <span class="text">Today</span>
-            </a>
-        </li>
-        <li class="taskbar-item">
-            <a (click)="ShowTomorrowTask()">
-                <i class='bx bxs-chevron-up icon' ></i>
-                <span class="text">Tomorrow</span>
-            </a>
-        </li>
-        <li class="taskbar-item">
-            <a (click)="ShowUpcomingTask()">
-                <i class='bx bxs-chevrons-up icon'></i>
-                <span class="text">Upcoming</span>
-            </a>
-        </li>
-        <hr>
-        <li class="taskbar-item">
-            <a (click)="ShowImportantTask()">
-                <i class='bx bx-calendar-exclamation icon'></i>
-                <span class="text">Important</span>
-            </a>
-        </li>
-        <li class="taskbar-item">
-            <a href="#">
-                <i class='bx bxs-hot icon'></i>
-                <span class="text">Coming soon</span>
-            </a>
-        </li>
-    </ul>
-
-    <div class="col-md-9 taskbody">
+<div class="bg-color wrap">
+    <div class="taskbody">
         <header>
             <h3 class="head-text" id="header-date-text">Today</h3>
             <span class="date" id="header-date">Friday, September 30, 2022</span>
@@ -69,11 +35,24 @@
         </form>
     
         <br>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                <i class='bx bx-search-alt-2 search-icon'></i>
+              </span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
     
         <ul class="tasks">
             <li *ngFor="let task of tasks">
                 <div class="task-li" id="task-data-{{task.id}}">
-                    <div class="left-bar">
+                    <div class="form-check form-radio">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                    <!--
+                        <div class="left-bar">
                         <div class="form-check form-radio">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         </div>
@@ -82,6 +61,7 @@
                             <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Important task"></i>
                         </div>
                     </div>
+                    -->
     
                     <div class="task">
                         <div class="title">{{task.title}}</div>
@@ -91,7 +71,10 @@
                             <span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span>
                         </div>
                     </div>
-
+                    <!--Important-->
+                    <div class="important-card" *ngIf="task.isImportant === true" (click)="ReverseImportandValue(task.id)">
+                        <i class='bx bx-calendar-star important-icon' data-bs-toggle="tooltip" data-placement="top" title="Important task"></i>
+                    </div>
                     <!--Dropdown menu-->
                     <div class="dropdown">
                         <button class="dropdown-account-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -132,7 +115,7 @@
                         <div class="card card-date">
                             <i class='bx bx-calendar-edit icon icon-red'></i>
                             <input class="input-date" id="inputDate" name="inputDate" #inputDate="ngModel" type="date" placeholder="Expiration date" 
-                                [(ngModel)]="task.expirationTime" onfocus="(this.type='date')">
+                                [(ngModel)]="task.expirationTime" (ngModelChange)="PrintDate(task.expirationTime)">
                         </div>
                         <div class="card">
                             <i class='bx bx-calendar-event icon'></i>
