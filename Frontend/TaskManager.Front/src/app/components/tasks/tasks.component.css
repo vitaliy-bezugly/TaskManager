@@ -254,10 +254,6 @@
     }
 }
 
-.tasks li:hover {
-    background-color: beige;
-}
-
 .icons {
     visibility: hidden;
     display: flex;
@@ -704,6 +700,15 @@ form .border-block .card-date input {
     color: red;
 }
 
+.input-group .input-group-prepend {
+    background-color:#fff;
+
+}
+
+.input-group .input-group-prepend span {
+    border-radius: 0px;
+    border-right: none
+}
 .input-group .input-group-prepend span .search-icon {
     font-size: 26px;
 
@@ -711,4 +716,7 @@ form .border-block .card-date input {
 
 .input-group .input-group-prepend .input-group-text {
     background-color: transparent;
+}
+.input-group input {
+    border-left: none;
 }
