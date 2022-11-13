@@ -12,6 +12,9 @@ export class TasksComponent implements OnInit {
   public tasks : TaskViewModel[] = [];
   constructor(private taskService: TaskService, public datePipe: DatePipe) {
     this.tasks = taskService.GetTasks();
+
+    let main = document.getElementById('main-tag')
+    main?.classList.remove('bg-image')
   }
 
   ngOnInit(): void {

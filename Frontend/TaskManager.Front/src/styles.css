@@ -60,7 +60,15 @@ html, body {
     transition: var(--tran-05);
 }
 
+.bg-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+                       rgba(0, 0, 0, 0.5)), url("assets/background-image-laptop-2.jfif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .main {
+    padding-top: 40px;
     flex: 1;
 }
 
@@ -85,4 +93,29 @@ html, body {
             max-width: 960px;
         }
     }
+}
+
+/* 
+    ---- Custon buttons ----
+*/
+.custom-btn button {
+    border-radius: 20px;
+    background: rgb(121, 113, 234);
+    padding: 4px;
+    color: white;
+    font-weight: bolder;
+    border: none;
+    min-width: 112px;
+    min-height: 48px;
+}
+
+.custom-btn button:hover {
+    background: rgb(57, 48, 175);
+}
+.custom-btn button:active {
+    background: rgb(105, 95, 255);
+}
+
+.footer-background-color {
+    background: var(--primary-color-dark);
 }

@@ -720,3 +720,8 @@ form .border-block .card-date input {
 .input-group input {
     border-left: none;
 }
+
+.padding-container {
+    padding-left: 50px;
+    padding-right: 50px;
+}
