@@ -62,7 +62,7 @@ html, body {
 
 .bg-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-                       rgba(0, 0, 0, 0.5)), url("assets/background-image-laptop-2.jfif");
+                       rgba(0, 0, 0, 0.5)), url("assets/laptop-taskmanager.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -119,3 +119,9 @@ html, body {
 .footer-background-color {
     background: var(--primary-color-dark);
 }
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+
