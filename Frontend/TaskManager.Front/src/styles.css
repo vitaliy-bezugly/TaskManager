@@ -96,9 +96,9 @@ html, body {
 }
 
 /* 
-    ---- Custon buttons ----
+    ---- Custon button ----
 */
-.custom-btn button {
+.custom-btn button{
     border-radius: 20px;
     background: rgb(121, 113, 234);
     padding: 4px;

@@ -9,7 +9,7 @@ export class SidebarComponent implements OnInit {
   isAuthenticated = true;
 
   constructor(private el: ElementRef) { }
-  isAuthorized : boolean = true;
+  isAuthorized : boolean = false;
   ngOnInit(): void {
     console.log('ngOnInit()')
   }

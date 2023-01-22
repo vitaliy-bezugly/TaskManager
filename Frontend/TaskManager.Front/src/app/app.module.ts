@@ -11,6 +11,8 @@ import { RandomArticlesComponent } from './components/random-articles/random-art
 import { TasksComponent } from './components/tasks/tasks.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     RandomArticlesComponent,
     TasksComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

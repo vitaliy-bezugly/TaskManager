@@ -35,6 +35,8 @@
                     </a>
                 </li>
                 <hr>
+                
+                <!--
                 <li>
                     <a href="Settings">
                         <i class='bx bx-cog icon'></i>
@@ -59,15 +61,19 @@
                         <span class="text nav-text">Contacts</span>
                     </a>
                 </li>
-                <hr class="hidden-item" *ngIf="isAuthorized === false">
+                -->
+                
+                <!--
+                <hr class="" *ngIf="isAuthorized === false">
+                -->
                 <li>
-                    <a href="Login" class="navbar-link navbar-item hidden-item" *ngIf="isAuthorized === false">
+                    <a href="Login" class="navbar-link navbar-item" *ngIf="isAuthorized === false">
                         <i class='bx bx-log-in icon'></i>
                         <span class="text">Login</span>
                     </a>
                 </li>
                 <li>
-                    <a href="Register" class="navbar-link navbar-item hidden-item" *ngIf="isAuthorized === false">
+                    <a href="Register" class="navbar-link navbar-item" *ngIf="isAuthorized === false">
                         <i class='bx bx-user-check icon'></i>
                         <span class="text">Register</span>
                     </a>

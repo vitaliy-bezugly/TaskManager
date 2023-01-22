@@ -1,0 +1,48 @@
+form {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 30px;
+    width: 70%;
+
+    margin: auto;
+
+    color: black;
+}
+
+form .head-text {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+form .form-group {
+    margin-bottom: 20px;
+}
+form .form-group input {
+    font-size: 20px;
+}
+
+/* Form media queries !!! */
+@media (min-width: 1439px) {  
+    form {
+        width: 90%;
+    }
+}
+@media (max-width: 1324px) {  
+    form {
+        width: 80%;
+    }
+}
+@media (max-width: 1000px) {  
+    form {
+        width: 100%;
+    }
+}
+
+i {
+    font-size: 24px;
+
+}
+
+.input-block i {
+    margin-right: 10px;
+}

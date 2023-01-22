@@ -36,29 +36,6 @@
     }
 }
 
-.signin-form {
-    background-color: #fff;
-    border-radius: 7px;
-    padding: 30px;
-    width: 70%;
-
-    margin: auto;
-
-    color: black;
-}
-
-.signin-form .head-text {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.signin-form .form-group {
-    margin-bottom: 20px;
-}
-.signin-form .form-group input {
-    font-size: 20px;
-}
-
 .better-width {
     min-width: 180px;
 }
@@ -69,21 +46,7 @@
 }
 
 /* Form media queries !!! */
-@media (min-width: 1439px) {  
-    .signin-form {
-        width: 90%;
-    }
-}
-@media (max-width: 1324px) {  
-    .signin-form {
-        width: 80%;
-    }
-}
-@media (max-width: 1000px) {  
-    .signin-form {
-        width: 100%;
-    }
-}
+
 @media (max-width: 1024px) {  
     .signin-col {
         display: block;
