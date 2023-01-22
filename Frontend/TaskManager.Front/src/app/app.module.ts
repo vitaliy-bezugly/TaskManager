@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -13,6 +15,14 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+
+import { environment } from 'src/environments/environment';
+import { ACCES_TOKEN_KEY } from './services/authorization.service';
+import { AUTH_API_URL, STORE_API_URL } from 'src/app-injection-token';
+
+export function tokenGetter() {
+  return localStorage.getItem(ACCES_TOKEN_KEY)
+}
 
 @NgModule({
   declarations: [
@@ -29,10 +39,19 @@ import { LoginComponent } from './components/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: environment.tokenWhitelistedDomains
+      }
+    })
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    { provide: AUTH_API_URL, useValue: environment.authApi },
+    { provide: STORE_API_URL, useValue: environment.storeApi }
   ],
   bootstrap: [AppComponent]
 })

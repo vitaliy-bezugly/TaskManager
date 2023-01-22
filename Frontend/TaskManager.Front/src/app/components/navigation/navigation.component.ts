@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
-  isAuthorized : boolean = true;
+  constructor(private authorizationService : AuthorizationService) { }
+
   ngOnInit(): void {
   }
 
+  isAuthorized() : boolean {
+    return this.authorizationService.isAuthenticated()
+  }
 }
