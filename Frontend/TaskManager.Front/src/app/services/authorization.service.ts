@@ -1,11 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AUTH_API_URL } from 'src/app-injection-token';
-import { Token } from 'src/models/Token';
+import { RegisterViewModel } from 'src/models/registreViewModel';
+import { Token } from 'src/models/token';
+
 
 export const ACCES_TOKEN_KEY = 'task_manager_acces_token'
 
@@ -18,13 +20,27 @@ export class AuthorizationService {
       private jwtHelper : JwtHelperService, private router : Router) { }
   
   login(email : string, password : string): Observable<Token> {
-    var someValue = this.http.post<Token>(this.apiUrl + 'Account/Login', {email, password});
+    var request = this.http.post<Token>(this.apiUrl + 'Account/Login', {email, password});
 
-    someValue.subscribe(res => {
-      localStorage.setItem(ACCES_TOKEN_KEY, res.acces_token)
+    request.subscribe(data => {
+      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
+    }, (e: HttpErrorResponse) => {
+      console.log(e)
     })
 
-    return someValue;
+    return request
+  }
+
+  register(registerViewModel : RegisterViewModel) {
+    var request = this.http.post<Token>(this.apiUrl + 'Account/Register', registerViewModel);
+
+    request.subscribe(data => {
+      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
+    }, (e: HttpErrorResponse) => {
+      console.log(e)
+    })
+
+    return request
   }
 
   logout(): void {
@@ -39,5 +55,16 @@ export class AuthorizationService {
     }
 
     return false
+  }
+
+  getUsername() : string {
+    let token = localStorage.getItem(ACCES_TOKEN_KEY);
+
+    if(token != null) {
+      let decodedJWT = this.jwtHelper.decodeToken(token);
+      return decodedJWT.given_name
+    }
+
+    return ""
   }
 }

@@ -7,14 +7,14 @@
         <div class="dropdown" *ngIf="isAuthorized()">
           <button class="dropdown-account-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img class="img-margin" height="30" width="30" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJhyvvnFnv8fA7OWR3H1FrRoaaPC3anxmwnez3BbY&s">
-            <span>Violletta Parra</span>
+            <span [textContent]="getUsername()"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-dark">
             <li><a class="dropdown-item" href="#">
               <i class='bx bx-cog icon-small'></i>
               <span class="text-small">Settings</span>
             </a></li>
-            <li><a class="dropdown-item" href="#">
+            <li><a class="dropdown-item" href="#" (click)="logout()">
               <i class='bx bx-log-out icon-small'></i>
               <span class="text-small">Log out</span>
             </a></li>
