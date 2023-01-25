@@ -1,4 +1,5 @@
 import { DatePipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
@@ -10,14 +11,24 @@ import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
 })
 export class TasksComponent implements OnInit {
   public tasks : TaskViewModel[] = [];
+
   constructor(private taskService: TaskService, public datePipe: DatePipe) {
-    this.tasks = taskService.GetTasks();
+
+    taskService.GetTasks().subscribe(data => {
+      this.tasks = data
+    }, (error : HttpErrorResponse) => {
+      console.log('error while getting tasks: ', error)
+    })
 
     let main = document.getElementById('main-tag')
     main?.classList.remove('bg-image')
   }
 
   ngOnInit(): void {
+  }
+
+  getTasks() : TaskViewModel[] {
+    return this.tasks
   }
 
   public GetMonthByMonthDate(number : number) : string {
@@ -59,12 +70,14 @@ export class TasksComponent implements OnInit {
   }
 
   public ShowImportantTask() : void {
-    this.tasks = this.taskService.GetTasks().filter(x => x.isImportant === true)
+    this.tasks = this.tasks.filter(x => x.isImportant === true)
   }
   public ShowTodayTask() : void {
     this.ChangeHeaderText('Today')
     this.ShowDate()
-    this.tasks = this.taskService.GetTasks()
+    this.taskService.GetTasks().subscribe(data => {
+      this.tasks = data
+    })
   }
   public ShowTomorrowTask() : void {
     this.ChangeHeaderText('Tomorrow')

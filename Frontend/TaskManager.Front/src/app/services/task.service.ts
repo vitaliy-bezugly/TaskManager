@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AUTH_API_URL } from 'src/app-injection-token';
 import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
+import { ACCES_TOKEN_KEY } from './authorization.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +16,16 @@ export class TaskService {
     {"id": '5c61435a1f7049d4a746ed09fd20e3a4', "title": "Go to the shop", "description": "Buy: potato, onion, garlic222, tomato, 1kg of pork and spagetti", "createdTime": new Date('2022-10-27'), "expirationTime":  new Date(), "isImportant": true},
     {"id": '7f246e96926d40348a2dd0b6d27afb91', "title": "Some title 5", "description": "Some description 5", "createdTime": new Date('10/11/2022'), "expirationTime":  new Date('2022-10-27'), "isImportant": false}
   ];
-  constructor() { }
 
-  public GetTasks() : TaskViewModel[] {
-    return this.tasks;
+  constructor(private httpClient : HttpClient, @Inject(AUTH_API_URL) private apiUrl : string) { 
+
+  }
+
+  public GetTasks() : Observable<TaskViewModel[]> {
+    const headers = 'Bearer ' + localStorage.getItem(ACCES_TOKEN_KEY)
+    
+    return this.httpClient.get<TaskViewModel[]>(this.apiUrl + 'Task', {
+      headers: new HttpHeaders().set('Authorization', headers )
+    })
   }
 }

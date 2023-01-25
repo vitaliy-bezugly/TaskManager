@@ -16,6 +16,8 @@ export const ACCES_TOKEN_KEY = 'task_manager_acces_token'
 })
 
 export class AuthorizationService {
+  private accessToken = ''
+
   constructor(private http : HttpClient, @Inject(AUTH_API_URL) private apiUrl : string, 
       private jwtHelper : JwtHelperService, private router : Router) { }
   
