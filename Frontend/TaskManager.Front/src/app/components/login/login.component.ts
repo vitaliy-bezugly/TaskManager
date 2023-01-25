@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.alertMessage = 'Something goes wrong'
+        
       }
 
       let alertError = document.getElementById('alertError')

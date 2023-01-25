@@ -12,11 +12,13 @@ export class RegisterComponent implements OnInit {
   public alertMessage : string
   public successRegister : boolean
   public registerViewModel : RegisterViewModel
+  public matchPassword : boolean
 
   constructor(private authService : AuthorizationService) { 
     this.registerViewModel = new RegisterViewModel()
     this.alertMessage = ""
     this.successRegister = false
+    this.matchPassword = true
   }
 
   ngOnInit(): void {
@@ -51,5 +53,16 @@ export class RegisterComponent implements OnInit {
   hideCircle() : void {
     let circle = document.getElementById('load-circle-login')
     circle?.setAttribute('hidden', '')
+  }
+
+  textChanged(newValue : any) : void {
+    let password = document.getElementById('password') as HTMLInputElement
+    let confirmPassword = document.getElementById('confirmPassword') as HTMLInputElement
+
+    if(password.value != confirmPassword.value) {
+      this.matchPassword = false
+    } else {
+      this.matchPassword = true
+    }
   }
 }

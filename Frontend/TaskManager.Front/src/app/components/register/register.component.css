@@ -6,3 +6,23 @@ i {
 .input-block i {
     margin-right: 10px;
 }
+
+form .alert {
+    margin-top: 20px;
+}
+
+form .custom-btn .spinner-border {
+    position: relative;
+    left: 10px;
+    top: 7px;
+}
+
+form .text-small {
+    position: relative;
+    bottom: 20px;
+    left: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    padding: 0px;
+}

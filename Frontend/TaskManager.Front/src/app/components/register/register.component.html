@@ -21,10 +21,10 @@
                     
                     <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert text-danger text-small">
                       <i class='bx bx-envelope invisible'></i>
-                      <small *ngIf="email.errors?.['required']">
+                      <small *ngIf="username.errors?.['required']">
                         Username is required.
                       </small>
-                      <small *ngIf="email.errors?.['minlength']">
+                      <small *ngIf="username.errors?.['minlength']">
                           Username must contain at least 5 characters.
                       </small>
                     </div>
@@ -33,62 +33,63 @@
                       <i class='bx bx-envelope' ></i>
                       <div class="form-outline flex-fill mb-0 ">
                         <input id="email" name="email" #email="ngModel" [(ngModel)]="registerViewModel.email" type="email" 
-                            class="form-control" placeholder="Your Email"/>
+                            class="form-control" placeholder="Your Email" required email/>
                       </div>
-                      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert text-danger text-small">
-                        <i class='bx bx-envelope invisible'></i>
-                        <small *ngIf="email.errors?.['required']">
-                          Email is required.
-                        </small>
-                        <small *ngIf="email.errors?.['email']">
-                            Incorrect email format.
-                        </small>
-                      </div>
+                    </div>
+
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert text-danger text-small">
+                      <i class='bx bx-envelope invisible'></i>
+                      <small *ngIf="email.errors?.['required']">
+                        Email is required.
+                      </small>
+                      <small *ngIf="email.errors?.['email']">
+                          Incorrect email format.
+                      </small>
                     </div>
   
                     <div class="d-flex flex-row align-items-center mb-4 input-block">
                       <i class='bx bx-lock-alt' ></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input id="password1" name="password1" #password1="ngModel" [(ngModel)]="registerViewModel.password" type="password" 
-                            class="form-control" placeholder="Your password"/>
+                        <input id="password" name="password" #password="ngModel" [(ngModel)]="registerViewModel.password" type="password" 
+                            class="form-control" placeholder="Your password" required minlength="5"/>
                       </div>
-                      <div *ngIf="password1.invalid && (password1.dirty || password1.touched)" class="alert text-danger text-small">
-                        <i class='bx bx-envelope invisible'></i>
-                        <small *ngIf="password1.errors?.['required']">
-                          Password is required.
-                        </small>
-                        <small *ngIf="password1.errors?.['minlength']">
-                            Password must contain at least 4 characters.
-                        </small>
-                      </div>
+                    </div>
+
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert text-danger text-small">
+                      <i class='bx bx-envelope invisible'></i>
+                      <small *ngIf="password.errors?.['required']">
+                        Password is required.
+                      </small>
+                      <small *ngIf="password.errors?.['minlength']">
+                          Password must contain at least 5 characters.
+                      </small>
                     </div>
   
                     <div class="d-flex flex-row align-items-center mb-4 input-block">
                       <i class='bx bxs-key' ></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input id="password2" name="password2" #password2="ngModel" [(ngModel)]="registerViewModel.password" type="password"
-                            class="form-control" placeholder="Repeat your password"/>
-                      </div>
-                      <div *ngIf="password2.invalid && (password2.dirty || password2.touched)" class="alert text-danger text-small">
-                        <i class='bx bx-envelope invisible'></i>
-                        <small *ngIf="password2.errors?.['required']">
-                          Password is required.
-                        </small>
-                        <small *ngIf="password2.errors?.['minlength']">
-                            Password must contain at least 4 characters.
-                        </small>
+                        <input id="confirmPassword" type="password"
+                            class="form-control" placeholder="Repeat your password" (input)="textChanged($event)"/>
                       </div>
                     </div>
-  
-                    <div class="form-check d-flex justify-content-center mb-5">
-                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                      <label class="form-check-label" for="form2Example3">
-                        I agree all statements in <a href="#!">Terms of service</a>
-                      </label>
+
+                    <div *ngIf="!matchPassword" class="alert text-danger text-small">
+                      <i class='bx bx-envelope invisible'></i>
+                      <small>
+                          Password does not match
+                      </small>
                     </div>
   
                     <div class="custom-btn">
-                      <button type="submit" (click)="register()">Register</button>
+                      <button type="submit" (click)="register()" [disabled]="password.invalid && (password.dirty || password.touched) 
+                      || email.invalid && (email.dirty || email.touched) 
+                      || username.invalid && (username.dirty || username.touched)
+                      || !matchPassword">
+                        Register
+                      </button>
+                      <div id="load-circle-login" class="spinner-border text-primary" role="status" hidden>
+                        <span class="sr-only"></span>
+                      </div>
                     </div>
 
                     <div class="alert alert-success" [textContent]="alertMessage" *ngIf="successRegister"></div>
