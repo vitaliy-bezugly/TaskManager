@@ -2,18 +2,23 @@
     <div class="taskbody">
         <header>
             <h3 class="head-text" id="header-date-text">Today</h3>
-            <span class="date" id="header-date">Friday, September 30, 2022</span>
+            <span class="date" id="header-date">{{GetTodaysDate()}}</span>
         </header>
         <hr>
         <div class="add-task" (click)="ReplaceAddDivWithForm()" id="add-task-div">
             <i class='bx bx-book-add icon'></i>
             <span class="text">Add a task</span>
         </div>
+        <!--Form-->
         <form action="" id="form-toadd" class="collapse">
             <div class="border-block border-block-1">
-                <input class="input-title" type="text" placeholder="Title of task">
-                <textarea class="input-description" type="text" placeholder="Description"></textarea>
-                <input class="input-date" type="text" placeholder="Expiration date" onfocus="(this.type='date')">
+                <input name="titleinput" #titleinput="ngModel" [(ngModel)]="task.title" 
+                    class="input-title" type="text" placeholder="Title of task">
+                <textarea class="input-description" type="text" placeholder="Description"
+                    name="descriptiontextarea" #descriptiontextarea="ngModel" [(ngModel)]="task.description">
+                </textarea>
+                <input class="input-date" type="text" placeholder="Expiration date" onfocus="(this.type='date')"
+                    name="dateinput" #dateinput="ngModel" [(ngModel)]="task.expirationTime">
     
                 <div class="card">
                     <i class='bx bx-calendar-event icon'></i>
@@ -30,46 +35,45 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary">Add a task</button>
+            <button type="submit" class="btn btn-primary" (click)="addTask()">Add a task</button>
             <button class="btn btn-secondary" (click)="UndoToDiv()">Cancel</button>
         </form>
     
         <br>
 
+        <!--Search field-->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">
                 <i class='bx bx-search-alt-2 search-icon'></i>
               </span>
             </div>
-            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search...">
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Search..."
+                [(ngModel)]="filteredString">
           </div>
-    
+        
+        <!--Allerts-->
+        <div class="alert alert-success alert-margin" [textContent]="alertMessage" *ngIf="successOperation"></div>
+        <div id="alertError" class="alert alert-danger alert-margin" [textContent]="alertMessage" hidden></div>
+
+        <!--List of tasks-->
         <ul class="tasks">
-            <li *ngFor="let task of tasks">
+            <li *ngFor="let task of tasks | filter:filteredString">
                 <div class="task-li" id="task-data-{{task.id}}">
                     <div class="form-check form-radio">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     </div>
-                    <!--
-                        <div class="left-bar">
-                        <div class="form-check form-radio">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        </div>
-                        <div class="empty">1</div>
-                        <div class="important-card" *ngIf="task.isImportant === true" (click)="ReverseImportandValue(task.id)">
-                            <i class='bx bx-calendar-exclamation icon' data-bs-toggle="tooltip" data-placement="top" title="Important task"></i>
-                        </div>
-                    </div>
-                    -->
-    
+                
+                    <!--Task card-->
                     <div class="task">
                         <div class="title">{{task.title}}</div>
                         <div class="description">{{task.description}}</div>
                         <div class="date">
                             <i class='bx bx-calendar-alt icon'></i>
-                            <span class="date-text">27 September</span>
-                            <!--<span class="date-text">{{task.createdTime.getDate() + ' ' + GetMonthByMonthDate(task.createdTime.getMonth())}}</span> -->
+                            <span class="date-text">
+                                Expiration time: 
+                                {{ParseDateToReadableFormat(task.expirationTime)}}
+                            </span>
                         </div>
                     </div>
                     <!--Important-->
@@ -89,7 +93,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a>
+                                <a (click)="DeleteTask(task.id)">
                                     <i class='bx bx-message-alt-x icon'></i>
                                     <span class="text-small">Remove task</span>
                                 </a>
@@ -103,20 +107,16 @@
                         </ul>
                     </div>
                 </div>
-    
+                
+                <!--Edit form-->
                 <form action="" id="form-toedit-{{task.id}}" class="collapse form-to-edit">
                     <div class="border-block">
                         <input class="input-title" id="inputTitle" name="inputTitle" #inputTitle="ngModel" type="text" placeholder="Title of task" [(ngModel)]="task.title">
                         <textarea class="input-description" id="inputDescription" name="inputDescription" #inputDescription="ngModel" type="text" placeholder="Description" [(ngModel)]="task.description"></textarea>
-                        <!--
-                        <input class="input-date" id="inputDate" name="inputDate" #inputDate="ngModel" type="text" placeholder="Expiration date" 
-                            [(ngModel)]="task.expirationTime" onfocus="(this.type='date')">
-                        -->
                         
                         <div class="card card-date">
                             <i class='bx bx-calendar-edit icon icon-red'></i>
-                            <input class="input-date" id="inputDate" name="inputDate" #inputDate="ngModel" type="date" placeholder="Expiration date" 
-                                [(ngModel)]="task.expirationTime" (ngModelChange)="PrintDate(task.expirationTime)">
+                            <span class="input-date">{{ParseDateToReadableFormat(task.createdTime)}}</span>
                         </div>
                         <div class="card">
                             <i class='bx bx-calendar-event icon'></i>
@@ -128,8 +128,8 @@
                         </div>
                     </div>
     
-                    <button type="submit" class="btn btn-primary">Edit a task</button>
-                    <button class="btn btn-secondary" (click)="UndoToDate(task.id)">Cancel</button>
+                    <button type="submit" class="btn btn-primary" (click)="UpdateTask(task)">Edit a task</button>
+                    <button class="btn btn-secondary" (click)="UndoToData(task.id)">Cancel</button>
                 </form>
             </li>
         </ul>

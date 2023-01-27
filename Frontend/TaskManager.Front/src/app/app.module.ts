@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -19,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { environment } from 'src/environments/environment';
 import { ACCES_TOKEN_KEY } from './services/authorization.service';
 import { AUTH_API_URL, STORE_API_URL } from 'src/app-injection-token';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCES_TOKEN_KEY)
@@ -34,7 +36,8 @@ export function tokenGetter() {
     HomeComponent,
     SidebarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ export function tokenGetter() {
         tokenGetter,
         allowedDomains: environment.tokenWhitelistedDomains
       }
-    })
+    }),
+    ReactiveFormsModule
   ],
   providers: [
     DatePipe,

@@ -725,3 +725,7 @@ form .border-block .card-date input {
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.alert-margin { 
+    margin: 5px;
+}

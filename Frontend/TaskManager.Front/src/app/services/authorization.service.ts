@@ -33,7 +33,7 @@ export class AuthorizationService {
     return request
   }
 
-  register(registerViewModel : RegisterViewModel) {
+  register(registerViewModel : RegisterViewModel) : Observable<Token> {
     var request = this.http.post<Token>(this.apiUrl + 'Account/Register', registerViewModel);
 
     request.subscribe(data => {
