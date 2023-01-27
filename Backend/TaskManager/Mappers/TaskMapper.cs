@@ -15,7 +15,7 @@ public static class TaskMapper
     public static TaskDomain ToDomain(this TaskViewModel task)
     {
         return new TaskDomain { Title = task.title, Description = task.description, 
-             ExpirationTime = task.expirationTime };
+             ExpirationTime = task.expirationTime, CreatedTime = task.createdTime };
     }
 
     public static TaskViewModel ToViewModel(this TaskDomain task)

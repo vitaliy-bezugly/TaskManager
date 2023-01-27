@@ -78,7 +78,7 @@ public static class ConfigurationHelper
         services.AddScoped<ITaskRepository, TaskRepository>();
         services.AddScoped<IAccountRepository, AccountRepository>();
 
-        services.Decorate<ITaskRepository, TaskRepositoryCached>();
+        // services.Decorate<ITaskRepository, TaskRepositoryCached>();
     }
     public static void ConfigureLogger(this WebApplicationBuilder builder)
     {

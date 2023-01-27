@@ -81,6 +81,7 @@ public class AccountService : IAccountService
 
         var claims = new List<Claim>
             {
+                new Claim(JwtRegisteredClaimNames.GivenName, account.Username),
                 new Claim(JwtRegisteredClaimNames.Email, account.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, account.Id)
             };

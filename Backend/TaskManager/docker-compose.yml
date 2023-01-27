@@ -5,7 +5,7 @@ services:
    image: mcr.microsoft.com/mssql/server:2022-latest
    environment: 
     - ACCEPT_EULA=Y
-    - SA_PASSWORD=BilliJin2000
+    - SA_PASSWORD=B1ll1J1NNNN231
     - MSSQL_PID=Express
    ports: 
     - "1433:1433"
@@ -28,7 +28,7 @@ services:
      - DbServer=ms-sql-server
      - DbPort=1433
      - DbUser=SA
-     - DbPassword=BilliJin2000
+     - DbPassword=B1ll1J1NNNN231
      - DbCatalog=Bookstore
      - RedisUrl=redis
      - RedisInstanceName=RedisCache

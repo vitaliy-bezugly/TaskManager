@@ -11,8 +11,8 @@ builder.ConfigureLogger();
 
 builder.Services.ConfigureDatabaseConnection(builder.Configuration);
 
-builder.Services.ConfigureRedisConnection(builder.Configuration);
-builder.Services.AddDistributedMemoryCache();
+// builder.Services.ConfigureRedisConnection(builder.Configuration);
+// builder.Services.AddDistributedMemoryCache();
 
 builder.Services.ConfigureServices();
 builder.Services.ConfigureRepositories();
