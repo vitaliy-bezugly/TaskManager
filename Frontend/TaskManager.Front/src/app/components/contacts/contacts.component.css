@@ -1,4 +1,4 @@
-.settings-body {
+.contactspage-body {
     padding-top: 40px;
     padding-left: 150px;
     padding-right: 150px;
@@ -8,29 +8,29 @@
     min-height: 100vh;
 }
 @media (max-width: 1140px) {
-    .settings-body {
+    .contactspage-body {
         padding-left: 70px;
         padding-right: 70px;
     }
 }
 @media (max-width: 992px) {
-    .settings-body {
+    .contactspage-body {
         padding-top: 10px;
     }
 }
 @media (max-width: 768px) {
-    .settings-body {
+    .contactspage-body {
         margin-bottom: 80px;
     }
 }
 @media (max-width: 621px) {
-    .settings-body {
+    .contactspage-body {
         padding-left: 30px;
         padding-right: 30px;
     }
 }
 @media (max-width: 375px) {
-    .settings-body {
+    .contactspage-body {
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -70,6 +70,70 @@
     }
 }
 
+.contactspage-body ul {
+    padding-left: 0px;
+}
+.contactspage-body ul li {
+    list-style: none;
+    font-size: 18px;
+}
+
+.contactspage-body ul li a {
+    text-decoration: none;
+    color:inherit;
+}
+
+.contactspage-body i {
+    font-size: 18px;
+}
+
+.icon-text {
+    position: relative;
+    bottom: 1px;
+
+    margin-left: 7px;
+}
+
+form {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 30px;
+    width: 70%;
+
+    margin: auto;
+
+    color: black;
+}
+
+form .head-text {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+form .form-group {
+    margin-bottom: 20px;
+}
+form .form-group input {
+    font-size: 20px;
+}
+
+/* Form media queries !!! */
+@media (min-width: 1439px) {  
+    form {
+        width: 90%;
+    }
+}
+@media (max-width: 1324px) {  
+    form {
+        width: 80%;
+    }
+}
+@media (max-width: 1000px) {  
+    form {
+        width: 100%;
+    }
+}
+
 i {
     font-size: 24px;
 
@@ -99,6 +163,6 @@ form .text-small {
     padding: 0px;
 }
 
-form h3 {
-    font-size: 20px;
+form .form-group {
+    margin-bottom: 5px;
 }

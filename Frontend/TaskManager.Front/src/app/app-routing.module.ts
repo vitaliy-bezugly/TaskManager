@@ -7,6 +7,7 @@ import { RandomArticlesComponent } from './components/random-articles/random-art
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'Tasks', component: TasksComponent},
   {path: 'Register', component: RegisterComponent},
   {path: 'Login', component: LoginComponent},
-  {path: 'Settings', component: SettingsComponent}
+  {path: 'Settings', component: SettingsComponent},
+  {path: 'Contacts', component: ContactsComponent}
 ];
 
 @NgModule({

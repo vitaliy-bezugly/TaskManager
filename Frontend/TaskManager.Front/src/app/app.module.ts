@@ -22,6 +22,7 @@ import { ACCES_TOKEN_KEY } from './services/authorization.service';
 import { AUTH_API_URL, STORE_API_URL } from 'src/app-injection-token';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCES_TOKEN_KEY)
@@ -39,7 +40,8 @@ export function tokenGetter() {
     RegisterComponent,
     LoginComponent,
     FilterPipe,
-    SettingsComponent
+    SettingsComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
