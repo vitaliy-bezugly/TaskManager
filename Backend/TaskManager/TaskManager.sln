@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.IntegrationTest
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Refactored", "..\TaskManager.Refactored\TaskManager.Refactored.csproj", "{2F84E01E-3F43-4D75-A1B9-4BCCCBCC0C2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED77EF31-D2D0-4209-BC60-81A3EF8A3B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F84E01E-3F43-4D75-A1B9-4BCCCBCC0C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F84E01E-3F43-4D75-A1B9-4BCCCBCC0C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F84E01E-3F43-4D75-A1B9-4BCCCBCC0C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F84E01E-3F43-4D75-A1B9-4BCCCBCC0C2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
