@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AUTH_API_URL } from 'src/app-injection-token';
-import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
+import { TaskViewModel } from 'src/models/taskViewModel';
 import { ACCES_TOKEN_KEY } from './authorization.service';
 
 @Injectable({

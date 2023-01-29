@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
-import { TaskViewModel } from 'src/viewmodels/TaskViewModel';
+import { TaskViewModel } from 'src/models/taskViewModel';
 
 import * as moment from 'moment';
 

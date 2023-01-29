@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +7,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  isAuthenticated = true;
+  constructor(private el: ElementRef, private authService : AuthorizationService) { }
 
-  constructor(private el: ElementRef) { }
-  isAuthorized : boolean = false;
   ngOnInit(): void {
     console.log('ngOnInit()')
   }
@@ -23,5 +22,9 @@ export class SidebarComponent implements OnInit {
     else {
       myTag.classList.remove('close'); 
     }
+  }
+
+  public isAuthenticated() : boolean {
+    return this.authService.isAuthenticated()
   }
 }

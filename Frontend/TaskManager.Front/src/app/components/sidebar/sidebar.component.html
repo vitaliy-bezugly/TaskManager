@@ -34,15 +34,14 @@
                         <span class="text nav-text">Tasks</span>
                     </a>
                 </li>
-                <hr>
-                
-                <!--
-                <li>
+                <li *ngIf="isAuthenticated()">
                     <a href="Settings">
                         <i class='bx bx-cog icon'></i>
                         <span class="text">Settings</span>
                   </a>
                 </li>
+                <hr>
+                <!--
                 <li>
                     <a href="Support">
                         <i class='bx bx-help-circle icon' ></i>
@@ -67,13 +66,13 @@
                 <hr class="" *ngIf="isAuthorized === false">
                 -->
                 <li>
-                    <a href="Login" class="navbar-link navbar-item" *ngIf="isAuthorized === false">
+                    <a href="Login" class="navbar-link navbar-item">
                         <i class='bx bx-log-in icon'></i>
                         <span class="text">Login</span>
                     </a>
                 </li>
                 <li>
-                    <a href="Register" class="navbar-link navbar-item" *ngIf="isAuthorized === false">
+                    <a href="Register" class="navbar-link navbar-item">
                         <i class='bx bx-user-check icon'></i>
                         <span class="text">Register</span>
                     </a>

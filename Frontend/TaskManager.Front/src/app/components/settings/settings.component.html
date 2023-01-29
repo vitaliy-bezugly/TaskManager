@@ -1,0 +1,90 @@
+<div class="settings-body">
+    <h2>Public profile</h2>
+    <hr>
+
+    <!--Change Username form-->
+    <form>
+        <h3>Change username</h3>
+        <div class="d-flex flex-row align-items-center mb-4 input-block">
+            <i class='bx bx-user'></i>
+            <div class="form-outline flex-fill mb-0">
+              <input id="newUsername" name="newUsername" #newUsername="ngModel" [(ngModel)]="usernameRequest.newUsername" type="text"
+                 class="form-control" placeholder="Your New Name" required minlength="5"/>
+            </div>
+          </div>
+          
+          <!--Validation for username field-->
+          <div *ngIf="newUsername.invalid && (newUsername.dirty || newUsername.touched)" class="alert text-danger text-small">
+            <i class='bx bx-envelope invisible'></i>
+            <small *ngIf="newUsername.errors?.['required']">
+              Username is required.
+            </small>
+            <small *ngIf="newUsername.errors?.['minlength']">
+                Username must contain at least 5 characters.
+            </small>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Change username</button>
+    </form>
+    <hr>
+
+    <!--Change password form-->
+    <form>
+        <h3>Change password</h3>
+
+        <!--Current password-->
+        <div class="d-flex flex-row align-items-center mb-4 input-block">
+            <i class='bx bx-key'></i>
+            <div class="form-outline flex-fill mb-0">
+              <input id="currentPassword" name="currentPassword" #currentPassword="ngModel" [(ngModel)]="passwordRequest.oldPassword" type="password" 
+                  class="form-control" placeholder="Your current password" required minlength="5"/>
+            </div>
+          </div>
+          <!--Validation for current password field-->
+          <div *ngIf="currentPassword.invalid && (currentPassword.dirty || currentPassword.touched)" class="alert text-danger text-small">
+            <i class='bx bx-envelope invisible'></i>
+            <small *ngIf="currentPassword.errors?.['required']">
+              Password is required.
+            </small>
+            <small *ngIf="currentPassword.errors?.['minlength']">
+                Password must contain at least 5 characters.
+            </small>
+          </div>
+        
+        <!--New password-->
+        <div class="d-flex flex-row align-items-center mb-4 input-block">
+            <i class='bx bx-lock-alt' ></i>
+            <div class="form-outline flex-fill mb-0">
+              <input id="password" name="password" #password="ngModel" [(ngModel)]="passwordRequest.newPassword" type="password" 
+                  class="form-control" placeholder="Your new password" required minlength="5"/>
+            </div>
+          </div>
+        <!--Validation for new password field-->
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert text-danger text-small">
+            <i class='bx bx-envelope invisible'></i>
+            <small *ngIf="password.errors?.['required']">
+              Password is required.
+            </small>
+            <small *ngIf="password.errors?.['minlength']">
+                Password must contain at least 5 characters.
+            </small>
+          </div>
+          <!--Repeat password-->
+          <div class="d-flex flex-row align-items-center mb-4 input-block">
+            <i class='bx bxs-key' ></i>
+            <div class="form-outline flex-fill mb-0">
+              <input id="confirmPassword" type="password"
+                  class="form-control" placeholder="Repeat the new password" (input)="textChanged($event)"/>
+            </div>
+          </div>
+          <!--Match validation-->
+          <div *ngIf="!matchPassword" class="alert text-danger text-small">
+            <i class='bx bx-envelope invisible'></i>
+            <small>
+                Password does not match
+            </small>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Change password</button>
+    </form>
+</div>

@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { ACCES_TOKEN_KEY } from './services/authorization.service';
 import { AUTH_API_URL, STORE_API_URL } from 'src/app-injection-token';
 import { FilterPipe } from './Pipes/filter.pipe';
+import { SettingsComponent } from './components/settings/settings.component';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCES_TOKEN_KEY)
@@ -37,7 +38,8 @@ export function tokenGetter() {
     SidebarComponent,
     RegisterComponent,
     LoginComponent,
-    FilterPipe
+    FilterPipe,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
