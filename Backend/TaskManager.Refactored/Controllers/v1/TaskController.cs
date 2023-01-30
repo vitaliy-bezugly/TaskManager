@@ -68,6 +68,7 @@ public class TaskController : ControllerBase
             Id = task.Id,
             Title = task.Title,
             Description = task.Description,
+            IsImportant = task.IsImportant,
             CreationTime = task.CreationTime,
             ExpirationTime = task.ExpirationTime
         };

@@ -1,71 +1,77 @@
 ﻿using TaskManager.Refactored.Domain;
+using TaskManager.Refactored.Entities;
+using TaskManager.Refactored.Repositories.Abstract;
 using TaskManager.Refactored.Services.Abstract;
 
 namespace TaskManager.Refactored.Services;
 
 public class TaskService : ITaskService
 {
-    private List<TaskDomain> _tasks;
-    private static Random random = new Random();
+    private readonly ITaskRepository _taskRepository;
 
-    public TaskService()
+    public TaskService(ITaskRepository taskRepository)
     {
-        _tasks = new List<TaskDomain>();
-
-        for (int i = 1; i <= 10; i++)
-        {
-            _tasks.Add(new TaskDomain
-            {
-                Title = $"Title: {i}",
-                Description = RandomString(26),
-                IsImportant = random.Next(1, 5) == 1,
-                ExpirationTime = DateTime.Now.AddDays(random.Next(1, 360))
-            });
-        }
-    }
-
-    public static string RandomString(int length)
-    {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        return new string(Enumerable.Repeat(chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
+        _taskRepository = taskRepository;
     }
 
     public void AddTask(TaskDomain taskDomain)
     {
-        _tasks.Add(taskDomain);
+        _taskRepository.AddTask(new TaskEntity
+        {
+            Id = taskDomain.Id,
+            Title = taskDomain.Title,
+            Description = taskDomain.Description,
+            IsImportant = taskDomain.IsImportant,
+            CreationTime = taskDomain.CreationTime,
+            ExpirationTime = taskDomain.ExpirationTime
+        });
     }
-
     public TaskDomain? GetTaskById(Guid taskId)
     {
-        return _tasks.FirstOrDefault(x => x.Id == taskId);
-    }
+        var taskEntity = _taskRepository.GetTaskById(taskId);
 
+        if(taskEntity == null)
+            return null;
+
+        return new TaskDomain
+        {
+            Id = taskEntity.Id,
+            Title = taskEntity.Title,
+            Description = taskEntity.Description,
+            IsImportant = taskEntity.IsImportant,
+            CreationTime = taskEntity.CreationTime,
+            ExpirationTime = taskEntity.ExpirationTime
+        };
+    }
     public IEnumerable<TaskDomain> GetTasks()
     {
-        return _tasks;
+        return _taskRepository.GetTasks().Select(x =>
+        {
+            return new TaskDomain
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                IsImportant = x.IsImportant,
+                CreationTime = x.CreationTime,
+                ExpirationTime = x.ExpirationTime
+            };
+        });
     }
-
     public bool UpdateTask(TaskDomain taskToUpdate)
     {
-        var task = GetTaskById(taskToUpdate.Id);
-
-        if (task is null)
-            return false;
-
-        int index = _tasks.FindIndex(x => x.Id == taskToUpdate.Id);
-        _tasks[index] = taskToUpdate;
-        return true;
+        return _taskRepository.UpdateTask(new TaskEntity
+        {
+            Id = taskToUpdate.Id,
+            Title = taskToUpdate.Title,
+            Description = taskToUpdate.Description,
+            IsImportant = taskToUpdate.IsImportant,
+            CreationTime = taskToUpdate.CreationTime,
+            ExpirationTime = taskToUpdate.ExpirationTime
+        });
     }
-
     public bool DeleteTask(Guid taskId)
     {
-        var task = GetTaskById(taskId);
-
-        if (task is null)
-            return false;
-
-        _tasks.Remove(task);
-        return true;
+        return _taskRepository.DeleteTask(taskId);
     }
 }

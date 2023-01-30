@@ -1,10 +1,12 @@
-﻿using TaskManager.Refactored.Domain;
+﻿using TaskManager.Refactored.Entities;
 
 namespace TaskManager.Refactored.Repositories.Abstract;
 
 public interface ITaskRepository
 {
-    IEnumerable<TaskDomain> GetTasks();
-    TaskDomain GetTaskById(Guid taskId);
-    bool AddTask(TaskDomain taskDomain);
+    void AddTask(TaskEntity taskEntity);
+    IEnumerable<TaskEntity> GetTasks();
+    TaskEntity? GetTaskById(Guid taskId);
+    bool UpdateTask(TaskEntity taskToUpdate);
+    bool DeleteTask(Guid taskId);
 }
