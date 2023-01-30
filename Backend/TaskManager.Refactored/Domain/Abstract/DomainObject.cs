@@ -2,7 +2,7 @@
 {
     public abstract class DomainObject
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime CreationTime { get; set; } = DateTime.Now;
     }
 }
