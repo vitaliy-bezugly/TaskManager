@@ -4,7 +4,10 @@ namespace TaskManager.Refactored.Contracts.v1.Requests;
 
 public class CreateTaskRequest
 {
-    public Guid Id { get; set; }
     [Required]
-    public string Title { get; set; }
+    public string title { get; set; }
+    public string? description { get; set; }
+    public bool isImportant { get; set; }
+    [Required]
+    public DateTime expirationTime { get; set; }
 }

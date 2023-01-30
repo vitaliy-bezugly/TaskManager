@@ -6,14 +6,13 @@ namespace TaskManager.Refactored.Repositories;
 public class TaskRepository : ITaskRepository
 {
     private List<TaskDomain> _tasks;
+    private static Random random = new Random();
+
     public TaskRepository()
     {
         _tasks = new List<TaskDomain>();
 
-        for(int i = 1; i <= 10; i++)
-        {
-            _tasks.Add(new TaskDomain());
-        }
+        
     }
 
     public bool AddTask(TaskDomain taskDomain)

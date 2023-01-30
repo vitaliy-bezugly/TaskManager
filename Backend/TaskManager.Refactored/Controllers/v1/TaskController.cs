@@ -19,7 +19,14 @@ public class TaskController : ControllerBase
     [HttpPost, Route(ApiRoutes.Task.Create)]
     public IActionResult Create([FromBody] CreateTaskRequest taskRequest)
     {
-        var task = new TaskDomain { Id = taskRequest.Id, Title = taskRequest.Title };
+        var task = new TaskDomain 
+        { 
+            Title = taskRequest.title, 
+            Description = taskRequest.description,
+            IsImportant = taskRequest.isImportant,
+            ExpirationTime = taskRequest.expirationTime
+        };
+
         _taskService.AddTask(task);
 
         var baseUrl = $"{HttpContext.Request.Scheme}//{HttpContext.Request.Host.ToUriComponent()}";
@@ -32,7 +39,21 @@ public class TaskController : ControllerBase
     [HttpGet, Route(ApiRoutes.Task.GetAll)]
     public IActionResult GetAll()
     {
-        return Ok(_taskService.GetTasks());
+        IEnumerable<TaskDomain> tasks = _taskService.GetTasks();
+        IEnumerable<GetTaskResponse> responses = tasks.Select(x =>
+        {
+            return new GetTaskResponse
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                IsImportant = x.IsImportant,
+                CreationTime = x.CreationTime,
+                ExpirationTime = x.ExpirationTime
+            };
+        });
+
+        return Ok(responses);
     }
     [HttpGet, Route(ApiRoutes.Task.Get)]
     public IActionResult Get([FromRoute] Guid taskId)
@@ -42,7 +63,16 @@ public class TaskController : ControllerBase
         if (task == null)
             return NotFound();
 
-        return Ok(task);
+        var response = new GetTaskResponse
+        {
+            Id = task.Id,
+            Title = task.Title,
+            Description = task.Description,
+            CreationTime = task.CreationTime,
+            ExpirationTime = task.ExpirationTime
+        };
+
+        return Ok(response);
     }
 
     [HttpPut, Route(ApiRoutes.Task.Update)]
@@ -51,7 +81,10 @@ public class TaskController : ControllerBase
         var task = new TaskDomain
         {
             Id = taskId,
-            Title = taskRequest.Title
+            Title = taskRequest.title,
+            Description = taskRequest.description,
+            IsImportant = taskRequest.isImportant,
+            ExpirationTime = taskRequest.expirationTime
         };
 
         bool result = _taskService.UpdateTask(task);

@@ -6,14 +6,29 @@ namespace TaskManager.Refactored.Services;
 public class TaskService : ITaskService
 {
     private List<TaskDomain> _tasks;
+    private static Random random = new Random();
+
     public TaskService()
     {
         _tasks = new List<TaskDomain>();
 
         for (int i = 1; i <= 10; i++)
         {
-            _tasks.Add(new TaskDomain { Title = $"Task #{i}"});
+            _tasks.Add(new TaskDomain
+            {
+                Title = $"Title: {i}",
+                Description = RandomString(26),
+                IsImportant = random.Next(1, 5) == 1,
+                ExpirationTime = DateTime.Now.AddDays(random.Next(1, 360))
+            });
         }
+    }
+
+    public static string RandomString(int length)
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
     public void AddTask(TaskDomain taskDomain)

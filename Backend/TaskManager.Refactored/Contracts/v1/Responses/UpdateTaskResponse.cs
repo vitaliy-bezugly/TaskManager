@@ -1,7 +1,8 @@
-﻿namespace TaskManager.Refactored.Contracts.v1.Responses;
+﻿using TaskManager.Refactored.Contracts.v1.Responses.Abstract;
 
-public class UpdateTaskResponse
+namespace TaskManager.Refactored.Contracts.v1.Responses;
+
+public class UpdateTaskResponse : BaseResponse
 {
-    public Guid Id { get; set; }
     public string Title { get; set; }
 }
