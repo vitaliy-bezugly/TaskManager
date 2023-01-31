@@ -1,69 +1,59 @@
-﻿using TaskManager.Refactored.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManager.Refactored.Entities;
+using TaskManager.Refactored.Persistence;
 using TaskManager.Refactored.Repositories.Abstract;
 
 namespace TaskManager.Refactored.Repositories;
 
 public class TaskRepository : ITaskRepository
 {
-    private List<TaskEntity> _tasks;
-    private static Random random = new Random();
+    private readonly ApplicationDataContext _context;
 
-    public TaskRepository()
+    public TaskRepository(ApplicationDataContext context)
     {
-        _tasks = new List<TaskEntity>();
-
-        for (int i = 1; i <= 10; i++)
-        {
-            _tasks.Add(new TaskEntity
-            {
-                Id = Guid.NewGuid(),
-                Title = $"Title: {i}",
-                Description = RandomString(26),
-                IsImportant = random.Next(1, 5) == 1,
-                CreationTime = DateTime.Now,
-                ExpirationTime = DateTime.Now.AddDays(random.Next(1, 360))
-            });
-        }
+        _context = context;
     }
 
-    public static string RandomString(int length)
+    public async Task AddTaskAsync(TaskEntity taskDomain)
     {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        return new string(Enumerable.Repeat(chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
+        _context.Tasks.Add(taskDomain);
+        await _context.SaveChangesAsync();
     }
 
-    public void AddTask(TaskEntity taskDomain)
+    public async Task<TaskEntity?> GetTaskByIdAsync(Guid taskId)
     {
-        _tasks.Add(taskDomain);
+        return await _context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
     }
-    public TaskEntity? GetTaskById(Guid taskId)
+    public async Task<List<TaskEntity>> GetTasksAsync()
     {
-        return _tasks.FirstOrDefault(x => x.Id == taskId);
+        return await _context.Tasks.ToListAsync();
     }
-    public IEnumerable<TaskEntity> GetTasks()
+
+    public async Task<bool> UpdateTaskAsync(TaskEntity taskToUpdate)
     {
-        return _tasks;
+        var task = await GetTaskByIdAsync(taskToUpdate.Id);
+
+        if (task == null)
+            return false;
+
+        task.Title = taskToUpdate.Title;
+        task.Description = taskToUpdate.Description;
+        task.IsImportant = taskToUpdate.IsImportant;
+        task.ExpirationTime = taskToUpdate.ExpirationTime;
+
+        int updated = await _context.SaveChangesAsync();
+        return updated > 0;
     }
-    public bool UpdateTask(TaskEntity taskToUpdate)
+    public async Task<bool> DeleteTaskAsync(Guid taskId)
     {
-        var task = GetTaskById(taskToUpdate.Id);
+        var task = await GetTaskByIdAsync(taskId);
 
         if (task is null)
             return false;
 
-        int index = _tasks.FindIndex(x => x.Id == taskToUpdate.Id);
-        _tasks[index] = taskToUpdate;
-        return true;
-    }
-    public bool DeleteTask(Guid taskId)
-    {
-        var task = GetTaskById(taskId);
+        _context.Tasks.Remove(task);
+        int removed = await _context.SaveChangesAsync();
 
-        if (task is null)
-            return false;
-
-        _tasks.Remove(task);
-        return true;
+        return removed > 0;
     }
 }

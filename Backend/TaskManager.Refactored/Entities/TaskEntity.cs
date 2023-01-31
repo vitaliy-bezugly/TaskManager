@@ -4,6 +4,7 @@ using TaskManager.Refactored.Entities.Abstract;
 
 namespace TaskManager.Refactored.Entities;
 
+[Table("Task")]
 public class TaskEntity : BaseEntity
 {
     [Required]
@@ -13,4 +14,5 @@ public class TaskEntity : BaseEntity
     public bool IsImportant { get; set; }
     [Required]
     public DateTime ExpirationTime { get; set; }
+    public AccountEntity? User { get; set; }
 }

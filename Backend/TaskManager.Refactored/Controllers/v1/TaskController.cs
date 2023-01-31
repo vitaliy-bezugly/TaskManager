@@ -17,7 +17,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPost, Route(ApiRoutes.Task.Create)]
-    public IActionResult Create([FromBody] CreateTaskRequest taskRequest)
+    public async Task<IActionResult> Create([FromBody] CreateTaskRequest taskRequest)
     {
         var task = new TaskDomain 
         { 
@@ -27,7 +27,7 @@ public class TaskController : ControllerBase
             ExpirationTime = taskRequest.expirationTime
         };
 
-        _taskService.AddTask(task);
+        await _taskService.AddTaskAsync(task);
 
         var baseUrl = $"{HttpContext.Request.Scheme}//{HttpContext.Request.Host.ToUriComponent()}";
         var locationUrl = $"{baseUrl}/{ApiRoutes.Task.Get.Replace("{taskId}", task.Id.ToString())}";
@@ -37,9 +37,9 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet, Route(ApiRoutes.Task.GetAll)]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        IEnumerable<TaskDomain> tasks = _taskService.GetTasks();
+        List<TaskDomain> tasks = await _taskService.GetTasksAsync();
         IEnumerable<GetTaskResponse> responses = tasks.Select(x =>
         {
             return new GetTaskResponse
@@ -56,9 +56,9 @@ public class TaskController : ControllerBase
         return Ok(responses);
     }
     [HttpGet, Route(ApiRoutes.Task.Get)]
-    public IActionResult Get([FromRoute] Guid taskId)
+    public async Task<IActionResult> Get([FromRoute] Guid taskId)
     {
-        var task = _taskService.GetTaskById(taskId);
+        var task = await _taskService.GetTaskByIdAsync(taskId);
 
         if (task == null)
             return NotFound();
@@ -77,7 +77,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPut, Route(ApiRoutes.Task.Update)]
-    public IActionResult Update([FromRoute] Guid taskId, [FromBody] UpdateTaskRequest taskRequest)
+    public async Task<IActionResult> Update([FromRoute] Guid taskId, [FromBody] UpdateTaskRequest taskRequest)
     {
         var task = new TaskDomain
         {
@@ -88,7 +88,7 @@ public class TaskController : ControllerBase
             ExpirationTime = taskRequest.expirationTime
         };
 
-        bool result = _taskService.UpdateTask(task);
+        bool result = await _taskService.UpdateTaskAsync(task);
 
         if(result == false)
             return NotFound();
@@ -103,9 +103,9 @@ public class TaskController : ControllerBase
     }
 
     [HttpDelete, Route(ApiRoutes.Task.Delete)]
-    public IActionResult Delete([FromRoute] Guid taskId)
+    public async Task<IActionResult> Delete([FromRoute] Guid taskId)
     {
-        bool result = _taskService.DeleteTask(taskId);
+        bool result = await _taskService.DeleteTaskAsync(taskId);
 
         if (result == false)
             return NotFound();

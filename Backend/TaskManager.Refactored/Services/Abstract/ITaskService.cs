@@ -4,9 +4,9 @@ namespace TaskManager.Refactored.Services.Abstract;
 
 public interface ITaskService
 {
-    void AddTask(TaskDomain taskDomain);
-    IEnumerable<TaskDomain> GetTasks();
-    TaskDomain? GetTaskById(Guid taskId);
-    bool UpdateTask(TaskDomain taskToUpdate);
-    bool DeleteTask(Guid taskId);
+    Task AddTaskAsync(TaskDomain taskDomain);
+    Task<List<TaskDomain>> GetTasksAsync();
+    Task<TaskDomain?> GetTaskByIdAsync(Guid taskId);
+    Task<bool> UpdateTaskAsync(TaskDomain taskToUpdate);
+    Task<bool> DeleteTaskAsync(Guid taskId);
 }

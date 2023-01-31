@@ -14,9 +14,9 @@ public class TaskService : ITaskService
         _taskRepository = taskRepository;
     }
 
-    public void AddTask(TaskDomain taskDomain)
+    public async Task AddTaskAsync(TaskDomain taskDomain)
     {
-        _taskRepository.AddTask(new TaskEntity
+        await _taskRepository.AddTaskAsync(new TaskEntity
         {
             Id = taskDomain.Id,
             Title = taskDomain.Title,
@@ -26,9 +26,9 @@ public class TaskService : ITaskService
             ExpirationTime = taskDomain.ExpirationTime
         });
     }
-    public TaskDomain? GetTaskById(Guid taskId)
+    public async Task<TaskDomain?> GetTaskByIdAsync(Guid taskId)
     {
-        var taskEntity = _taskRepository.GetTaskById(taskId);
+        var taskEntity = await _taskRepository.GetTaskByIdAsync(taskId);
 
         if(taskEntity == null)
             return null;
@@ -43,9 +43,10 @@ public class TaskService : ITaskService
             ExpirationTime = taskEntity.ExpirationTime
         };
     }
-    public IEnumerable<TaskDomain> GetTasks()
+    public async Task<List<TaskDomain>> GetTasksAsync()
     {
-        return _taskRepository.GetTasks().Select(x =>
+        var tasks = await _taskRepository.GetTasksAsync();
+        return tasks.Select(x =>
         {
             return new TaskDomain
             {
@@ -56,11 +57,11 @@ public class TaskService : ITaskService
                 CreationTime = x.CreationTime,
                 ExpirationTime = x.ExpirationTime
             };
-        });
+        }).ToList();
     }
-    public bool UpdateTask(TaskDomain taskToUpdate)
+    public async Task<bool> UpdateTaskAsync(TaskDomain taskToUpdate)
     {
-        return _taskRepository.UpdateTask(new TaskEntity
+        return await _taskRepository.UpdateTaskAsync(new TaskEntity
         {
             Id = taskToUpdate.Id,
             Title = taskToUpdate.Title,
@@ -70,8 +71,8 @@ public class TaskService : ITaskService
             ExpirationTime = taskToUpdate.ExpirationTime
         });
     }
-    public bool DeleteTask(Guid taskId)
+    public async Task<bool> DeleteTaskAsync(Guid taskId)
     {
-        return _taskRepository.DeleteTask(taskId);
+        return await _taskRepository.DeleteTaskAsync(taskId);
     }
 }

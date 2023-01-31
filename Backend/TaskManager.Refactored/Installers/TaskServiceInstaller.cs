@@ -8,6 +8,6 @@ public class TaskServiceInstaller : IInstaller
 {
     public void InstallService(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<ITaskService, TaskService>();
+        services.AddScoped<ITaskService, TaskService>();
     }
 }
