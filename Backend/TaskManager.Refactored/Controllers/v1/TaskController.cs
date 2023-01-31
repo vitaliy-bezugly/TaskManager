@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Refactored.Contracts.v1;
 using TaskManager.Refactored.Contracts.v1.Requests;
 using TaskManager.Refactored.Contracts.v1.Responses;
@@ -11,28 +12,24 @@ namespace TaskManager.Refactored.Controllers.v1;
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _taskService;
-    public TaskController(ITaskService taskService)
+    private readonly IMapper _mapper;
+    public TaskController(ITaskService taskService, IMapper mapper)
     {
         _taskService = taskService;
+        _mapper = mapper;
     }
 
     [HttpPost, Route(ApiRoutes.Task.Create)]
     public async Task<IActionResult> Create([FromBody] CreateTaskRequest taskRequest)
     {
-        var task = new TaskDomain 
-        { 
-            Title = taskRequest.title, 
-            Description = taskRequest.description,
-            IsImportant = taskRequest.isImportant,
-            ExpirationTime = taskRequest.expirationTime
-        };
+        var task = _mapper.Map<TaskDomain>(taskRequest);
 
         await _taskService.AddTaskAsync(task);
 
         var baseUrl = $"{HttpContext.Request.Scheme}//{HttpContext.Request.Host.ToUriComponent()}";
         var locationUrl = $"{baseUrl}/{ApiRoutes.Task.Get.Replace("{taskId}", task.Id.ToString())}";
 
-        var response = new CreateTaskResponse { Id = task.Id, Title = task.Title };
+        var response = _mapper.Map<CreateTaskResponse>(task);
         return Created(locationUrl, response);
     }
 
@@ -40,18 +37,7 @@ public class TaskController : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         List<TaskDomain> tasks = await _taskService.GetTasksAsync();
-        IEnumerable<GetTaskResponse> responses = tasks.Select(x =>
-        {
-            return new GetTaskResponse
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                IsImportant = x.IsImportant,
-                CreationTime = x.CreationTime,
-                ExpirationTime = x.ExpirationTime
-            };
-        });
+        IEnumerable<GetTaskResponse> responses = tasks.Select(x => _mapper.Map<GetTaskResponse>(x));
 
         return Ok(responses);
     }
@@ -63,42 +49,22 @@ public class TaskController : ControllerBase
         if (task == null)
             return NotFound();
 
-        var response = new GetTaskResponse
-        {
-            Id = task.Id,
-            Title = task.Title,
-            Description = task.Description,
-            IsImportant = task.IsImportant,
-            CreationTime = task.CreationTime,
-            ExpirationTime = task.ExpirationTime
-        };
-
+        var response = _mapper.Map<GetTaskResponse>(task);
         return Ok(response);
     }
 
     [HttpPut, Route(ApiRoutes.Task.Update)]
     public async Task<IActionResult> Update([FromRoute] Guid taskId, [FromBody] UpdateTaskRequest taskRequest)
     {
-        var task = new TaskDomain
-        {
-            Id = taskId,
-            Title = taskRequest.title,
-            Description = taskRequest.description,
-            IsImportant = taskRequest.isImportant,
-            ExpirationTime = taskRequest.expirationTime
-        };
+        var task = _mapper.Map<TaskDomain>(taskRequest);
+        task.Id = taskId;
 
         bool result = await _taskService.UpdateTaskAsync(task);
 
         if(result == false)
             return NotFound();
 
-        var response = new UpdateTaskResponse
-        {
-            Id = task.Id,
-            Title = task.Title
-        };
-
+        var response = _mapper.Map<UpdateTaskResponse>(task);
         return Ok(response);
     }
 

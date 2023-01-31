@@ -5,9 +5,9 @@ namespace TaskManager.Refactored.Contracts.v1.Requests;
 public class UpdateTaskRequest
 {
     [Required]
-    public string title { get; set; }
-    public string? description { get; set; }
-    public bool isImportant { get; set; }
+    public string Title { get; set; }
+    public string? Description { get; set; }
+    public bool IsImportant { get; set; }
     [Required]
-    public DateTime expirationTime { get; set; }
+    public DateTime ExpirationTime { get; set; }
 }
