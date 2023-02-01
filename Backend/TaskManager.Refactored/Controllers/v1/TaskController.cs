@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TaskManager.Refactored.Contracts.v1;
 using TaskManager.Refactored.Contracts.v1.Requests;
 using TaskManager.Refactored.Contracts.v1.Responses;
@@ -12,12 +13,17 @@ namespace TaskManager.Refactored.Controllers.v1;
 [ApiController, Authorize]
 public class TaskController : ControllerBase
 {
-    private readonly ITaskService _taskService;
     private readonly IMapper _mapper;
-    public TaskController(ITaskService taskService, IMapper mapper)
+    private readonly ITaskService _taskService;
+    private readonly ILogger<TaskController> _logger;
+    private readonly string _currentAccountId;
+    public TaskController(ITaskService taskService, IMapper mapper, IHttpContextAccessor httpContextAccessor
+        , ILogger<TaskController> logger)
     {
         _taskService = taskService;
         _mapper = mapper;
+        _currentAccountId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        _logger = logger;
     }
 
     [HttpPost, Route(ApiRoutes.Task.Create)]
@@ -37,6 +43,8 @@ public class TaskController : ControllerBase
     [HttpGet, Route(ApiRoutes.Task.GetAll)]
     public async Task<IActionResult> GetAll()
     {
+        _logger.LogInformation("User id: ", _currentAccountId);
+
         List<TaskDomain> tasks = await _taskService.GetTasksAsync();
         IEnumerable<GetTaskResponse> responses = tasks.Select(x => _mapper.Map<GetTaskResponse>(x));
 

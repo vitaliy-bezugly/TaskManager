@@ -8,7 +8,6 @@ namespace TaskManager.Refactored.Repositories;
 public class TaskRepository : ITaskRepository
 {
     private readonly ApplicationDataContext _context;
-
     public TaskRepository(ApplicationDataContext context)
     {
         _context = context;

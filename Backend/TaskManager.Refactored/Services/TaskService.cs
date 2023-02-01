@@ -1,4 +1,5 @@
-﻿using TaskManager.Refactored.Domain;
+﻿using AutoMapper;
+using TaskManager.Refactored.Domain;
 using TaskManager.Refactored.Entities;
 using TaskManager.Refactored.Repositories.Abstract;
 using TaskManager.Refactored.Services.Abstract;
@@ -8,23 +9,16 @@ namespace TaskManager.Refactored.Services;
 public class TaskService : ITaskService
 {
     private readonly ITaskRepository _taskRepository;
-
-    public TaskService(ITaskRepository taskRepository)
+    private readonly IMapper _mapper;
+    public TaskService(ITaskRepository taskRepository, IMapper mapper)
     {
         _taskRepository = taskRepository;
+        _mapper = mapper;
     }
 
     public async Task AddTaskAsync(TaskDomain taskDomain)
     {
-        await _taskRepository.AddTaskAsync(new TaskEntity
-        {
-            Id = taskDomain.Id,
-            Title = taskDomain.Title,
-            Description = taskDomain.Description,
-            IsImportant = taskDomain.IsImportant,
-            CreationTime = taskDomain.CreationTime,
-            ExpirationTime = taskDomain.ExpirationTime
-        });
+        await _taskRepository.AddTaskAsync(_mapper.Map<TaskEntity>(taskDomain));
     }
     public async Task<TaskDomain?> GetTaskByIdAsync(Guid taskId)
     {
@@ -33,43 +27,16 @@ public class TaskService : ITaskService
         if(taskEntity == null)
             return null;
 
-        return new TaskDomain
-        {
-            Id = taskEntity.Id,
-            Title = taskEntity.Title,
-            Description = taskEntity.Description,
-            IsImportant = taskEntity.IsImportant,
-            CreationTime = taskEntity.CreationTime,
-            ExpirationTime = taskEntity.ExpirationTime
-        };
+        return _mapper.Map<TaskDomain>(taskEntity);
     }
     public async Task<List<TaskDomain>> GetTasksAsync()
     {
         var tasks = await _taskRepository.GetTasksAsync();
-        return tasks.Select(x =>
-        {
-            return new TaskDomain
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                IsImportant = x.IsImportant,
-                CreationTime = x.CreationTime,
-                ExpirationTime = x.ExpirationTime
-            };
-        }).ToList();
+        return tasks.Select(x => _mapper.Map<TaskDomain>(x)).ToList();
     }
     public async Task<bool> UpdateTaskAsync(TaskDomain taskToUpdate)
     {
-        return await _taskRepository.UpdateTaskAsync(new TaskEntity
-        {
-            Id = taskToUpdate.Id,
-            Title = taskToUpdate.Title,
-            Description = taskToUpdate.Description,
-            IsImportant = taskToUpdate.IsImportant,
-            CreationTime = taskToUpdate.CreationTime,
-            ExpirationTime = taskToUpdate.ExpirationTime
-        });
+        return await _taskRepository.UpdateTaskAsync(_mapper.Map<TaskEntity>(taskToUpdate));
     }
     public async Task<bool> DeleteTaskAsync(Guid taskId)
     {
