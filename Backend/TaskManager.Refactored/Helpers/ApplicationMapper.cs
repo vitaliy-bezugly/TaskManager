@@ -24,5 +24,11 @@ public class ApplicationMapper : Profile
 
         /* TaskDomain -> TaskEntity AND TaskEntity -> TaskDomain */
         CreateMap<TaskDomain, TaskEntity>().ReverseMap();
+
+        /* AccountDomain -> AccountEntity */
+        CreateMap<AccountDomain, AccountEntity>()
+            .ForMember(dest =>
+            dest.Roles,
+            opt => opt.MapFrom(src => src.Roles.Select(x => new RoleEntity { Role=x})));
     }
 }

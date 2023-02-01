@@ -16,5 +16,6 @@ public static class ApiRoutes
     public static class Account
     {
         public const string Login = $"{Base}/account/login";
+        public const string Register = $"{Base}/account/register";
     }
 }
