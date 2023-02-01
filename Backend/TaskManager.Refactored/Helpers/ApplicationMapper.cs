@@ -29,6 +29,7 @@ public class ApplicationMapper : Profile
         CreateMap<AccountDomain, AccountEntity>()
             .ForMember(dest =>
             dest.Roles,
-            opt => opt.MapFrom(src => src.Roles.Select(x => new RoleEntity { Role=x})));
+            opt => opt.MapFrom(src => src.Roles.Select(x => new RoleEntity { Role=x })))
+            .ReverseMap();
     }
 }

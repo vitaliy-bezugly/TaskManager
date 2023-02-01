@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TaskManager.Refactored.Contracts.v1;
 using TaskManager.Refactored.Contracts.v1.Requests;
 using TaskManager.Refactored.Contracts.v1.Responses;
@@ -24,6 +23,25 @@ public class AccountController : ControllerBase
             .RegisterAsync(new AccountDomain(request.Username, request.Email, request.Password));
 
         if(result.Success == false)
+        {
+            return BadRequest(new AuthorizationFailedResponse
+            {
+                Errors = result.Errors
+            });
+        }
+
+        return Ok(new AuthorizationSuccessResponse
+        {
+            access_token = result.AccessToken
+        });
+    }
+
+    [HttpPost, Route(ApiRoutes.Account.Login)]
+    public async Task<IActionResult> Login([FromBody] AccountLoginRequest request)
+    {
+        AuthenticationResult result = await _accountService.LoginAsync(request.Email, request.Password);
+
+        if (result.Success == false)
         {
             return BadRequest(new AuthorizationFailedResponse
             {

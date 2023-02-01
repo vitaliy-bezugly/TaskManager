@@ -43,8 +43,6 @@ public class TaskController : ControllerBase
     [HttpGet, Route(ApiRoutes.Task.GetAll)]
     public async Task<IActionResult> GetAll()
     {
-        _logger.LogInformation("User id: ", _currentAccountId);
-
         List<TaskDomain> tasks = await _taskService.GetTasksAsync();
         IEnumerable<GetTaskResponse> responses = tasks.Select(x => _mapper.Map<GetTaskResponse>(x));
 

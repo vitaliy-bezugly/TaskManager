@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hashing;
 using TaskManager.Refactored.Common;
 using TaskManager.Refactored.Domain;
 using TaskManager.Refactored.Entities;
@@ -43,8 +44,26 @@ public class AccountService : IAccountService
         };
     }
 
-    public Task<AuthenticationResult> LoginAsync(string email, string password)
+    public async Task<AuthenticationResult> LoginAsync(string email, string password)
     {
-        throw new NotImplementedException();
+        string passwordHash = Sha256Alghorithm.GenerateHash(password);
+        var exists = await _accountRepository.GetAccountByEmailAndPasswordAsync(email, passwordHash);
+
+        if(exists == null)
+        {
+            return new AuthenticationResult
+            {
+                AccessToken = null,
+                Success = false,
+                Errors = new[] { "Invalid email or password" } 
+            };
+        }
+
+        return new AuthenticationResult
+        {
+            AccessToken = _generatorGwt.GenerateGwt(_mapper.Map<AccountDomain>(exists)),
+            Success = true,
+            Errors = null
+        };
     }
 }
