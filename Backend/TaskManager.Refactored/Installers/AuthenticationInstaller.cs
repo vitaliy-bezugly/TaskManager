@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using TaskManager.Refactored.Common;
 using TaskManager.Refactored.Installers.Abstract;
 
 namespace TaskManager.Refactored.Installers;

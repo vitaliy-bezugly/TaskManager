@@ -43,7 +43,6 @@ public class AccountService : IAccountService
             Errors = null
         };
     }
-
     public async Task<AuthenticationResult> LoginAsync(string email, string password)
     {
         string passwordHash = Sha256Alghorithm.GenerateHash(password);

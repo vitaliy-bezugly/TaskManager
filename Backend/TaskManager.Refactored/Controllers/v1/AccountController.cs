@@ -35,7 +35,6 @@ public class AccountController : ControllerBase
             access_token = result.AccessToken
         });
     }
-
     [HttpPost, Route(ApiRoutes.Account.Login)]
     public async Task<IActionResult> Login([FromBody] AccountLoginRequest request)
     {
