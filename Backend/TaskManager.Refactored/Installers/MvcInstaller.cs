@@ -8,5 +8,15 @@ public class MvcInstaller : IInstaller
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
+
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
     }
 }

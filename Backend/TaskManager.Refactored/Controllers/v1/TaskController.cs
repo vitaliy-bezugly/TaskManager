@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Refactored.Contracts.v1;
 using TaskManager.Refactored.Contracts.v1.Requests;
@@ -8,7 +9,7 @@ using TaskManager.Refactored.Services.Abstract;
 
 namespace TaskManager.Refactored.Controllers.v1;
 
-[ApiController]
+[ApiController, Authorize]
 public class TaskController : ControllerBase
 {
     private readonly ITaskService _taskService;
