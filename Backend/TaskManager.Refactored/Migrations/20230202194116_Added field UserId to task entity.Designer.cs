@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Refactored.Persistence;
 
@@ -11,9 +12,11 @@ using TaskManager.Refactored.Persistence;
 namespace TaskManager.Refactored.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
-    partial class ApplicationDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230202194116_Added field UserId to task entity")]
+    partial class AddedfieldUserIdtotaskentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,9 +89,6 @@ namespace TaskManager.Refactored.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -106,9 +106,12 @@ namespace TaskManager.Refactored.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Task");
                 });
@@ -130,13 +133,13 @@ namespace TaskManager.Refactored.Migrations
 
             modelBuilder.Entity("TaskManager.Refactored.Entities.TaskEntity", b =>
                 {
-                    b.HasOne("TaskManager.Refactored.Entities.AccountEntity", "Account")
+                    b.HasOne("TaskManager.Refactored.Entities.AccountEntity", "User")
                         .WithMany("Tasks")
-                        .HasForeignKey("AccountId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaskManager.Refactored.Entities.AccountEntity", b =>

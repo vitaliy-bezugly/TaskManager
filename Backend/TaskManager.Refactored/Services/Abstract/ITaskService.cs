@@ -4,9 +4,9 @@ namespace TaskManager.Refactored.Services.Abstract;
 
 public interface ITaskService
 {
-    Task AddTaskAsync(TaskDomain taskDomain);
-    Task<List<TaskDomain>> GetTasksAsync();
-    Task<TaskDomain?> GetTaskByIdAsync(Guid taskId);
-    Task<bool> UpdateTaskAsync(TaskDomain taskToUpdate);
-    Task<bool> DeleteTaskAsync(Guid taskId);
+    Task AddTaskAsync(Guid accountId, TaskDomain taskDomain);
+    Task<List<TaskDomain>> GetTasksAsync(Guid accountId);
+    Task<TaskDomain?> GetTaskByIdAsync(Guid accountId, Guid taskId);
+    Task<bool> UpdateTaskAsync(Guid accountId, TaskDomain taskToUpdate);
+    Task<bool> DeleteTaskAsync(Guid accountId, Guid taskId);
 }

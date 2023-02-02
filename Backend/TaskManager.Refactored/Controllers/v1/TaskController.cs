@@ -31,7 +31,7 @@ public class TaskController : ControllerBase
     {
         var task = _mapper.Map<TaskDomain>(taskRequest);
 
-        await _taskService.AddTaskAsync(task);
+        await _taskService.AddTaskAsync(Guid.Parse(_currentAccountId), task);
 
         var baseUrl = $"{HttpContext.Request.Scheme}//{HttpContext.Request.Host.ToUriComponent()}";
         var locationUrl = $"{baseUrl}/{ApiRoutes.Task.Get.Replace("{taskId}", task.Id.ToString())}";
@@ -43,7 +43,7 @@ public class TaskController : ControllerBase
     [HttpGet, Route(ApiRoutes.Task.GetAll)]
     public async Task<IActionResult> GetAll()
     {
-        List<TaskDomain> tasks = await _taskService.GetTasksAsync();
+        List<TaskDomain> tasks = await _taskService.GetTasksAsync(Guid.Parse(_currentAccountId));
         IEnumerable<GetTaskResponse> responses = tasks.Select(x => _mapper.Map<GetTaskResponse>(x));
 
         return Ok(responses);
@@ -51,7 +51,7 @@ public class TaskController : ControllerBase
     [HttpGet, Route(ApiRoutes.Task.Get)]
     public async Task<IActionResult> Get([FromRoute] Guid taskId)
     {
-        var task = await _taskService.GetTaskByIdAsync(taskId);
+        var task = await _taskService.GetTaskByIdAsync(Guid.Parse(_currentAccountId), taskId);
 
         if (task == null)
             return NotFound();
@@ -66,7 +66,7 @@ public class TaskController : ControllerBase
         var task = _mapper.Map<TaskDomain>(taskRequest);
         task.Id = taskId;
 
-        bool result = await _taskService.UpdateTaskAsync(task);
+        bool result = await _taskService.UpdateTaskAsync(Guid.Parse(_currentAccountId), task);
 
         if(result == false)
             return NotFound();
@@ -78,7 +78,7 @@ public class TaskController : ControllerBase
     [HttpDelete, Route(ApiRoutes.Task.Delete)]
     public async Task<IActionResult> Delete([FromRoute] Guid taskId)
     {
-        bool result = await _taskService.DeleteTaskAsync(taskId);
+        bool result = await _taskService.DeleteTaskAsync(Guid.Parse(_currentAccountId), taskId);
 
         if (result == false)
             return NotFound();

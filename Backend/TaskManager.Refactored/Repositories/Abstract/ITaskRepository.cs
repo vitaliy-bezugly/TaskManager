@@ -4,9 +4,9 @@ namespace TaskManager.Refactored.Repositories.Abstract;
 
 public interface ITaskRepository
 {
-    Task AddTaskAsync(TaskEntity taskEntity);
-    Task<List<TaskEntity>> GetTasksAsync();
-    Task<TaskEntity?> GetTaskByIdAsync(Guid taskId);
-    Task<bool> UpdateTaskAsync(TaskEntity taskToUpdate);
-    Task<bool> DeleteTaskAsync(Guid taskId);
+    Task AddTaskAsync(Guid accountId, TaskEntity taskEntity);
+    Task<List<TaskEntity>> GetTasksAsync(Guid accountId);
+    Task<TaskEntity?> GetTaskByIdAsync(Guid accountId, Guid taskId);
+    Task<bool> UpdateTaskAsync(Guid accountId, TaskEntity taskToUpdate);
+    Task<bool> DeleteTaskAsync(Guid accountId, Guid taskId);
 }

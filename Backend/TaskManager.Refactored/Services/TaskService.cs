@@ -16,30 +16,30 @@ public class TaskService : ITaskService
         _mapper = mapper;
     }
 
-    public async Task AddTaskAsync(TaskDomain taskDomain)
+    public async Task AddTaskAsync(Guid accountId, TaskDomain taskDomain)
     {
-        await _taskRepository.AddTaskAsync(_mapper.Map<TaskEntity>(taskDomain));
+        await _taskRepository.AddTaskAsync(accountId, _mapper.Map<TaskEntity>(taskDomain));
     }
-    public async Task<TaskDomain?> GetTaskByIdAsync(Guid taskId)
+    public async Task<TaskDomain?> GetTaskByIdAsync(Guid accountId, Guid taskId)
     {
-        var taskEntity = await _taskRepository.GetTaskByIdAsync(taskId);
+        var taskEntity = await _taskRepository.GetTaskByIdAsync(accountId, taskId);
 
         if(taskEntity == null)
             return null;
 
         return _mapper.Map<TaskDomain>(taskEntity);
     }
-    public async Task<List<TaskDomain>> GetTasksAsync()
+    public async Task<List<TaskDomain>> GetTasksAsync(Guid accountId)
     {
-        var tasks = await _taskRepository.GetTasksAsync();
+        var tasks = await _taskRepository.GetTasksAsync(accountId);
         return tasks.Select(x => _mapper.Map<TaskDomain>(x)).ToList();
     }
-    public async Task<bool> UpdateTaskAsync(TaskDomain taskToUpdate)
+    public async Task<bool> UpdateTaskAsync(Guid accountId, TaskDomain taskToUpdate)
     {
-        return await _taskRepository.UpdateTaskAsync(_mapper.Map<TaskEntity>(taskToUpdate));
+        return await _taskRepository.UpdateTaskAsync(accountId, _mapper.Map<TaskEntity>(taskToUpdate));
     }
-    public async Task<bool> DeleteTaskAsync(Guid taskId)
+    public async Task<bool> DeleteTaskAsync(Guid accountId, Guid taskId)
     {
-        return await _taskRepository.DeleteTaskAsync(taskId);
+        return await _taskRepository.DeleteTaskAsync(accountId, taskId);
     }
 }

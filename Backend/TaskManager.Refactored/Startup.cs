@@ -1,5 +1,4 @@
-﻿using TaskManager.Refactored.Installers.Abstract;
-using TaskManager.Refactored.Installers.Extensions;
+﻿using TaskManager.Refactored.Installers.Extensions;
 
 namespace TaskManager.Refactored;
 

@@ -14,5 +14,7 @@ public class TaskEntity : BaseEntity
     public bool IsImportant { get; set; }
     [Required]
     public DateTime ExpirationTime { get; set; }
-    public AccountEntity? User { get; set; }
+    public AccountEntity? Account { get; set; }
+    [ForeignKey(nameof(Account))]
+    public Guid AccountId { get; set; }
 }
