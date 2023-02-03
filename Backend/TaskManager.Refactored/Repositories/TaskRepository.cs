@@ -38,6 +38,7 @@ public class TaskRepository : ITaskRepository
         task.Description = taskToUpdate.Description;
         task.IsImportant = taskToUpdate.IsImportant;
         task.ExpirationTime = taskToUpdate.ExpirationTime;
+        task.IsComplited = taskToUpdate.IsComplited;
 
         int updated = await _context.SaveChangesAsync();
         return updated > 0;

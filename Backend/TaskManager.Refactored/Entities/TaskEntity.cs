@@ -12,6 +12,8 @@ public class TaskEntity : BaseEntity
     public string? Description { get; set; }
     [Column("Important")]
     public bool IsImportant { get; set; }
+    [Column("Completed")]
+    public bool IsComplited { get; set; }
     [Required]
     public DateTime ExpirationTime { get; set; }
     public AccountEntity? Account { get; set; }
