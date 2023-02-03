@@ -5,6 +5,8 @@ import { TaskService } from 'src/app/services/task.service';
 import { TaskViewModel } from 'src/models/taskViewModel';
 
 import * as moment from 'moment';
+import { CreateTaskRequest } from 'src/models/createTaskRequest';
+import { UpdateTaskRequest } from 'src/models/updateTaskRequest';
 
 @Component({
   selector: 'app-tasks',
@@ -17,6 +19,7 @@ throw new Error('Method not implemented.');
 }
   public tasks : TaskViewModel[] = [];
   public task : TaskViewModel = new TaskViewModel()
+  public taskToAdd = new CreateTaskRequest()
   public alertMessage : string = ''
   public successOperation : boolean = false
 
@@ -25,7 +28,7 @@ throw new Error('Method not implemented.');
   constructor(private taskService: TaskService, public datePipe: DatePipe) {
 
     taskService.getTasks().subscribe(data => {
-      this.tasks = data
+      this.tasks = data.filter(x => !x.isComplited)
     }, (error : HttpErrorResponse) => {
       this.handleError(error, 'Can not get tasks from server')
     })
@@ -39,15 +42,6 @@ throw new Error('Method not implemented.');
 
   getTasks() : TaskViewModel[] {
     return this.tasks
-  }
-
-  addTask() : void {
-    this.taskService.addTask(this.task).subscribe(data => {
-      this.handleSuccess('Task was successfully added!')
-      this.updateTasks()
-    }, (error : HttpErrorResponse) => {
-      this.handleError(error)
-    })
   }
 
   handleSuccess(specificAlertMessage : string) : void {
@@ -74,15 +68,11 @@ throw new Error('Method not implemented.');
 
   updateTasks() : void {
     this.taskService.getTasks().subscribe(data => {
-      this.tasks = data
+      this.tasks = data.filter(x => !x.isComplited)
     }, (error : HttpErrorResponse) => {
       alert(error)
     })
   } 
-
-  public GetMonthByMonthDate(number : number) : string {
-    return 'October';
-  }
 
   public ReplaceAddDivWithForm() : void {
     let div = document.getElementById('add-task-div') as HTMLDivElement
@@ -116,66 +106,62 @@ throw new Error('Method not implemented.');
     divform.classList.add('collapse')
   }
 
-  public ReverseImportandValue(taskId: string) : void {
-    this.tasks.find(x => x.id === taskId)!.isImportant = !this.tasks.find(x => x.id === taskId)!.isImportant
+  public ReverseImportandValue(task: TaskViewModel) : void {
+    task!.isImportant = !task?.isImportant
+    this.UpdateTask(task)
+  }
+
+  public ComplitTask(task : TaskViewModel) {
+    let taskTosuccess = this.MapTaskVMToUpdateRequest(task)
+    taskTosuccess.isComplited = true
+
+    this.taskService.updateTask(task.id, taskTosuccess).subscribe(data => {
+      this.updateTasks()
+      this.handleSuccess('Successfully complited task!')
+    }, (error : HttpErrorResponse) => {
+      this.handleError(error, 'Can not complite task')
+    })
   }
 
   public ShowImportantTask() : void {
     this.tasks = this.tasks.filter(x => x.isImportant === true)
-  }
-  public ShowTodayTask() : void {
-    this.ChangeHeaderText('Today')
-    this.ShowDate()
-    this.taskService.getTasks().subscribe(data => {
-      this.tasks = data
-    })
-  }
-  public ShowTomorrowTask() : void {
-    this.ChangeHeaderText('Tomorrow')
-    this.HideDate()
-    this.tasks = []
-  }
-  public ShowUpcomingTask() : void {
-    this.ChangeHeaderText('Upcoming')
-    this.HideDate()
-    this.tasks = []
-  }
-
-  public PrintDate(date: Date) : void {
-    console.log(date)
   }
 
   public GetTodaysDate() : string {
     return (moment(new Date())).format('DD MMMM YYYY')
   }
 
-  private ChangeHeaderText(text : string) : void {
-    let headerText = document.getElementById('header-date-text')
-    headerText!.innerText = text
-  }
-  private HideDate() : void {
-    let spanDate = document.getElementById('header-date') as HTMLSpanElement
-    spanDate.style.display = 'none'
-  }
-  private ShowDate() : void {
-    let spanDate = document.getElementById('header-date') as HTMLSpanElement
-    spanDate.style.display = 'inline'
-  }
 
   public ParseDateToReadableFormat(date : Date) : string {
     return (moment(date)).format('DD MMMM YYYY HH:mm:ss')
   }
 
+  public AddTask() : void {
+    this.taskService.addTask(this.taskToAdd).subscribe(data => {
+      this.handleSuccess('Task was successfully added!')
+      this.updateTasks()
+    }, (error : HttpErrorResponse) => {
+      this.handleError(error)
+    })
+  }
+
   public UpdateTask(task : TaskViewModel) : void {
-    this.taskService.updateTask(task).subscribe(data => {
+    let taskToUpdate = this.MapTaskVMToUpdateRequest(task)
+
+    this.taskService.updateTask(task.id, taskToUpdate).subscribe(data => {
       this.updateTasks()
       this.handleSuccess('Successfully updated task!')
     }, (error : HttpErrorResponse) => {
-      this.handleError(error, 'Can not update task')
+      let errorMessage = ''
+      if(error.error.errors["Title"]) {
+        for (let item of error.error.errors["Title"]) {
+          errorMessage += item
+        }
+      }
+      this.handleError(error, errorMessage)
     })
     this.UndoToData(task.id)
   }
-
   public DeleteTask(taskId : string) : void {
     this.taskService.deleteTask(taskId).subscribe(data => {
       this.updateTasks()
@@ -183,5 +169,15 @@ throw new Error('Method not implemented.');
     }, (error : HttpErrorResponse) => {
       this.handleError(error, 'Can not delete task')
     })
+  }
+
+  private MapTaskVMToUpdateRequest(task : TaskViewModel) : UpdateTaskRequest {
+    let taskToUpdate = new UpdateTaskRequest()
+    taskToUpdate.title = task.title
+    taskToUpdate.description = task.description
+    taskToUpdate.isImportant = task.isImportant
+    taskToUpdate.expirationTime = task.expirationTime
+
+    return taskToUpdate
   }
 }

@@ -12,13 +12,13 @@
         <!--Form-->
         <form action="" id="form-toadd" class="collapse">
             <div class="border-block border-block-1">
-                <input name="titleinput" #titleinput="ngModel" [(ngModel)]="task.title" 
+                <input name="titleinput" #titleinput="ngModel" [(ngModel)]="taskToAdd.title" 
                     class="input-title" type="text" placeholder="Title of task">
                 <textarea class="input-description" type="text" placeholder="Description"
-                    name="descriptiontextarea" #descriptiontextarea="ngModel" [(ngModel)]="task.description">
+                    name="descriptiontextarea" #descriptiontextarea="ngModel" [(ngModel)]="taskToAdd.description">
                 </textarea>
                 <input class="input-date" type="text" placeholder="Expiration date" onfocus="(this.type='date')"
-                    name="dateinput" #dateinput="ngModel" [(ngModel)]="task.expirationTime">
+                    name="dateinput" #dateinput="ngModel" [(ngModel)]="taskToAdd.expirationTime">
     
                 <div class="card">
                     <i class='bx bx-calendar-event icon'></i>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary" (click)="addTask()">Add a task</button>
+            <button type="submit" class="btn btn-primary" (click)="AddTask()">Add a task</button>
             <button class="btn btn-secondary" (click)="UndoToDiv()">Cancel</button>
         </form>
     
@@ -61,7 +61,7 @@
             <li *ngFor="let task of tasks | filter:filteredString">
                 <div class="task-li" id="task-data-{{task.id}}">
                     <div class="form-check form-radio">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="ComplitTask(task)">
                     </div>
                 
                     <!--Task card-->
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <!--Important-->
-                    <div class="important-card" *ngIf="task.isImportant === true" (click)="ReverseImportandValue(task.id)">
+                    <div class="important-card" *ngIf="task.isImportant === true" (click)="ReverseImportandValue(task)">
                         <i class='bx bx-calendar-star important-icon' data-bs-toggle="tooltip" data-placement="top" title="Important task"></i>
                     </div>
                     <!--Dropdown menu-->
@@ -99,7 +99,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a (click)="ReverseImportandValue(task.id)">
+                                <a (click)="ReverseImportandValue(task)">
                                     <i class='bx bx-calendar-exclamation icon'></i>
                                     <span class="text-small">Highlight as important</span>
                                 </a>

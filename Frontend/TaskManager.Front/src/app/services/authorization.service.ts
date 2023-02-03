@@ -22,7 +22,7 @@ export class AuthorizationService {
       private jwtHelper : JwtHelperService, private router : Router) { }
   
   login(email : string, password : string): Observable<Token> {
-    var request = this.http.post<Token>(this.apiUrl + 'Account/Login', {email, password});
+    var request = this.http.post<Token>(this.apiUrl + 'account/login', {email, password});
 
     request.subscribe(data => {
       localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)

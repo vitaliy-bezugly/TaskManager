@@ -33,11 +33,24 @@ export class RegisterComponent implements OnInit {
       this.successRegister = true
       this.hideCircle()
     }, (error : HttpErrorResponse) => {
-      if(error.status === 401) {
-        this.alertMessage = 'Incorrect data'
+      this.alertMessage = ''
+
+      if(error.error.errors["Password"])
+      {
+        for(let item of error.error.errors.Password) {
+          this.alertMessage += item + '\n'
+        }
       }
-      else {
-        this.alertMessage = 'Something goes wrong'
+      if(error.error.errors["Email"])
+      {
+        for(let item of error.error.errors.Email) {
+          this.alertMessage += item + '\n'
+        }
+      }
+      if(error.error.errors["Username"]) {
+        for(let item of error.error.errors.Username) {
+          this.alertMessage += item + '\n'
+        }
       }
 
       let alertError = document.getElementById('alertError')

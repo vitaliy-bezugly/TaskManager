@@ -31,12 +31,10 @@ export class LoginComponent implements OnInit {
       this.successLogin = true
       this.hideCircle()
     }, (error : HttpErrorResponse) => {
-      if(error.status === 401) {
-        this.alertMessage = 'Incorrect email or password'
-      }
-      else {
-        this.alertMessage = 'Something goes wrong'
-        
+      this.alertMessage = ''
+
+      for(let item of error.error.errors) {
+        this.alertMessage += item + '\n'
       }
 
       let alertError = document.getElementById('alertError')
