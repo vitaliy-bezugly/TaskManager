@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.Refactored.Contracts.v1;
 using TaskManager.Refactored.Contracts.v1.Requests;
 using TaskManager.Refactored.Contracts.v1.Responses;
@@ -10,10 +11,12 @@ namespace TaskManager.Refactored.Controllers.v1;
 [ApiController]
 public class AccountController : ControllerBase
 {
+    private readonly IClaimParser _claimParser;
     private readonly IAccountService _accountService;
-    public AccountController(IAccountService accountService)
+    public AccountController(IAccountService accountService, IClaimParser claimParser)
     {
         _accountService = accountService;
+        _claimParser = claimParser;
     }
 
     [HttpPost, Route(ApiRoutes.Account.Register)]
@@ -52,5 +55,21 @@ public class AccountController : ControllerBase
         {
             access_token = result.AccessToken
         });
+    }
+    [HttpPost, Authorize, Route(ApiRoutes.Account.ChangeUsername)]
+    public async Task<IActionResult> ChangeUsername([FromBody] AccountChangeUsernameRequest request)
+    {
+        ChangeAccountDataResult result = await _accountService.ChangeUsername(_claimParser.GetEmail(), 
+            request.CurrentPassword, request.NewUsername);
+
+        if(result.Success == false)
+        {
+            return BadRequest(new ChangeUsernameFailedResponse
+            {
+                Errors = result.Errors
+            });
+        }
+
+        return Ok(new ChangeUsernameSuccessResponse { Username = request.NewUsername });
     }
 }

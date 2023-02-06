@@ -23,10 +23,10 @@ public class AccountService : IAccountService
 
     public async Task<AuthenticationResult> RegisterAsync(AccountDomain account)
     {
-        CreationAccountResult result = await _accountRepository
+        AccountOperationsResult result = await _accountRepository
             .CreateAccountAsync(_mapper.Map<AccountEntity>(account));
 
-        if(result.Success == false)
+        if (result.Success == false)
         {
             return new AuthenticationResult
             {
@@ -48,13 +48,13 @@ public class AccountService : IAccountService
         string passwordHash = Sha256Alghorithm.GenerateHash(password);
         var exists = await _accountRepository.GetAccountByEmailAndPasswordAsync(email, passwordHash);
 
-        if(exists == null)
+        if (exists == null)
         {
             return new AuthenticationResult
             {
                 AccessToken = null,
                 Success = false,
-                Errors = new[] { "Invalid email or password" } 
+                Errors = new[] { "Invalid email or password" }
             };
         }
 
@@ -64,5 +64,17 @@ public class AccountService : IAccountService
             Success = true,
             Errors = null
         };
+    }
+    public async Task<ChangeAccountDataResult> ChangeUsername(string email, string password, string newUsername)
+    {
+        string passwordHash = Sha256Alghorithm.GenerateHash(password);
+        var result = await _accountRepository.ChangeUsername(email, passwordHash, newUsername);
+
+        if(result.Success == false)
+        {
+            return new ChangeAccountDataResult { Success = false, Errors = result.Errors };
+        }
+
+        return new ChangeAccountDataResult { Success = true, Errors = null };
     }
 }

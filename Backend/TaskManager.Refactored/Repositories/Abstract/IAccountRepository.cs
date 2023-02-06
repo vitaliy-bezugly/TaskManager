@@ -5,6 +5,7 @@ namespace TaskManager.Refactored.Repositories.Abstract;
 
 public interface IAccountRepository
 {
-    Task<CreationAccountResult> CreateAccountAsync(AccountEntity account);
+    Task<AccountOperationsResult> CreateAccountAsync(AccountEntity account);
     Task<AccountEntity?> GetAccountByEmailAndPasswordAsync(string email, string passwordHash);
+    Task<AccountOperationsResult> ChangeUsername(string email, string passwordHash, string newUsername);
 }

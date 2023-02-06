@@ -1,6 +1,6 @@
-﻿namespace TaskManager.Refactored.Common;
+﻿namespace TaskManager.Refactored.Domain;
 
-public class CreationAccountResult
+public class ChangeAccountDataResult
 {
     public bool Success { get; set; }
     public string[]? Errors { get; set; }
