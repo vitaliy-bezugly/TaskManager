@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AUTH_API_URL } from 'src/app-injection-token';
+import { ChangePasswordRequest } from 'src/models/changePasswordRequest';
+import { ChangePasswordSuccessResponse } from 'src/models/changePasswordSuccessResponse';
 import { ChangeUsernameRequest } from 'src/models/changeUsernameRequest';
 import { ChangeUsernameSuccessResponse } from 'src/models/changeUsernameSuccessResponse';
 import { RegisterViewModel } from 'src/models/registreViewModel';
@@ -80,6 +82,18 @@ export class AuthorizationService {
     request.subscribe(data => {
       localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
     });
+    return request
+  }
+
+  changePassword(changePasswordRequest : ChangePasswordRequest) : Observable<ChangePasswordSuccessResponse> {
+    const headers = 'Bearer ' + localStorage.getItem(ACCES_TOKEN_KEY)
+    var request = this.http.put<ChangePasswordSuccessResponse>(this.apiUrl + 'account/changepassword', changePasswordRequest, 
+      { headers: new HttpHeaders().set('Authorization', headers) } )
+
+    request.subscribe(data => {
+      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
+    });
+
     return request
   }
 }

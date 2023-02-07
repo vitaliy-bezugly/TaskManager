@@ -39,17 +39,32 @@ textChanged(newValue : any) : void {
 
   changeUsernameClicked() : void {
     this.authService.changeUsername(this.usernameRequest).subscribe(data => {
-      this.successUsernameChanging = true
-      this.failedUsernameChanging = false
-      this.alertMessage = "Successfully changed username"
+      this.HandleSuccess("Successfully changed username")
     }, (error : HttpErrorResponse) => {
-      this.alertMessage = ''
+      this.HandleError(error)
+    })
+  }
+
+  changePasswordClicked() : void {
+    this.authService.changePassword(this.passwordRequest).subscribe(data => {
+      this.HandleSuccess("Successfully changed password")
+    }, (error : HttpErrorResponse) => {
+      this.HandleError(error)
+    })
+  }
+
+  private HandleSuccess(alert : string) : void {
+    this.successUsernameChanging = true
+    this.failedUsernameChanging = false
+    this.alertMessage = alert
+  }
+  private HandleError(error : HttpErrorResponse) : void {
+    this.alertMessage = ''
       for(let item of error.error.errors) {
         this.alertMessage += item
       }
       this.successUsernameChanging = false
       this.failedUsernameChanging = true
       console.error(error)
-    })
   }
 }

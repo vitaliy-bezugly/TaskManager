@@ -1,5 +1,7 @@
 <div class="settings-body">
     <h2>Public profile</h2>
+    <div class="alert alert-success" [textContent]="alertMessage" *ngIf="successUsernameChanging"></div>
+    <div id="alertError" class="alert alert-danger" [textContent]="alertMessage" *ngIf="failedUsernameChanging"></div>
     <hr>
 
     <!--Change Username form-->
@@ -44,9 +46,6 @@
         </div>
 
           <button type="submit" class="btn btn-primary" (click)="changeUsernameClicked()">Change username</button>
-          
-        <div class="alert alert-success" [textContent]="alertMessage" *ngIf="successUsernameChanging"></div>
-        <div id="alertError" class="alert alert-danger" [textContent]="alertMessage" *ngIf="failedUsernameChanging"></div>
     </form>
     <hr>
 
@@ -107,6 +106,6 @@
             </small>
           </div>
 
-          <button type="submit" class="btn btn-primary">Change password</button>
+          <button type="submit" class="btn btn-primary" (click)="changePasswordClicked()">Change password</button>
     </form>
 </div>
