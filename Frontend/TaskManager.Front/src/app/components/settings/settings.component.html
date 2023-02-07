@@ -24,7 +24,29 @@
             </small>
           </div>
 
-          <button type="submit" class="btn btn-primary">Change username</button>
+          <!--Current password-->
+        <div class="d-flex flex-row align-items-center mb-4 input-block">
+          <i class='bx bx-key'></i>
+          <div class="form-outline flex-fill mb-0">
+            <input id="currentPasswordUsername" name="currentPasswordUsername" #currentPasswordUsername="ngModel" [(ngModel)]="usernameRequest.currentPassword" type="password" 
+                class="form-control" placeholder="Your current password" required minlength="6"/>
+          </div>
+        </div>
+        <!--Validation for current password field-->
+        <div *ngIf="currentPasswordUsername.invalid && (currentPasswordUsername.dirty || currentPasswordUsername.touched)" class="alert text-danger text-small">
+          <i class='bx bx-envelope invisible'></i>
+          <small *ngIf="currentPasswordUsername.errors?.['required']">
+            Password is required.
+          </small>
+          <small *ngIf="currentPasswordUsername.errors?.['minlength']">
+              Password must contain at least 6 characters.
+          </small>
+        </div>
+
+          <button type="submit" class="btn btn-primary" (click)="changeUsernameClicked()">Change username</button>
+          
+        <div class="alert alert-success" [textContent]="alertMessage" *ngIf="successUsernameChanging"></div>
+        <div id="alertError" class="alert alert-danger" [textContent]="alertMessage" *ngIf="failedUsernameChanging"></div>
     </form>
     <hr>
 
@@ -37,7 +59,7 @@
             <i class='bx bx-key'></i>
             <div class="form-outline flex-fill mb-0">
               <input id="currentPassword" name="currentPassword" #currentPassword="ngModel" [(ngModel)]="passwordRequest.oldPassword" type="password" 
-                  class="form-control" placeholder="Your current password" required minlength="5"/>
+                  class="form-control" placeholder="Your current password" required minlength="6"/>
             </div>
           </div>
           <!--Validation for current password field-->
@@ -47,7 +69,7 @@
               Password is required.
             </small>
             <small *ngIf="currentPassword.errors?.['minlength']">
-                Password must contain at least 5 characters.
+                Password must contain at least 6 characters.
             </small>
           </div>
         

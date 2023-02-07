@@ -1,10 +1,12 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AUTH_API_URL } from 'src/app-injection-token';
+import { ChangeUsernameRequest } from 'src/models/changeUsernameRequest';
+import { ChangeUsernameSuccessResponse } from 'src/models/changeUsernameSuccessResponse';
 import { RegisterViewModel } from 'src/models/registreViewModel';
 import { Token } from 'src/models/token';
 
@@ -68,5 +70,16 @@ export class AuthorizationService {
     }
 
     return ""
+  }
+
+  changeUsername(changeUsernameRequest : ChangeUsernameRequest) : Observable<ChangeUsernameSuccessResponse> {
+    const headers = 'Bearer ' + localStorage.getItem(ACCES_TOKEN_KEY)
+    var request = this.http.put<ChangeUsernameSuccessResponse>(this.apiUrl + 'account/changeusername', changeUsernameRequest, 
+      { headers: new HttpHeaders().set('Authorization', headers) } )
+
+    request.subscribe(data => {
+      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
+    });
+    return request
   }
 }
