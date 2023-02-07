@@ -56,10 +56,10 @@ public class AccountController : ControllerBase
             access_token = result.AccessToken
         });
     }
-    [HttpPost, Authorize, Route(ApiRoutes.Account.ChangeUsername)]
+    [HttpPut, Authorize, Route(ApiRoutes.Account.ChangeUsername)]
     public async Task<IActionResult> ChangeUsername([FromBody] AccountChangeUsernameRequest request)
     {
-        ChangeAccountDataResult result = await _accountService.ChangeUsername(_claimParser.GetEmail(), 
+        ChangeAccountDataResult result = await _accountService.ChangeUsernameAsync(_claimParser.GetEmail(), 
             request.CurrentPassword, request.NewUsername);
 
         if(result.Success == false)
@@ -71,5 +71,21 @@ public class AccountController : ControllerBase
         }
 
         return Ok(new ChangeUsernameSuccessResponse { Username = request.NewUsername });
+    }
+    [HttpPut, Authorize, Route(ApiRoutes.Account.ChangePassword)]
+    public async Task<IActionResult> ChangePassword([FromBody] AccountChangePasswordRequest request)
+    {
+        var result = await _accountService.ChangePasswordAsync(_claimParser.GetUserId(), 
+            request.OldPassword, request.NewPassword);
+
+        if (result.Success == false)
+        {
+            return BadRequest(new ChangePasswordFailedResponse
+            {
+                Errors = result.Errors
+            });
+        }
+
+        return Ok(new ChangePasswordSuccessResponse { NewPassword = request.NewPassword });
     }
 }

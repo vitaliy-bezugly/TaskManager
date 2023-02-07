@@ -48,7 +48,7 @@ public class AccountRepository : IAccountRepository
         return await _context.Accounts
             .FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
     }
-    public async Task<AccountOperationsResult> ChangeUsername(string email, string passwordHash, string newUsername)
+    public async Task<AccountOperationsResult> ChangeUsernameAsync(string email, string passwordHash, string newUsername)
     {
         var account = await GetAccountByEmailAndPasswordAsync(email, passwordHash);
 
@@ -70,8 +70,47 @@ public class AccountRepository : IAccountRepository
         return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null } : 
             new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
     }
+    public async Task<AccountOperationsResult> ChangePasswordAsync(Guid accountId, string oldPasswordHash, string newPasswordHash)
+    {
+        var account = await FindByIdAsync(accountId);
+
+        if (account == null)
+        {
+            return new AccountOperationsResult
+            {
+                Success = false,
+                Errors = new string[]
+                {
+                    "User with given id does not exist"
+                }
+            };
+        }
+
+        if(account.Password != oldPasswordHash)
+        {
+            return new AccountOperationsResult
+            {
+                Success = false,
+                Errors = new string[]
+                {
+                    "Wrong password"
+                }
+            };
+        }
+
+        account.Password = newPasswordHash;
+        int updated = await _context.SaveChangesAsync();
+
+        return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null } :
+            new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
+    }
+
     public async Task<AccountEntity?> FindByEmailAsync(string email)
     {
         return await _context.Accounts.FirstOrDefaultAsync(x => x.Email == email);
+    }
+    public async Task<AccountEntity?> FindByIdAsync(Guid accountId)
+    {
+        return await _context.Accounts.FirstOrDefaultAsync(x => x.Id == accountId);
     }
 }

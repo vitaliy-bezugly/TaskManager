@@ -65,16 +65,19 @@ public class AccountService : IAccountService
             Errors = null
         };
     }
-    public async Task<ChangeAccountDataResult> ChangeUsername(string email, string password, string newUsername)
+    public async Task<ChangeAccountDataResult> ChangeUsernameAsync(string email, string password, string newUsername)
     {
         string passwordHash = Sha256Alghorithm.GenerateHash(password);
-        var result = await _accountRepository.ChangeUsername(email, passwordHash, newUsername);
+        var result = await _accountRepository.ChangeUsernameAsync(email, passwordHash, newUsername);
 
-        if(result.Success == false)
-        {
-            return new ChangeAccountDataResult { Success = false, Errors = result.Errors };
-        }
+        return _mapper.Map<ChangeAccountDataResult>(result);
+    }
+    public async Task<ChangeAccountDataResult> ChangePasswordAsync(Guid accountId, string oldPassword, string newPassword)
+    {
+        string oldPasswordHash = Sha256Alghorithm.GenerateHash(oldPassword);
+        string newPasswordHash = Sha256Alghorithm.GenerateHash(newPassword);
+        var result = await _accountRepository.ChangePasswordAsync(accountId, oldPasswordHash, newPasswordHash);
 
-        return new ChangeAccountDataResult { Success = true, Errors = null };
+        return _mapper.Map<ChangeAccountDataResult>(result);
     }
 }
