@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Entities;
+﻿using TaskManager.Api.Entities;
 
-namespace TaskManager.Refactored.Repositories.Abstract;
+namespace TaskManager.Api.Repositories.Abstract;
 
 public interface ITaskRepository
 {

@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
-using TaskManager.Refactored.Services.Abstract;
+using TaskManager.Api.Services.Abstract;
 
-namespace TaskManager.Refactored.Services;
+namespace TaskManager.Api.Services;
 
 public class ClaimParser : IClaimParser
 {

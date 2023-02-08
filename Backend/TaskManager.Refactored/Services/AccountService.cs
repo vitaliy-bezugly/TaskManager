@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Hashing;
-using TaskManager.Refactored.Common;
-using TaskManager.Refactored.Domain;
-using TaskManager.Refactored.Entities;
-using TaskManager.Refactored.Repositories.Abstract;
-using TaskManager.Refactored.Services.Abstract;
-using TaskManager.Refactored.Services.Strategy.Abstract;
+using TaskManager.Api.Common;
+using TaskManager.Api.Domain;
+using TaskManager.Api.Entities;
+using TaskManager.Api.Repositories.Abstract;
+using TaskManager.Api.Services.Abstract;
+using TaskManager.Api.Services.Strategy.Abstract;
 
-namespace TaskManager.Refactored.Services;
+namespace TaskManager.Api.Services;
 
 public class AccountService : IAccountService
 {

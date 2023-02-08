@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Domain.Abstract;
+﻿using TaskManager.Api.Domain.Abstract;
 
-namespace TaskManager.Refactored.Domain;
+namespace TaskManager.Api.Domain;
 
 public class TaskDomain : BaseDomain
 {

@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Installers.Abstract;
+﻿using TaskManager.Api.Installers.Abstract;
 
-namespace TaskManager.Refactored.Installers;
+namespace TaskManager.Api.Installers;
 
 public class MapperInstaller : IInstaller
 {

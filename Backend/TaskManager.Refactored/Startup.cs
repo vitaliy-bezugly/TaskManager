@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Installers.Extensions;
+﻿using TaskManager.Api.Installers.Extensions;
 
-namespace TaskManager.Refactored;
+namespace TaskManager.Api;
 
 public class Startup
 {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using TaskManager.Refactored.Common;
-using TaskManager.Refactored.Contracts.v1.Requests;
-using TaskManager.Refactored.Contracts.v1.Responses;
-using TaskManager.Refactored.Domain;
-using TaskManager.Refactored.Entities;
+using TaskManager.Api.Common;
+using TaskManager.Api.Contracts.v1.Requests;
+using TaskManager.Api.Contracts.v1.Responses;
+using TaskManager.Api.Domain;
+using TaskManager.Api.Entities;
 
-namespace TaskManager.Refactored.Helpers;
+namespace TaskManager.Api.Helpers;
 
 public class ApplicationMapper : Profile
 {

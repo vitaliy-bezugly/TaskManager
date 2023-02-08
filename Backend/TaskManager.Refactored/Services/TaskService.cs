@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using TaskManager.Refactored.Domain;
-using TaskManager.Refactored.Entities;
-using TaskManager.Refactored.Repositories.Abstract;
-using TaskManager.Refactored.Services.Abstract;
+using TaskManager.Api.Domain;
+using TaskManager.Api.Entities;
+using TaskManager.Api.Repositories.Abstract;
+using TaskManager.Api.Services.Abstract;
 
-namespace TaskManager.Refactored.Services;
+namespace TaskManager.Api.Services;
 
 public class TaskService : ITaskService
 {

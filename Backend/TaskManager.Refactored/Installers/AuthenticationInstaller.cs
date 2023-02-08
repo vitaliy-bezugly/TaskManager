@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using TaskManager.Refactored.Common;
-using TaskManager.Refactored.Installers.Abstract;
+using TaskManager.Api.Common;
+using TaskManager.Api.Installers.Abstract;
 
-namespace TaskManager.Refactored.Installers;
+namespace TaskManager.Api.Installers;
 
 public class AuthenticationInstaller : IInstaller
 {

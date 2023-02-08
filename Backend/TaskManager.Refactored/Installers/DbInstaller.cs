@@ -1,8 +1,8 @@
-﻿using TaskManager.Refactored.Persistence;
-using TaskManager.Refactored.Installers.Abstract;
+﻿using TaskManager.Api.Persistence;
+using TaskManager.Api.Installers.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace TaskManager.Refactored.Installers;
+namespace TaskManager.Api.Installers;
 
 public class DbInstaller : IInstaller
 {

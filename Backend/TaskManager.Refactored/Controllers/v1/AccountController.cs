@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TaskManager.Refactored.Contracts.v1;
-using TaskManager.Refactored.Contracts.v1.Requests;
-using TaskManager.Refactored.Contracts.v1.Responses;
-using TaskManager.Refactored.Domain;
-using TaskManager.Refactored.Services.Abstract;
+using TaskManager.Api.Contracts.v1;
+using TaskManager.Api.Contracts.v1.Requests;
+using TaskManager.Api.Contracts.v1.Responses;
+using TaskManager.Api.Domain;
+using TaskManager.Api.Services.Abstract;
 
-namespace TaskManager.Refactored.Controllers.v1;
+namespace TaskManager.Api.Controllers.v1;
 
 [ApiController]
 public class AccountController : ControllerBase

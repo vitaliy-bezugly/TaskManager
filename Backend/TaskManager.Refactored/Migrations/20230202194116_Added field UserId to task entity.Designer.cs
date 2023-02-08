@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TaskManager.Refactored.Persistence;
+using TaskManager.Api.Persistence;
 
 #nullable disable
 
-namespace TaskManager.Refactored.Migrations
+namespace TaskManager.Api.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
     [Migration("20230202194116_Added field UserId to task entity")]

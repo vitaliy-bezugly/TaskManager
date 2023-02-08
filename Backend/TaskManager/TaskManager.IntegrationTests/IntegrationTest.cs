@@ -14,7 +14,7 @@ namespace TaskManager.IntegrationTests;
 public class IntegrationTest
 {
     protected HttpClient _httpClient;
-    protected const string _apiUrl = "https://localhost:7183/api/";
+    protected const string _apiUrl = "https://localhost:7142/api/v1/";
 
     [OneTimeSetUp]
     public void Setup()

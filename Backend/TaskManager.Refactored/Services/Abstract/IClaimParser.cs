@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Services.Abstract;
+﻿namespace TaskManager.Api.Services.Abstract;
 
 public interface IClaimParser
 {

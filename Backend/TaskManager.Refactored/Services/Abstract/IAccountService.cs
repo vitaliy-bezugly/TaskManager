@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Domain;
+﻿using TaskManager.Api.Domain;
 
-namespace TaskManager.Refactored.Services.Abstract;
+namespace TaskManager.Api.Services.Abstract;
 
 public interface IAccountService
 {

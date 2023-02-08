@@ -1,10 +1,10 @@
-﻿using TaskManager.Refactored.Installers.Abstract;
-using TaskManager.Refactored.Services;
-using TaskManager.Refactored.Services.Abstract;
-using TaskManager.Refactored.Services.Strategy;
-using TaskManager.Refactored.Services.Strategy.Abstract;
+﻿using TaskManager.Api.Installers.Abstract;
+using TaskManager.Api.Services;
+using TaskManager.Api.Services.Abstract;
+using TaskManager.Api.Services.Strategy;
+using TaskManager.Api.Services.Strategy.Abstract;
 
-namespace TaskManager.Refactored.Installers;
+namespace TaskManager.Api.Installers;
 
 public class ServicesInstaller : IInstaller
 {

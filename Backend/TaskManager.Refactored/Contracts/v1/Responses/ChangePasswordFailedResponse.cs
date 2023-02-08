@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Contracts.v1.Responses;
+﻿namespace TaskManager.Api.Contracts.v1.Responses;
 
 public class ChangePasswordFailedResponse
 {

@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Contracts.v1;
+﻿namespace TaskManager.Api.Contracts.v1;
 
 public static class ApiRoutes
 {

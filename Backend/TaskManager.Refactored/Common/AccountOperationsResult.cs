@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Entities;
+﻿using TaskManager.Api.Entities;
 
-namespace TaskManager.Refactored.Common;
+namespace TaskManager.Api.Common;
 
 public class AccountOperationsResult
 {

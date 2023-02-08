@@ -1,8 +1,8 @@
-﻿using TaskManager.Refactored.Installers.Abstract;
-using TaskManager.Refactored.Repositories;
-using TaskManager.Refactored.Repositories.Abstract;
+﻿using TaskManager.Api.Installers.Abstract;
+using TaskManager.Api.Repositories;
+using TaskManager.Api.Repositories.Abstract;
 
-namespace TaskManager.Refactored.Installers;
+namespace TaskManager.Api.Installers;
 
 public class RepositoriesInstaller : IInstaller
 {

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TaskManager.Refactored.Entities.Abstract;
+using TaskManager.Api.Entities.Abstract;
 
-namespace TaskManager.Refactored.Entities;
+namespace TaskManager.Api.Entities;
 
 [Table("Account")]
 public class AccountEntity : BaseEntity

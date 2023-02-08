@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TaskManager.Refactored.Entities;
-using TaskManager.Refactored.Persistence;
-using TaskManager.Refactored.Repositories.Abstract;
+using TaskManager.Api.Entities;
+using TaskManager.Api.Persistence;
+using TaskManager.Api.Repositories.Abstract;
 
-namespace TaskManager.Refactored.Repositories;
+namespace TaskManager.Api.Repositories;
 
 public class TaskRepository : ITaskRepository
 {

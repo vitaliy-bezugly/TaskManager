@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TaskManager.Refactored.Entities;
+using TaskManager.Api.Entities;
 
-namespace TaskManager.Refactored.Persistence;
+namespace TaskManager.Api.Persistence;
 
 public class ApplicationDataContext : DbContext
 {

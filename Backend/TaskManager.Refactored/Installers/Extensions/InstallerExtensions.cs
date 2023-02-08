@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Installers.Abstract;
+﻿using TaskManager.Api.Installers.Abstract;
 
-namespace TaskManager.Refactored.Installers.Extensions;
+namespace TaskManager.Api.Installers.Extensions;
 
 public static class InstallerExtensions
 {

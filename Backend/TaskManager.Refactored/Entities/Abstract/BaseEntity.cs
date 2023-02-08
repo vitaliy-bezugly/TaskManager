@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TaskManager.Refactored.Entities.Abstract;
+namespace TaskManager.Api.Entities.Abstract;
 
 public abstract class BaseEntity
 {

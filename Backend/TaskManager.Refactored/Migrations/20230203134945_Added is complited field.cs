@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace TaskManager.Refactored.Migrations
+namespace TaskManager.Api.Migrations
 {
     /// <inheritdoc />
     public partial class Addediscomplitedfield : Migration

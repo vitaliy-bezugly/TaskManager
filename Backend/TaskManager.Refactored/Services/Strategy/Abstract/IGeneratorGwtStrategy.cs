@@ -1,6 +1,6 @@
-﻿using TaskManager.Refactored.Domain;
+﻿using TaskManager.Api.Domain;
 
-namespace TaskManager.Refactored.Services.Strategy.Abstract;
+namespace TaskManager.Api.Services.Strategy.Abstract;
 
 public interface IGeneratorGwtStrategy
 {

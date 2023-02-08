@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Domain.Abstract
+﻿namespace TaskManager.Api.Domain.Abstract
 {
     public abstract class BaseDomain
     {

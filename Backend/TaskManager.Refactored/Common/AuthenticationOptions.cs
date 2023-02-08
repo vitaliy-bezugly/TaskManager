@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace TaskManager.Refactored.Common;
+namespace TaskManager.Api.Common;
 
 public class AuthenticationOptions
 {

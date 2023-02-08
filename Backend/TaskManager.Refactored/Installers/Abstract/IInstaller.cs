@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Installers.Abstract;
+﻿namespace TaskManager.Api.Installers.Abstract;
 
 public interface IInstaller
 {

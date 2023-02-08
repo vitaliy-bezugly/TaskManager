@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Domain;
+﻿namespace TaskManager.Api.Domain;
 
 public class AuthenticationResult
 {

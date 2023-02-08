@@ -2,11 +2,11 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using TaskManager.Refactored.Common;
-using TaskManager.Refactored.Domain;
-using TaskManager.Refactored.Services.Strategy.Abstract;
+using TaskManager.Api.Common;
+using TaskManager.Api.Domain;
+using TaskManager.Api.Services.Strategy.Abstract;
 
-namespace TaskManager.Refactored.Services.Strategy;
+namespace TaskManager.Api.Services.Strategy;
 
 public class DefaultGeneratorGwtStrategy : IGeneratorGwtStrategy
 {

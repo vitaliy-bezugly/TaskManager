@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TaskManager.Refactored.Contracts.v1.Requests;
+namespace TaskManager.Api.Contracts.v1.Requests;
 
 public class AccountChangeUsernameRequest
 {

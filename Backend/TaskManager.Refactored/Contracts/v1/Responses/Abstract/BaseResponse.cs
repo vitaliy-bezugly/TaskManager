@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Refactored.Contracts.v1.Responses.Abstract;
+﻿namespace TaskManager.Api.Contracts.v1.Responses.Abstract;
 
 public abstract class BaseResponse
 {
