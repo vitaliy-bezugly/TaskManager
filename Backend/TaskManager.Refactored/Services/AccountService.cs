@@ -70,7 +70,17 @@ public class AccountService : IAccountService
         string passwordHash = Sha256Alghorithm.GenerateHash(password);
         var result = await _accountRepository.ChangeUsernameAsync(email, passwordHash, newUsername);
 
-        return _mapper.Map<ChangeAccountDataResult>(result);
+        if(result.Success == false)
+        {
+            return new ChangeAccountDataResult { Success = false, Errors = result.Errors, AccessToken = null };
+        }
+
+        return new ChangeAccountDataResult 
+        { 
+            Success = true, 
+            Errors = null, 
+            AccessToken = _generatorGwt.GenerateGwt(_mapper.Map<AccountDomain>(result.Account)) 
+        };
     }
     public async Task<ChangeAccountDataResult> ChangePasswordAsync(Guid accountId, string oldPassword, string newPassword)
     {
@@ -78,6 +88,21 @@ public class AccountService : IAccountService
         string newPasswordHash = Sha256Alghorithm.GenerateHash(newPassword);
         var result = await _accountRepository.ChangePasswordAsync(accountId, oldPasswordHash, newPasswordHash);
 
-        return _mapper.Map<ChangeAccountDataResult>(result);
+        if(result.Success == false)
+        {
+            return new ChangeAccountDataResult
+            {
+                Success = false,
+                Errors = result.Errors,
+                AccessToken = null
+            };
+        }
+
+        return new ChangeAccountDataResult
+        {
+            Success = true,
+            Errors = null,
+            AccessToken = _generatorGwt.GenerateGwt(_mapper.Map<AccountDomain>(result.Account))
+        };
     }
 }

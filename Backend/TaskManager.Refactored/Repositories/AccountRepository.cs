@@ -67,8 +67,8 @@ public class AccountRepository : IAccountRepository
         account.Username = newUsername;
         int updated = await _context.SaveChangesAsync();
 
-        return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null } : 
-            new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
+        return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null, Account = account }
+           : new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
     }
     public async Task<AccountOperationsResult> ChangePasswordAsync(Guid accountId, string oldPasswordHash, string newPasswordHash)
     {
@@ -101,8 +101,8 @@ public class AccountRepository : IAccountRepository
         account.Password = newPasswordHash;
         int updated = await _context.SaveChangesAsync();
 
-        return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null } :
-            new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
+        return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null, Account = account } 
+         : new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
     }
 
     public async Task<AccountEntity?> FindByEmailAsync(string email)

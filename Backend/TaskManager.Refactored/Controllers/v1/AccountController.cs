@@ -70,7 +70,7 @@ public class AccountController : ControllerBase
             });
         }
 
-        return Ok(new ChangeUsernameSuccessResponse { Username = request.NewUsername });
+        return Ok(new ChangeUsernameSuccessResponse { Username = request.NewUsername, access_token = result.AccessToken });
     }
     [HttpPut, Authorize, Route(ApiRoutes.Account.ChangePassword)]
     public async Task<IActionResult> ChangePassword([FromBody] AccountChangePasswordRequest request)
@@ -86,6 +86,6 @@ public class AccountController : ControllerBase
             });
         }
 
-        return Ok(new ChangePasswordSuccessResponse { NewPassword = request.NewPassword });
+        return Ok(new ChangePasswordSuccessResponse { NewPassword = request.NewPassword, access_token = result.AccessToken });
     }
 }
