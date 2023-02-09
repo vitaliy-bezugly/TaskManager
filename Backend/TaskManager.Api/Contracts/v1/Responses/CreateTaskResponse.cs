@@ -4,5 +4,5 @@ namespace TaskManager.Api.Contracts.v1.Responses;
 
 public class CreateTaskResponse : BaseResponse
 {
-    public string Title { get; set; }
+    public string title { get; set; }
 }

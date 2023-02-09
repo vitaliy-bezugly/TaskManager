@@ -4,10 +4,10 @@ namespace TaskManager.Api.Contracts.v1.Responses;
 
 public class GetTaskResponse : BaseResponse
 {
-    public string Title { get; set; }
-    public string? Description { get; set; }
-    public bool IsImportant { get; set; }
-    public bool IsComplited { get; set; }
-    public DateTime CreationTime { get; set; }
-    public DateTime ExpirationTime { get; set; }
+    public string title { get; set; }
+    public string? description { get; set; }
+    public bool isImportant { get; set; }
+    public bool isComplited { get; set; }
+    public DateTime creationTime { get; set; }
+    public DateTime expirationTime { get; set; }
 }

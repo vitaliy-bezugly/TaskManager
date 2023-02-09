@@ -2,5 +2,5 @@
 
 public abstract class BaseResponse
 {
-    public Guid Id { get; set; }
+    public Guid id { get; set; }
 }
