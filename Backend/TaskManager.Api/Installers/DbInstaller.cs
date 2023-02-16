@@ -9,6 +9,7 @@ public class DbInstaller : IInstaller
     public void InstallService(IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ApplicationDataContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("CloudServerConnection")));
+            //options.UseSqlServer(configuration.GetConnectionString("CloudServerConnection"))
+            options.UseInMemoryDatabase("InMemoryDb"));
     }
 }
