@@ -48,7 +48,7 @@ public class Startup
 
         app.MapControllers();
 
-        // DatabasePreparations.Prepare(app, app.Logger);
+        DatabasePreparations.Prepare(app, app.Logger);
 
         app.Run();
     }
