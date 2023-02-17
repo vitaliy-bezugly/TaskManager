@@ -4,18 +4,20 @@ namespace TaskManager.Api;
 
 public class Startup
 {
+    private readonly ILogger<Startup> _logger;
     public IConfiguration Configuration
     {
         get;
     }
-    public Startup(IConfiguration configuration)
+    public Startup(IConfiguration configuration, ILogger<Startup> logger)
     {
         this.Configuration = configuration;
+        _logger = logger;
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.InstallServiceInAssembly(Configuration);
+        services.InstallServiceInAssembly(Configuration, _logger);
     }
     public void Configure(WebApplication app, IWebHostEnvironment env)
     {
@@ -49,8 +51,6 @@ public class Startup
         app.MapControllers();
 
         // DatabasePreparations.Prepare(app, app.Logger);
-        /* Testing heroku env variables */
-        app.Logger.LogInformation($"Environment variable by heroku: {Environment.GetEnvironmentVariable("heroku")}");
 
         app.Run();
     }

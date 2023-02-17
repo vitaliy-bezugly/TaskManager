@@ -7,7 +7,8 @@ namespace TaskManager.Api.Installers;
 
 public class AuthenticationInstaller : IInstaller
 {
-    public void InstallService(IServiceCollection services, IConfiguration configuration)
+    public void InstallService(IServiceCollection services, IConfiguration configuration
+        , ILogger<Startup> logger)
     {
         var options = configuration.GetSection("Authentication");
         services.Configure<AuthenticationOptions>(options);

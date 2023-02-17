@@ -2,5 +2,5 @@
 
 public interface IInstaller
 {
-    void InstallService(IServiceCollection services, IConfiguration configuration);
+    void InstallService(IServiceCollection services, IConfiguration configuration, ILogger<Startup> logger);
 }
