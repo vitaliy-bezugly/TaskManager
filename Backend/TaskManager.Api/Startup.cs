@@ -49,6 +49,8 @@ public class Startup
         app.MapControllers();
 
         // DatabasePreparations.Prepare(app, app.Logger);
+        /* Testing heroku env variables */
+        app.Logger.LogInformation($"Environment variable by heroku: {Environment.GetEnvironmentVariable("heroku")}");
 
         app.Run();
     }

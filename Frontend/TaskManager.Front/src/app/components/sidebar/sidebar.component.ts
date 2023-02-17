@@ -10,7 +10,6 @@ export class SidebarComponent implements OnInit {
   constructor(private el: ElementRef, private authService : AuthorizationService) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit()')
   }
 
   public hideOrShowSidebar() : any {

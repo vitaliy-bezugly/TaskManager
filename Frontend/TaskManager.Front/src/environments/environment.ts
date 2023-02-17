@@ -3,13 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  authApi: 'https://localhost:7142/api/v1/',
-  storeApi: 'https://localhost:7142/api/v1/', 
+  production: true,
+  authApi: 'https://taskmanager-plus.herokuapp.com/api/v1/',
+  storeApi: 'https://taskmanager-plus.herokuapp.com/api/v1/', 
   tokenWhitelistedDomains: [
     'localhost:7090'
   ]
-};
+} 
+
+/*
+  authApi: 'https://localhost:7142/api/v1/',
+  storeApi: 'https://localhost:7142/api/v1/', 
+*/
 
 /*
  * For easier debugging in development mode, you can import the following file
