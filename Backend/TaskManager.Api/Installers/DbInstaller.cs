@@ -17,6 +17,8 @@ public class DbInstaller : IInstaller
             logger.LogInformation("Connection string has been found as environment variable. " +
                     "App will use sql server");
 
+        logger.LogInformation($"Connection string: {connectionString}");
+
         services.AddDbContext<ApplicationDataContext>(options =>
         {
             if(connectionString == null)

@@ -50,7 +50,8 @@ public class Startup
 
         app.MapControllers();
 
-        // DatabasePreparations.Prepare(app, app.Logger);
+        if(Environment.GetEnvironmentVariable("ConnectionString") != null)
+            DatabasePreparations.Prepare(app, app.Logger);
 
         app.Run();
     }
