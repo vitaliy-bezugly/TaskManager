@@ -27,25 +27,11 @@ export class AuthorizationService {
   
   login(email : string, password : string): Observable<Token> {
     var request = this.http.post<Token>(this.apiUrl + 'account/login', {email, password});
-
-    request.subscribe(data => {
-      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
-    }, (e: HttpErrorResponse) => {
-      console.log(e)
-    })
-
     return request
   }
 
   register(registerViewModel : RegisterViewModel) : Observable<Token> {
     var request = this.http.post<Token>(this.apiUrl + 'Account/Register', registerViewModel);
-
-    request.subscribe(data => {
-      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
-    }, (e: HttpErrorResponse) => {
-      console.log(e)
-    })
-
     return request
   }
 

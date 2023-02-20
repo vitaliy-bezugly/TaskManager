@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
 
     this.showCircle()
     response.subscribe(data => {
+      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
       this.alertMessage = 'You have been successfully logged in!'
       this.successLogin = true
       this.hideCircle()
     }, (error : HttpErrorResponse) => {
+      console.log(error)
       this.alertMessage = ''
 
       for(let item of error.error.errors) {

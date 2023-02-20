@@ -55,10 +55,10 @@
         <!--Allerts-->
         <div class="alert alert-success alert-margin" [textContent]="alertMessage" *ngIf="successOperation"></div>
         <div id="alertError" class="alert alert-danger alert-margin" [textContent]="alertMessage" hidden></div>
-
+        
         <!--List of tasks-->
         <ul class="tasks">
-            <li *ngFor="let task of tasks | filter:filteredString">
+            <li *ngFor="let task of uncompletedTasks | filter:filteredString">
                 <div class="task-li" id="task-data-{{task.id}}">
                     <div class="form-check form-radio">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="ComplitTask(task)">

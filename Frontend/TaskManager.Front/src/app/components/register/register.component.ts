@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AuthorizationService } from 'src/app/services/authorization.service';
+import { ACCES_TOKEN_KEY, AuthorizationService } from 'src/app/services/authorization.service';
 import { RegisterViewModel } from 'src/models/registreViewModel';
 
 @Component({
@@ -29,10 +29,13 @@ export class RegisterComponent implements OnInit {
 
     this.showCircle()
     response.subscribe(data => {
+      localStorage.setItem(ACCES_TOKEN_KEY, data.access_token)
+
       this.alertMessage = 'You have been successfully created account!'
       this.successRegister = true
       this.hideCircle()
     }, (error : HttpErrorResponse) => {
+      console.log(error)
       this.alertMessage = ''
 
       if(error.error.errors["Password"])
@@ -41,14 +44,19 @@ export class RegisterComponent implements OnInit {
           this.alertMessage += item + '\n'
         }
       }
-      if(error.error.errors["Email"])
+      else if(error.error.errors["Email"])
       {
         for(let item of error.error.errors.Email) {
           this.alertMessage += item + '\n'
         }
       }
-      if(error.error.errors["Username"]) {
+      else if(error.error.errors["Username"]) {
         for(let item of error.error.errors.Username) {
+          this.alertMessage += item + '\n'
+        }
+      }
+      else {
+        for(let item of error.error.errors) {
           this.alertMessage += item + '\n'
         }
       }

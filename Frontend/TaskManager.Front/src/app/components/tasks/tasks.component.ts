@@ -14,12 +14,11 @@ import { UpdateTaskRequest } from 'src/models/updateTaskRequest';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-moment(arg0: Date) {
-throw new Error('Method not implemented.');
-}
-  public tasks : TaskViewModel[] = [];
+  public uncompletedTasks : TaskViewModel[] = []
+
   public task : TaskViewModel = new TaskViewModel()
   public taskToAdd = new CreateTaskRequest()
+
   public alertMessage : string = ''
   public successOperation : boolean = false
 
@@ -28,7 +27,7 @@ throw new Error('Method not implemented.');
   constructor(private taskService: TaskService, public datePipe: DatePipe) {
 
     taskService.getTasks().subscribe(data => {
-      this.tasks = data.filter(x => !x.isComplited)
+      this.uncompletedTasks = data.filter(x => !x.isComplited)
     }, (error : HttpErrorResponse) => {
       this.handleError(error, 'Can not get tasks from server')
     })
@@ -41,7 +40,7 @@ throw new Error('Method not implemented.');
   }
 
   getTasks() : TaskViewModel[] {
-    return this.tasks
+    return this.uncompletedTasks
   }
 
   handleSuccess(specificAlertMessage : string) : void {
@@ -68,7 +67,7 @@ throw new Error('Method not implemented.');
 
   updateTasks() : void {
     this.taskService.getTasks().subscribe(data => {
-      this.tasks = data.filter(x => !x.isComplited)
+      this.uncompletedTasks = data.filter(x => !x.isComplited)
     }, (error : HttpErrorResponse) => {
       alert(error)
     })
@@ -124,7 +123,7 @@ throw new Error('Method not implemented.');
   }
 
   public ShowImportantTask() : void {
-    this.tasks = this.tasks.filter(x => x.isImportant === true)
+    this.uncompletedTasks = this.uncompletedTasks.filter(x => x.isImportant === true)
   }
 
   public GetTodaysDate() : string {
