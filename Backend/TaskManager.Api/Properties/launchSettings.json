@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ConnectionString": "Data Source=DESKTOP-0BBNNJS;Initial Catalog=TaskManager.api;Persist Security Info=True;User ID=TaskManagerUser;Password=TaskManagerUser;TrustServerCertificate=true",
+        "ConnectionString": "Data Source=34.116.222.201;Initial Catalog=TaskManager.api;User ID=taskmanager-sqlserver-v1;Password=bb7518ch;TrustServerCertificate=True",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:7142;http://localhost:5142",
