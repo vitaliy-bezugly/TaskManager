@@ -12,7 +12,7 @@ public class DbInstaller : IInstaller
 
         if(connectionString == null)
             logger.LogInformation("There is no connection string as environment variable. " +
-                    "App will use inmemory database");
+                    "App will use sqlite database");
         else 
             logger.LogInformation("Connection string has been found as environment variable. " +
                     "App will use sql server");
@@ -21,7 +21,7 @@ public class DbInstaller : IInstaller
         {
             if(connectionString == null)
             {
-                options.UseInMemoryDatabase("InMemoryDb");
+                options.UseSqlite(configuration.GetConnectionString("SqliteConnection"));
             }
             else
             {
