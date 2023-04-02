@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.Api.Persistence;
 
@@ -16,19 +15,15 @@ namespace TaskManager.Api.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
 
             modelBuilder.Entity("AccountEntityRoleEntity", b =>
                 {
                     b.Property<Guid>("AccountsId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("RolesId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("AccountsId", "RolesId");
 
@@ -37,78 +32,78 @@ namespace TaskManager.Api.Migrations
                     b.ToTable("AccountEntityRoleEntity");
                 });
 
-            modelBuilder.Entity("TaskManager.Refactored.Entities.AccountEntity", b =>
+            modelBuilder.Entity("TaskManager.Api.Entities.AccountEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Account");
                 });
 
-            modelBuilder.Entity("TaskManager.Refactored.Entities.RoleEntity", b =>
+            modelBuilder.Entity("TaskManager.Api.Entities.RoleEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("TaskManager.Refactored.Entities.TaskEntity", b =>
+            modelBuilder.Entity("TaskManager.Api.Entities.TaskEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ExpirationTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsComplited")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("Completed");
 
                     b.Property<bool>("IsImportant")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("Important");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -119,22 +114,22 @@ namespace TaskManager.Api.Migrations
 
             modelBuilder.Entity("AccountEntityRoleEntity", b =>
                 {
-                    b.HasOne("TaskManager.Refactored.Entities.AccountEntity", null)
+                    b.HasOne("TaskManager.Api.Entities.AccountEntity", null)
                         .WithMany()
                         .HasForeignKey("AccountsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TaskManager.Refactored.Entities.RoleEntity", null)
+                    b.HasOne("TaskManager.Api.Entities.RoleEntity", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TaskManager.Refactored.Entities.TaskEntity", b =>
+            modelBuilder.Entity("TaskManager.Api.Entities.TaskEntity", b =>
                 {
-                    b.HasOne("TaskManager.Refactored.Entities.AccountEntity", "Account")
+                    b.HasOne("TaskManager.Api.Entities.AccountEntity", "Account")
                         .WithMany("Tasks")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -143,7 +138,7 @@ namespace TaskManager.Api.Migrations
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("TaskManager.Refactored.Entities.AccountEntity", b =>
+            modelBuilder.Entity("TaskManager.Api.Entities.AccountEntity", b =>
                 {
                     b.Navigation("Tasks");
                 });

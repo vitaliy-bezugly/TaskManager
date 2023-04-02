@@ -1,0 +1,12 @@
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\bin\Debug\net6.0\Hashing.deps.json
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\bin\Debug\net6.0\Hashing.dll
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\bin\Debug\net6.0\Hashing.pdb
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.csproj.AssemblyReference.cache
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.GeneratedMSBuildEditorConfig.editorconfig
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.AssemblyInfoInputs.cache
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.AssemblyInfo.cs
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.csproj.CoreCompileInputs.cache
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.dll
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\refint\Hashing.dll
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\Hashing.pdb
+D:\Asp .Net Core\Projects\TaskManager\Backend\Hashing\obj\Debug\net6.0\ref\Hashing.dll

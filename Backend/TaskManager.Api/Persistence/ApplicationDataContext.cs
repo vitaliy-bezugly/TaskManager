@@ -11,4 +11,9 @@ public class ApplicationDataContext : DbContext
 
     public DbSet<AccountEntity> Accounts { get; set; }
     public DbSet<TaskEntity> Tasks { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder); 
+    }
 }

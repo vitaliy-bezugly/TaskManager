@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Api\TaskManager.Api.csproj" />
-    <ProjectReference Include="..\TaskManager.Refactored\TaskManager.Api.csproj" />
   </ItemGroup>
 
 </Project>
