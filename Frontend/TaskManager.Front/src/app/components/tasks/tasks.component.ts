@@ -15,6 +15,8 @@ import { UpdateTaskRequest } from 'src/models/updateTaskRequest';
 })
 export class TasksComponent implements OnInit {
   public uncompletedTasks : TaskViewModel[] = []
+  public completedTasks : TaskViewModel[] = []
+  public tasksToDiplay : TaskViewModel[] = []
 
   public task : TaskViewModel = new TaskViewModel()
   public taskToAdd = new CreateTaskRequest()
@@ -25,22 +27,22 @@ export class TasksComponent implements OnInit {
   public filteredString : string = ''
 
   constructor(private taskService: TaskService, public datePipe: DatePipe) {
-
-    taskService.getTasks().subscribe(data => {
-      this.uncompletedTasks = data.filter(x => !x.isComplited)
-    }, (error : HttpErrorResponse) => {
-      this.handleError(error, 'Can not get tasks from server')
-    })
-
     let main = document.getElementById('main-tag')
     main?.classList.remove('bg-image')
   }
 
   ngOnInit(): void {
+    this.taskService.getTasks().subscribe(data => {
+      this.completedTasks = data.filter(x => x.isComplited)
+      this.uncompletedTasks = data.filter(x => !x.isComplited)
+      this.tasksToDiplay = this.uncompletedTasks;
+    }, (error : HttpErrorResponse) => {
+      this.handleError(error, 'Can not get tasks from server')
+    })
   }
 
   getTasks() : TaskViewModel[] {
-    return this.uncompletedTasks
+    return this.tasksToDiplay
   }
 
   handleSuccess(specificAlertMessage : string) : void {
@@ -65,9 +67,26 @@ export class TasksComponent implements OnInit {
     alertError?.removeAttribute('hidden')
   }
 
+  public changeTasksToDiplayToCopletedTasks() : void {
+    this.tasksToDiplay = this.completedTasks
+
+    let complitedButton = document.getElementById('completedTaskButton')
+    complitedButton?.classList.add('active')
+    let uncomplitedButton = document.getElementById('uncompletedTaskButton')
+    uncomplitedButton?.classList.remove('active')
+  }
+  public changeTasksToDiplayToUncopletedTasks() : void {
+    this.tasksToDiplay = this.uncompletedTasks
+
+    let complitedButton = document.getElementById('completedTaskButton')
+    complitedButton?.classList.remove('active')
+    let uncomplitedButton = document.getElementById('uncompletedTaskButton')
+    uncomplitedButton?.classList.add('active')
+  }
+
   updateTasks() : void {
     this.taskService.getTasks().subscribe(data => {
-      this.uncompletedTasks = data.filter(x => !x.isComplited)
+      this.tasksToDiplay = data.filter(x => !x.isComplited)
     }, (error : HttpErrorResponse) => {
       alert(error)
     })
@@ -110,13 +129,15 @@ export class TasksComponent implements OnInit {
     this.UpdateTask(task)
   }
 
-  public ComplitTask(task : TaskViewModel) {
-    let taskTosuccess = this.MapTaskVMToUpdateRequest(task)
-    taskTosuccess.isComplited = true
+  public CompliteTask(task : TaskViewModel) {
+    let taskToSuccess = this.MapTaskVMToUpdateRequest(task)
+    taskToSuccess.isComplited = true
 
-    this.taskService.updateTask(task.id, taskTosuccess).subscribe(data => {
+    this.taskService.updateTask(task.id, taskToSuccess).subscribe(data => {
       this.updateTasks()
+      this.completedTasks.push(task)
       this.handleSuccess('Successfully complited task!')
+      this.tasksToDiplay = this.tasksToDiplay.filter(x => x.id !== data.title)
     }, (error : HttpErrorResponse) => {
       this.handleError(error, 'Can not complite task')
     })
@@ -129,7 +150,6 @@ export class TasksComponent implements OnInit {
   public GetTodaysDate() : string {
     return (moment(new Date())).format('DD MMMM YYYY')
   }
-
 
   public ParseDateToReadableFormat(date : Date) : string {
     return (moment(date)).format('DD MMMM YYYY HH:mm:ss')
@@ -148,8 +168,8 @@ export class TasksComponent implements OnInit {
     let taskToUpdate = this.MapTaskVMToUpdateRequest(task)
 
     this.taskService.updateTask(task.id, taskToUpdate).subscribe(data => {
-      this.updateTasks()
       this.handleSuccess('Successfully updated task!')
+      this.updateTasks()
     }, (error : HttpErrorResponse) => {
       let errorMessage = ''
       if(error.error.errors["Title"]) {
@@ -163,8 +183,8 @@ export class TasksComponent implements OnInit {
   }
   public DeleteTask(taskId : string) : void {
     this.taskService.deleteTask(taskId).subscribe(data => {
-      this.updateTasks()
       this.handleSuccess('Successfully deleted task!')
+      this.updateTasks()
     }, (error : HttpErrorResponse) => {
       this.handleError(error, 'Can not delete task')
     })
