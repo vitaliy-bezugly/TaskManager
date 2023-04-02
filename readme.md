@@ -1,8 +1,17 @@
-<h1>Task manager app</h1>
+# Task manager app
+The Task Manager Web Application is a useful tool for anyone looking to manage their tasks more efficiently. With its easy-to-use features and intuitive user interface, users can stay on top of their work and complete tasks in a timely and organized manner.
+
 <h2>🧐 About app</h2>
 <p>Task manager will help you organize your schedule and not forget about important things. It allows you to save tasks until they are completed.</p>
 <p>This application was made as a pet project to showcase skills: building a back-end api and user interface, deploying the application infrastructure on a third-party server</p>
 
+<h2>Functionality</h2>
+<ul>
+  <li>User Registration and Login: Users can create a new account or log in to an existing account using their email address and password. Once logged in, users are redirected to the dashboard where they can view all of their tasks.</li>
+  <li>Add New Task: Users can add new tasks to their account, including a name, description, expiration date, and whether the task is important or not. This feature    helps users keep track of their tasks and prioritize their work.</li>
+  <li>Task Management: Once a user has added a task, they can view it in the dashboard and mark it as completed once it is done. The task will then disappear from the dashboard and be marked as completed.</li>
+  <li>User Experience: The application has a clean and intuitive user interface that makes it easy for users to manage their tasks. The application's features are designed to be easy to use, and users can easily navigate through the different sections of the application.</li>
+</ul>
 <h2>🚀 Touch it!</h2>
 <a href="https://taskmanager-plus.herokuapp.com/">I already deployed it to the web</a>
 
