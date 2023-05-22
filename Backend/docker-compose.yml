@@ -1,12 +1,12 @@
 version: '3.9'
 
 networks:
-  tm-network:
-    name: tm-network
+  taskmanager:
+    name: taskmanager
 
 services:
   api:
-    build: TaskManager.Api/
+    build: /
     container_name: api
     restart: always
     ports:
@@ -14,9 +14,9 @@ services:
     depends_on:
       - db-server
     networks: 
-      - tm-network
+      - taskmanager
     environment: 
-      - ASPNETCORE_ENVIRONMENT = Docker
+      - ASPNETCORE_ENVIRONMENT=Docker
   db-server:
     image: mcr.microsoft.com/mssql/server:2017-latest
     container_name: db-server
@@ -27,4 +27,4 @@ services:
     ports: 
       - "1400:1433"
     networks: 
-      - tm-network
+      - taskmanager

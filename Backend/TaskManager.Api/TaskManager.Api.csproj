@@ -31,4 +31,10 @@
     <ProjectReference Include="..\Hashing\Hashing.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\Dockerfile">
+      <Link>Dockerfile</Link>
+    </Content>
+  </ItemGroup>
+
 </Project>
