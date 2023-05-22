@@ -1,19 +1,20 @@
-version: '3.7'
+version: '3.9'
 
 networks:
-  localdev:
-    name: localdev
+  tm-network:
+    name: tm-network
 
 services:
-  main-api:
+  api:
     build: TaskManager.Api/
+    container_name: api
     restart: always
     ports:
-      - "8080:80"
+      - "8080:443"
     depends_on:
       - db-server
     networks: 
-      - localdev
+      - tm-network
     environment: 
       - ASPNETCORE_ENVIRONMENT = Docker
   db-server:
@@ -26,4 +27,4 @@ services:
     ports: 
       - "1400:1433"
     networks: 
-      - localdev
+      - tm-network

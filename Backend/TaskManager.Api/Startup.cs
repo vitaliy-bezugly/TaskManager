@@ -1,4 +1,5 @@
 ﻿using TaskManager.Api.Installers.Extensions;
+using TaskManager.Api.Persistence;
 
 namespace TaskManager.Api;
 
@@ -49,6 +50,11 @@ public class Startup
         app.UseCors();
 
         app.MapControllers();
+
+        if (app.Environment.EnvironmentName == "Docker")
+        {
+            MigrationLoader.Load(app, app.Logger);
+        }
 
         app.Run();
     }
