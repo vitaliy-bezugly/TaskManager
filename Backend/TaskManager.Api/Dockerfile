@@ -8,8 +8,8 @@ ENV ASPNETCORE_URLS=http://*:8080
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["TaskManager.Api/TaskManager.Api.csproj", "TaskManager.Api/"]
-COPY ["Hashing/Hashing.csproj", "Hashing/"]
+COPY ["TaskManager.Api.csproj", "TaskManager.Api/"]
+COPY ["../Hashing.csproj", "Hashing/"]
 RUN dotnet restore "TaskManager.Api/TaskManager.Api.csproj"
 COPY . .
 WORKDIR "/src/TaskManager.Api"

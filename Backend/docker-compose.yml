@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.7'
 
 networks:
   localdev:
@@ -6,14 +6,16 @@ networks:
 
 services:
   main-api:
-    build: /
+    build: TaskManager.Api/
     restart: always
     ports:
-      - "7000:80"
+      - "8080:80"
     depends_on:
       - db-server
     networks: 
       - localdev
+    environment: 
+      - ASPNETCORE_ENVIRONMENT = Docker
   db-server:
     image: mcr.microsoft.com/mssql/server:2017-latest
     container_name: db-server
