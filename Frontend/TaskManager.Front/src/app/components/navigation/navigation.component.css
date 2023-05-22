@@ -1,8 +1,12 @@
-.navbar-head-text-link {
+nav {
+    min-height: 50px;
+}
+
+nav a {
     text-decoration: none;
     color: white;
 }
-.navbar-head-text-link:hover {
+a:hover {
     color:rgb(205, 205, 205)
 }
 
@@ -21,14 +25,6 @@
     background-color: #2cc185;
     color: white;
     padding: 0.5rem;
-}
-
-.navbar .navbar-collapse {
-    text-align: center;
-  }
-
-.nav-bottom .navbar-collapse {
-    text-align: center;
 }
 
 .correct-padding-for-navhead {
@@ -51,7 +47,7 @@
     border: 8px #fff solid;
 }
 
-.nav-top {
+nav {
     background-color: var(--primary-color-dark);
     color: white;
     font-size: 16px;
