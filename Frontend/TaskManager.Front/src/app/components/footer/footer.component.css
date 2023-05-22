@@ -1,63 +1,52 @@
-.footer {
+footer {
     margin-left: 40px;
     margin-right: 40px;
 
     color: white;
 }
 
-.footer .container .center {
+footer .center {
     margin: auto;
-    padding: 0px;
+    padding: 10px;
 
     text-align: center;
 }
 
-.footer .container .center .bx-check-circle {
+footer .bx-check-circle {
     font-size: 34px;
     color: dodgerblue;
 }
 
-.footer .container .text {
+footer .text {
     font-family: 'Poppins', sans-serif;
 }
-.footer .container .text-head {
+footer .text-head {
     font-weight: 800;
     font-size: 22px;
 }
-.footer .container .center .text {
+footer .center .text {
     position: relative;
     bottom: 6px;
 
     padding-left: 5px;
 }
 
-.footer .container .center .copyright-info {
-    margin-top: 5px;
-}
-.footer .container .center .copyright-info .text {
-    position: relative;
-    bottom: 3px;
-
-    padding-left: 0px;
-}
-.footer .container .center .copyright-info i {
-    margin-right: 5px;
-    margin-left: 5px;
-
-    font-size: 18px;
-}
-
-.footer .container .center .socials {
+footer .socials {
     margin-top: 20px;
 }
 
 .socials a {
     text-decoration: none;
 }
+
 .socials a i {
     font-size: 26px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+footer .socials a:hover {
+    opacity: 0.6;
 }
 
 .socials a .bxl-telegram {
@@ -70,28 +59,11 @@
     color: crimson;
 }
 
-.socials a i:hover {
-    background: var(--border-color);
-}
-
-@media (max-width: 393px) {
-    .footer .container .center .bx-check-circle {
-        font-size: 32px;
+@media (max-width: 455px) {
+    footer .text-head {
+        font-size: 16px;
     }
-    .footer .container .center .text {
-        font-size: 20px;
-        bottom: 6px;
-    }
-}
-@media (max-width: 367px) {
-    .footer .container .center .bx-check-circle {
-        display: block;
-        margin-bottom: 3px;
-    }
-    .footer .container .center .text {
-        margin-bottom: 3px;
-    }
-    .footer .container .center .text-head {
-        padding: 0px;
+    footer i.bx-check-circle {
+        font-size: 28px;
     }
 }

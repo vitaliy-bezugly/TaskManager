@@ -1,12 +1,15 @@
 nav {
     min-height: 50px;
+    background-color: var(--primary-color-dark);
+    color: white;
+    font-size: 16px;
 }
 
 nav a {
     text-decoration: none;
     color: white;
 }
-a:hover {
+nav a:hover {
     color:rgb(205, 205, 205)
 }
 
@@ -45,12 +48,6 @@ a:hover {
 
 .borders {
     border: 8px #fff solid;
-}
-
-nav {
-    background-color: var(--primary-color-dark);
-    color: white;
-    font-size: 16px;
 }
 
 .icon {
