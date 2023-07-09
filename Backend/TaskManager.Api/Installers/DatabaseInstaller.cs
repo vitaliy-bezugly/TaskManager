@@ -11,8 +11,8 @@ public class DatabaseInstaller : IInstaller
         var connectionString = GetConnectionStringOrNull(configuration);
         if (String.IsNullOrEmpty(connectionString))
         {
-            logger.LogError("There is no connection string has been found.");
-            throw new InvalidOperationException("Can not run application without connection string to a persistence storage");
+            logger.LogError("There is no connection string has been found. The application will use InMemoryDatabase.");
+            services.AddDbContext<ApplicationDataContext>(options => options.UseInMemoryDatabase("TaskManager"));
         }
 
         services.AddDbContext<ApplicationDataContext>(options =>
